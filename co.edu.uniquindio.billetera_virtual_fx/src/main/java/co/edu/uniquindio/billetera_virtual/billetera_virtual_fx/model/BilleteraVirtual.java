@@ -70,4 +70,24 @@ public class BilleteraVirtual {
     public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
         this.listaCategorias = listaCategorias;
     }
+
+    public Usuario buscarUsuario(String id) {
+        for(Usuario usuario: listaUsuarios){
+            if(id.equalsIgnoreCase(usuario.getIdUsuario())){
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    public void crearUsuario (Usuario usuario){
+        listaUsuarios.add(usuario);
+    }
+
+    public void actualizarUsuario (){}
+
+    public void eliminarUsuario (Usuario usuario) {
+        listaUsuarios.remove(usuario);
+    }
+
 }

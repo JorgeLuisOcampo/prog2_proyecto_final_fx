@@ -5,15 +5,16 @@ public class Cuenta {
     private String nombreBanco;
     private String numeroCuenta;
     private TipoCuenta tipoCuenta;
-    private String idAdministrador;
+    private double saldo;
+
 
     public Cuenta(String id, String nombreBanco, String numeroCuenta,
-                  TipoCuenta tipoCuenta, String idAdministrador) {
+                  TipoCuenta tipoCuenta, double saldo) {
         this.id = id;
         this.nombreBanco = nombreBanco;
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;
-        this.idAdministrador = idAdministrador;
+        this.saldo = saldo;
     }
 
     public String getId() {
@@ -48,11 +49,11 @@ public class Cuenta {
         this.tipoCuenta = tipoCuenta;
     }
 
-    public String getIdAdministrador() {
-        return idAdministrador;
+    public double getSaldo() {
+        return saldo;
     }
 
-    public void setIdAdministrador(String idAdministrador) {
-        this.idAdministrador = idAdministrador;
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 }

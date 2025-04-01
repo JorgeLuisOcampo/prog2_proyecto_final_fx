@@ -8,5 +8,5 @@ import java.util.ArrayList;
 
 public record UsuarioDto(
         String nombre, String apellidos, String email, String telefono,
-        String idUsuario, String direccion, double saldoTotal) {
+        String idUsuario, String direccion) {
 }
