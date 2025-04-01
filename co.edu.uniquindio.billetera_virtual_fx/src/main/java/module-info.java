@@ -8,4 +8,8 @@ module co.edu.uniquindio.billetera_virtual.billetera_virtual_fx {
 
     opens co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller;
     exports co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller;
+
+    opens co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+    exports co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+
 }
