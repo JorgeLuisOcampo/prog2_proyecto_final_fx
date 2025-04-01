@@ -5,12 +5,14 @@ public class Presupuesto {
     private String nombre;
     private double monto;
     private String descripcion;
+    private Categoria categoria;
 
-    public Presupuesto(String id, String nombre, double monto, String descripcion) {
+    public Presupuesto(String id, String nombre, double monto, String descripcion, Categoria categoria) {
         this.id = id;
         this.nombre = nombre;
         this.monto = monto;
         this.descripcion = descripcion;
+        this.categoria = categoria;
     }
 
     public String getId() {
@@ -43,5 +45,13 @@ public class Presupuesto {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
