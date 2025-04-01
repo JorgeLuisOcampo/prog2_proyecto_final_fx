@@ -1,4 +1,4 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.builder;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 public abstract class Persona {
     private String nombre;
@@ -17,15 +17,31 @@ public abstract class Persona {
         return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
     public String getApellidos() {
         return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getTelefono() {
         return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 }

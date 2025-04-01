@@ -1,9 +1,15 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.builder;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-public class Usuario extends Persona implements EntidadUsuario{
+import java.util.ArrayList;
+
+public class Usuario extends Persona implements EntidadUsuario {
     private String idUsuario;
     private String direccion;
     private double saldoTotal;
+    private ArrayList<Cuenta> listaCuentas;
+    private ArrayList<Transaccion> listaTransacciones;
+    private ArrayList<Presupuesto> listaPresupuestos;
+
 
 
     public Usuario(String nombre, String apellidos, String email, String telefono,
@@ -12,6 +18,9 @@ public class Usuario extends Persona implements EntidadUsuario{
         this.idUsuario = idUsuario;
         this.direccion = direccion;
         this.saldoTotal = saldoTotal;
+        this.listaCuentas = new ArrayList<>();
+        this.listaTransacciones = new ArrayList<>();
+        this.listaPresupuestos = new ArrayList<>();
     }
 
     public String getIdUsuario() {
@@ -24,6 +33,18 @@ public class Usuario extends Persona implements EntidadUsuario{
 
     public double getSaldoTotal() {
         return saldoTotal;
+    }
+
+    public ArrayList<Cuenta> getListaCuentas() {
+        return listaCuentas;
+    }
+
+    public ArrayList<Transaccion> getListaTransacciones() {
+        return listaTransacciones;
+    }
+
+    public ArrayList<Presupuesto> getListaPresupuestos() {
+        return listaPresupuestos;
     }
 
     @Override

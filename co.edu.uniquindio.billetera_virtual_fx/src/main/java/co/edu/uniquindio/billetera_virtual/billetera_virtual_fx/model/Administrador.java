@@ -1,6 +1,6 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.builder;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-public class Administrador extends Persona implements EntidadUsuario{
+public class Administrador extends Persona implements EntidadUsuario {
     private String idAdministrador;
 
     public Administrador(String nombre, String apellidos, String email,

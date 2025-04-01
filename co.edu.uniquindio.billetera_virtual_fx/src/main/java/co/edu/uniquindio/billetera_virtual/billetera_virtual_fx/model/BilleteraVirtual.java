@@ -1,4 +1,4 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.builder;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 import java.util.ArrayList;
 
