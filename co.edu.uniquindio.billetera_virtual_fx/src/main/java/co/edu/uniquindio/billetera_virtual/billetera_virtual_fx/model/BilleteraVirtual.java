@@ -80,7 +80,7 @@ public class BilleteraVirtual {
         return null;
     }
 
-    public void crearUsuario (Usuario usuario){
+    public void agregarUsuario (Usuario usuario){
         listaUsuarios.add(usuario);
     }
 

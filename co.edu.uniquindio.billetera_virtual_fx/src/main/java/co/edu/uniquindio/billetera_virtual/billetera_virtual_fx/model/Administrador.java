@@ -2,7 +2,7 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 import java.util.ArrayList;
 
-public class Administrador extends Persona implements EntidadUsuario {
+public class Administrador extends Persona implements EntidadAdministrador {
     private String idAdministrador;
     private ArrayList<Usuario> listaUsuarios;
 
@@ -21,78 +21,64 @@ public class Administrador extends Persona implements EntidadUsuario {
         return listaUsuarios;
     }
 
+
     @Override
-    public void registrarse() {
+    public void crearUsuario() {
 
     }
 
     @Override
-    public void iniciarSesion() {
+    public void actualizarUsuario() {
 
     }
 
     @Override
-    public void actualizarDatps() {
+    public void eliminarUsuario() {
 
     }
 
     @Override
-    public void depositarDinero() {
+    public void listarUsuarios() {
 
     }
 
     @Override
-    public void retirarDinero() {
+    public void agregarCuenta() {
 
     }
 
     @Override
-    public void transferirDinero() {
+    public void actualizarCuenta() {
 
     }
 
     @Override
-    public void crearPresupuesto() {
+    public void eliminarCuenta() {
 
     }
 
     @Override
-    public void modificarPresupuesto() {
+    public void crearTransaccion() {
 
     }
 
     @Override
-    public void eliminarPresupuesto() {
+    public void listarTransaccion() {
 
     }
 
     @Override
-    public void consultarPresupuesto() {
+    public void gastosComunes() {
 
     }
 
     @Override
-    public void gestionCuentas() {
+    public void usuariosMasTransacciones() {
 
     }
 
     @Override
-    public void listaTransacciones() {
-
-    }
-
-    @Override
-    public void listaPresupuestos() {
-
-    }
-
-    @Override
-    public void consultarSaldo() {
-
-    }
-
-    @Override
-    public void transaccionesCuenta() {
+    public void saldoPromedioUsuarios() {
 
     }
 }

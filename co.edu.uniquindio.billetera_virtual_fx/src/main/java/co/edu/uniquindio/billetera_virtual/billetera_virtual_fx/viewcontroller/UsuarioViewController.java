@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
 
 public class UsuarioViewController {
-
+    /*
     private void agregarUsuario() {
         UsuarioDto usuarioDto = crearUsuarioDto();
         if(datosValidos(usuarioDto)){
@@ -45,4 +45,6 @@ public class UsuarioViewController {
         alerta.setContentText(contenido);
         alerta.showAndWait();
     }
+
+    */
 }

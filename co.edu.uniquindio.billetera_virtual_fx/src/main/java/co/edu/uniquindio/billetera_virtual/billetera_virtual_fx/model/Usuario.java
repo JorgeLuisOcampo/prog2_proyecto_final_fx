@@ -6,18 +6,20 @@ public class Usuario extends Persona implements EntidadUsuario {
     private String idUsuario;
     private String direccion;
     private double saldoTotal;
+    private String contrasenia;
+    private String palabraSecreta;
     private ArrayList<Cuenta> listaCuentas;
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Presupuesto> listaPresupuestos;
 
-
-
     public Usuario(String nombre, String apellidos, String email, String telefono,
-                   String idUsuario, String direccion, double saldoTotal) {
+                   String idUsuario, String direccion, String contrasenia, String palabraSecreta) {
         super(nombre, apellidos, email, telefono);
         this.idUsuario = idUsuario;
         this.direccion = direccion;
-        this.saldoTotal = saldoTotal;
+        this.saldoTotal = 0;
+        this.contrasenia = contrasenia;
+        this.palabraSecreta = palabraSecreta;
         this.listaCuentas = new ArrayList<>();
         this.listaTransacciones = new ArrayList<>();
         this.listaPresupuestos = new ArrayList<>();
@@ -45,6 +47,46 @@ public class Usuario extends Persona implements EntidadUsuario {
 
     public ArrayList<Presupuesto> getListaPresupuestos() {
         return listaPresupuestos;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setSaldoTotal(double saldoTotal) {
+        this.saldoTotal = saldoTotal;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public String getPalabraSecreta() {
+        return palabraSecreta;
+    }
+
+    public void setPalabraSecreta(String palabraSecreta) {
+        this.palabraSecreta = palabraSecreta;
+    }
+
+    public void setListaCuentas(ArrayList<Cuenta> listaCuentas) {
+        this.listaCuentas = listaCuentas;
+    }
+
+    public void setListaTransacciones(ArrayList<Transaccion> listaTransacciones) {
+        this.listaTransacciones = listaTransacciones;
+    }
+
+    public void setListaPresupuestos(ArrayList<Presupuesto> listaPresupuestos) {
+        this.listaPresupuestos = listaPresupuestos;
     }
 
     @Override
