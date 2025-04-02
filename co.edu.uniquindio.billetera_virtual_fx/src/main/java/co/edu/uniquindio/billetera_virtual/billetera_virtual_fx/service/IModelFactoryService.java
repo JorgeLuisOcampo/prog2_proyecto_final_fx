@@ -7,4 +7,5 @@ import java.util.List;
 public interface IModelFactoryService {
     List<UsuarioDto> obtenerUsuarios();
 
+    boolean agregarUsuario(UsuarioDto usuarioDto);
 }

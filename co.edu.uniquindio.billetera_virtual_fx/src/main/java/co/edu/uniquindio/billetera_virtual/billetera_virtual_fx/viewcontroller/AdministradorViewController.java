@@ -80,11 +80,6 @@ public class AdministradorViewController {
     }
 
     @FXML
-    void OnCrearUsuario(ActionEvent event) {
-
-    }
-
-    @FXML
     void OnEliminarUsuario(ActionEvent event) {
 
     }
@@ -95,35 +90,9 @@ public class AdministradorViewController {
         initView();
     }
 
-    private void crearUsuario() {
-        UsuarioDto usuarioDto = crearUsuarioDto();
-        if(datosValidos(usuarioDto)){
-
-        } else {
-            mostrarMensaje(TITULO_INCOMPLETO, HEADER, CUERPO_INCOMPLETO, Alert.AlertType.WARNING);
-        }
-    }
-
-    private UsuarioDto crearUsuarioDto() {
-        return new UsuarioDto(
-                txtNombre.getText(),
-                txtApellidos.getText(),
-                txtEmail.getText(),
-                txtTelefono.getText(),
-                txtIdUsuario.getText(),
-                txtDireccion.getText());
-    }
-
-    private boolean datosValidos(UsuarioDto usuarioDto) {
-        if(usuarioDto.nombre().isEmpty() ||
-                usuarioDto.apellidos().isEmpty() ||
-                usuarioDto.email().isEmpty() ||
-                usuarioDto.telefono().isEmpty() ||
-                usuarioDto.idUsuario().isEmpty() ||
-                usuarioDto.direccion().isEmpty()){
-            return false;
-        }
-        return true;
+    @FXML
+    void OnCrearUsuario(ActionEvent event) {
+        crearUsuario();
     }
 
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
@@ -163,14 +132,49 @@ public class AdministradorViewController {
         });
     }
 
+    private void crearUsuario() {
+        UsuarioDto usuarioDto = crearUsuarioDto();
+        if(datosValidos(usuarioDto)){
+            if(administradorController.crearUsuario(usuarioDto)){
+                listaUsuarios.addAll(usuarioDto);
+            } else {
+                mostrarMensaje(TITULO_USUARIO_NO_CREADO, HEADER, CUERPO_USUARIO_NO_CREADO, Alert.AlertType.ERROR);
+            }
+        } else {
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, CUERPO_INCOMPLETO, Alert.AlertType.WARNING);
+        }
+    }
+
+    private UsuarioDto crearUsuarioDto() {
+        return new UsuarioDto(
+                txtNombre.getText(),
+                txtApellidos.getText(),
+                txtEmail.getText(),
+                txtTelefono.getText(),
+                txtIdUsuario.getText(),
+                txtDireccion.getText());
+    }
+
+    private boolean datosValidos(UsuarioDto usuarioDto) {
+        if(usuarioDto.nombre().isEmpty() ||
+                usuarioDto.apellidos().isEmpty() ||
+                usuarioDto.email().isEmpty() ||
+                usuarioDto.telefono().isEmpty() ||
+                usuarioDto.idUsuario().isEmpty() ||
+                usuarioDto.direccion().isEmpty()){
+            return false;
+        }
+        return true;
+    }
+
     private void mostrarInformacionUsuario(UsuarioDto usuarioSeleccionado) {
         if(usuarioSeleccionado != null){
             txtNombre.setText(usuarioSeleccionado.nombre());
-            txtApellidos.setText(usuarioSeleccionado.nombre());
-            txtEmail.setText(usuarioSeleccionado.nombre());
-            txtTelefono.setText(usuarioSeleccionado.nombre());
-            txtIdUsuario.setText(usuarioSeleccionado.nombre());
-            txtDireccion.setText(usuarioSeleccionado.nombre());
+            txtApellidos.setText(usuarioSeleccionado.apellidos());
+            txtEmail.setText(usuarioSeleccionado.email());
+            txtTelefono.setText(usuarioSeleccionado.telefono());
+            txtIdUsuario.setText(usuarioSeleccionado.idUsuario());
+            txtDireccion.setText(usuarioSeleccionado.direccion());
         }
     }
 }

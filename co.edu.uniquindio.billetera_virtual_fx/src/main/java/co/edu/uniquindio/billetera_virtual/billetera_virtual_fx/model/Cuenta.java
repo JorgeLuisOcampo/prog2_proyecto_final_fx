@@ -1,5 +1,7 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.TipoCuenta;
+
 public class Cuenta {
     private String id;
     private String nombreBanco;

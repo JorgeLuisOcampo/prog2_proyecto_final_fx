@@ -2,6 +2,7 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory.ModelFactory;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Usuario;
 
 import java.util.List;
 
@@ -13,5 +14,9 @@ public class AdministradorController {
 
     public List<UsuarioDto> obtenerUsuarios() {
         return modelFactory.obtenerUsuarios();
+    }
+
+    public boolean crearUsuario(UsuarioDto usuarioDto) {
+        return modelFactory.agregarUsuario(usuarioDto);
     }
 }

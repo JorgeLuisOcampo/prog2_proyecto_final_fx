@@ -1,5 +1,7 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.TipoTransaccion;
+
 import java.time.LocalDate;
 
 public class Transaccion {

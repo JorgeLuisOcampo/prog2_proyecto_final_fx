@@ -1,5 +1,7 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+
 import java.util.ArrayList;
 
 public class BilleteraVirtual {
@@ -80,8 +82,17 @@ public class BilleteraVirtual {
         return null;
     }
 
-    public void agregarUsuario (Usuario usuario){
-        listaUsuarios.add(usuario);
+    public boolean crearUsuario (Usuario nuevoUsuario){
+        Usuario usuario = buscarUsuario(nuevoUsuario.getIdUsuario());
+        if (usuario == null) {
+            listaUsuarios.add(nuevoUsuario);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean crearUsuario (UsuarioDto usuarioDto){
+        return true;
     }
 
     public void actualizarUsuario (){}
@@ -90,4 +101,7 @@ public class BilleteraVirtual {
         listaUsuarios.remove(usuario);
     }
 
+    public void agregarAdministrador(Administrador administrador1) {
+        listaAdministradores.add(administrador1);
+    }
 }

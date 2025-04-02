@@ -1,13 +1,20 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.builder.AdministradorBuilder;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.EntidadAdministrador;
+
 import java.util.ArrayList;
 
 public class Administrador extends Persona implements EntidadAdministrador {
     private String idAdministrador;
     private ArrayList<Usuario> listaUsuarios;
 
+    public static AdministradorBuilder builder(){
+        return new AdministradorBuilder();
+    }
+
     public Administrador(String nombre, String apellidos, String email,
-                         String telefono, String idAdministrador) {
+                         String telefono, String idAdministrador) { // ArrayList<Usuario> listaUsuarios) {
         super(nombre, apellidos, email, telefono);
         this.idAdministrador = idAdministrador;
         this.listaUsuarios = new ArrayList<>();
