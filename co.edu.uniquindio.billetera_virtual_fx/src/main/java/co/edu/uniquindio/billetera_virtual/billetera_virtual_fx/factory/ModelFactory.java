@@ -36,4 +36,14 @@ public class ModelFactory implements IModelFactoryService {
     public boolean agregarUsuario(UsuarioDto usuarioDto) {
         return billetera.crearUsuario(mapper.usuarioDtoToUsuario(usuarioDto));
     }
+
+    @Override
+    public boolean actualizarUsuario(UsuarioDto usuarioDto) {
+        return billetera.actualizarUsuario(mapper.usuarioDtoToUsuario(usuarioDto));
+    }
+
+    @Override
+    public boolean eliminarUsuario(UsuarioDto usuarioDto) {
+        return billetera.eliminarUsuario(mapper.usuarioDtoToUsuario(usuarioDto));
+    }
 }

@@ -74,15 +74,7 @@ public class AdministradorViewController {
     @FXML
     private TextField txtIdUsuario;
 
-    @FXML
-    void OnActualizarUsuario(ActionEvent event) {
 
-    }
-
-    @FXML
-    void OnEliminarUsuario(ActionEvent event) {
-
-    }
 
     @FXML
     void initialize() {
@@ -93,6 +85,49 @@ public class AdministradorViewController {
     @FXML
     void OnCrearUsuario(ActionEvent event) {
         crearUsuario();
+    }
+
+    @FXML
+    void OnActualizarUsuario(ActionEvent event) {
+        actualizaUsuario();
+
+    }
+
+    private void actualizaUsuario() {
+        UsuarioDto usuarioDto = crearUsuarioDto();
+        if(datosValidos(usuarioDto)){
+            if(administradorController.actualizarUsuario(usuarioDto)){
+                tableUsuarios.refresh();
+                limpiarDatos();
+                mostrarMensaje(TITULO_USUARIO_ACTUALIZADO, HEADER, CUERPO_USUARIO_ACTUALIZADO, Alert.AlertType.INFORMATION);
+
+            } else {
+                mostrarMensaje(TITULO_USUARIO_NO_EXISTE, HEADER, CUERPO_USUARIO_NO_EXISTE, Alert.AlertType.ERROR);
+            }
+        } else {
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, CUERPO_INCOMPLETO, Alert.AlertType.WARNING);
+        }
+    }
+
+    @FXML
+    void OnEliminarUsuario(ActionEvent event) {
+        eliminarUsuario();
+    }
+
+    private void eliminarUsuario() {
+        UsuarioDto usuarioDto = crearUsuarioDto();
+        if(datosValidos(usuarioDto)){
+            if(administradorController.elimiarUsuario(usuarioDto)){
+                listaUsuarios.remove(usuarioDto);
+                limpiarDatos();
+                mostrarMensaje(TITULO_USUARIO_ELIMINADO, HEADER, CUERPO_USUARIO_ELIMIADO, Alert.AlertType.INFORMATION);
+            }else {
+                mostrarMensaje(TITULO_USUARIO_NO_EXISTE, HEADER, CUERPO_USUARIO_NO_EXISTE, Alert.AlertType.ERROR);
+            }
+        } else {
+            mostrarMensaje(TITULO_INCOMPLETO, HEADER, CUERPO_INCOMPLETO, Alert.AlertType.WARNING);
+        }
+
     }
 
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
@@ -137,12 +172,22 @@ public class AdministradorViewController {
         if(datosValidos(usuarioDto)){
             if(administradorController.crearUsuario(usuarioDto)){
                 listaUsuarios.addAll(usuarioDto);
+                limpiarDatos();
             } else {
                 mostrarMensaje(TITULO_USUARIO_NO_CREADO, HEADER, CUERPO_USUARIO_NO_CREADO, Alert.AlertType.ERROR);
             }
         } else {
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, CUERPO_INCOMPLETO, Alert.AlertType.WARNING);
         }
+    }
+
+    private void limpiarDatos() {
+        txtNombre.setText("");
+        txtApellidos.setText("");
+        txtEmail.setText("");
+        txtTelefono.setText("");
+        txtIdUsuario.setText("");
+        txtDireccion.setText("");
     }
 
     private UsuarioDto crearUsuarioDto() {

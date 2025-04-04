@@ -19,4 +19,12 @@ public class AdministradorController {
     public boolean crearUsuario(UsuarioDto usuarioDto) {
         return modelFactory.agregarUsuario(usuarioDto);
     }
+
+    public boolean actualizarUsuario(UsuarioDto usuarioDto) {
+        return modelFactory.actualizarUsuario(usuarioDto);
+    }
+
+    public boolean elimiarUsuario(UsuarioDto usuarioDto) {
+        return modelFactory.eliminarUsuario(usuarioDto);
+    }
 }

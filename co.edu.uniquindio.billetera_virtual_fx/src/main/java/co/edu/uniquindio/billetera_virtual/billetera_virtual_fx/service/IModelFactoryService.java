@@ -8,4 +8,8 @@ public interface IModelFactoryService {
     List<UsuarioDto> obtenerUsuarios();
 
     boolean agregarUsuario(UsuarioDto usuarioDto);
+
+    boolean actualizarUsuario(UsuarioDto usuarioDto);
+
+    boolean eliminarUsuario(UsuarioDto usuarioDto);
 }

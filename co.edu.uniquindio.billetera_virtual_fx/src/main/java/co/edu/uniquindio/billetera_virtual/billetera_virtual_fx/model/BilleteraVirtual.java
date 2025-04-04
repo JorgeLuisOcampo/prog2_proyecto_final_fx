@@ -91,14 +91,26 @@ public class BilleteraVirtual {
         return false;
     }
 
-    public boolean crearUsuario (UsuarioDto usuarioDto){
-        return true;
+    public boolean actualizarUsuario (Usuario usuarioActualizado){
+        Usuario usuario = buscarUsuario(usuarioActualizado.getIdUsuario());
+        if(usuario != null){
+            usuario.setNombre(usuarioActualizado.getNombre());
+            usuario.setApellidos(usuarioActualizado.getApellidos());
+            usuario.setEmail(usuarioActualizado.getEmail());
+            usuario.setDireccion(usuarioActualizado.getDireccion());
+            usuario.setTelefono(usuarioActualizado.getTelefono());
+            return true;
+        }
+        return false;
     }
 
-    public void actualizarUsuario (){}
-
-    public void eliminarUsuario (Usuario usuario) {
-        listaUsuarios.remove(usuario);
+    public boolean eliminarUsuario (Usuario usuarioEliminado) {
+        Usuario usuario = buscarUsuario(usuarioEliminado.getIdUsuario());
+        if (usuario != null) {
+            listaUsuarios.remove(usuarioEliminado);
+            return true;
+        }
+        return false;
     }
 
     public void agregarAdministrador(Administrador administrador1) {
