@@ -4,14 +4,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
+
 
 import java.io.IOException;
 
 public class BilleteraApplication extends Application {
+    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
+    double anchoPantalla = screenBounds.getWidth();
+    double altoPantalla = screenBounds.getHeight();
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(BilleteraApplication.class.getResource("Administrador.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
+        Scene scene = new Scene(fxmlLoader.load(), anchoPantalla * 0.8, altoPantalla * 0.8);
         stage.setTitle("Billetera Virtual");
         stage.setScene(scene);
         stage.show();
