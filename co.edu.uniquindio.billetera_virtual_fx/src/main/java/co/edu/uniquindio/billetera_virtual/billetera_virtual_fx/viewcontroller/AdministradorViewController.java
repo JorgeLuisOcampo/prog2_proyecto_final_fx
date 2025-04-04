@@ -97,6 +97,7 @@ public class AdministradorViewController {
         UsuarioDto usuarioDto = crearUsuarioDto();
         if(datosValidos(usuarioDto)){
             if(administradorController.actualizarUsuario(usuarioDto)){
+                //listaUsuarios.replaceAll;
                 tableUsuarios.refresh();
                 limpiarDatos();
                 mostrarMensaje(TITULO_USUARIO_ACTUALIZADO, HEADER, CUERPO_USUARIO_ACTUALIZADO, Alert.AlertType.INFORMATION);
@@ -119,6 +120,7 @@ public class AdministradorViewController {
         if(datosValidos(usuarioDto)){
             if(administradorController.elimiarUsuario(usuarioDto)){
                 listaUsuarios.remove(usuarioDto);
+                tableUsuarios.refresh();
                 limpiarDatos();
                 mostrarMensaje(TITULO_USUARIO_ELIMINADO, HEADER, CUERPO_USUARIO_ELIMIADO, Alert.AlertType.INFORMATION);
             }else {
