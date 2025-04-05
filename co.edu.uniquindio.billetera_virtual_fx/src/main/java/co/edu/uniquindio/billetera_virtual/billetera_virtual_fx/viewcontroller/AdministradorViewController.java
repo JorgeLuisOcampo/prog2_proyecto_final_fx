@@ -97,7 +97,7 @@ public class AdministradorViewController {
         UsuarioDto usuarioDto = crearUsuarioDto();
         if(datosValidos(usuarioDto)){
             if(administradorController.actualizarUsuario(usuarioDto)){
-                //listaUsuarios.replaceAll;
+                intercambiarUsuarioDto(usuarioDto);
                 tableUsuarios.refresh();
                 limpiarDatos();
                 mostrarMensaje(TITULO_USUARIO_ACTUALIZADO, HEADER, CUERPO_USUARIO_ACTUALIZADO, Alert.AlertType.INFORMATION);
@@ -107,6 +107,15 @@ public class AdministradorViewController {
             }
         } else {
             mostrarMensaje(TITULO_INCOMPLETO, HEADER, CUERPO_INCOMPLETO, Alert.AlertType.WARNING);
+        }
+    }
+
+    private void intercambiarUsuarioDto(UsuarioDto usuarioDto) {
+        for (int i = 0; i < listaUsuarios.size(); i++) {
+            UsuarioDto usuario = listaUsuarios.get(i);
+            if (usuario.idUsuario().equals(usuarioSeleccionado.idUsuario())) {
+                listaUsuarios.set(i, usuarioDto);
+            }
         }
     }
 
