@@ -12,7 +12,19 @@ public class Transaccion {
     private String descripcion;
     private Cuenta cuentaOrigen;
     private Cuenta cuentaDestino;
+    private Usuario usuario;
+    private Administrador administrador;
 
+    /**
+     * Constructor de la clase Transaccion
+     * @param id
+     * @param fechaTransaccion
+     * @param tipoTransaccion
+     * @param monto
+     * @param descripcion
+     * @param cuentaOrigen
+     * @param cuentaDestino
+     */
     public Transaccion(String id, LocalDate fechaTransaccion, TipoTransaccion tipoTransaccion,
                        double monto, String descripcion, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
         this.id = id;
@@ -24,34 +36,65 @@ public class Transaccion {
         this.cuentaDestino = cuentaDestino;
     }
 
+    /**
+     * Metodo para obtener el id de la transaccion
+     * @return
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Metodo para setear el id de la transaccion
+     * @param id
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Metodo para obtener la fecha de la transaccion
+     * @return
+     */
     public LocalDate getFechaTransaccion() {
         return fechaTransaccion;
     }
 
+    /**
+     * Metodo para setear la fecha de la transaccion
+     * @param fechaTransaccion
+     */
     public void setFechaTransaccion(LocalDate fechaTransaccion) {
         this.fechaTransaccion = fechaTransaccion;
     }
 
+    /**
+     * Metodo para obtener el tipo de transaccion
+     * @return
+     */
     public TipoTransaccion getTipoTransaccion() {
         return tipoTransaccion;
     }
 
+    /**
+     * Metodo para setear el tipo de transaccion
+     * @param tipoTransaccion
+     */
     public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
         this.tipoTransaccion = tipoTransaccion;
     }
 
+    /**
+     * Metodo para obtener el monto de la transaccion
+     * @return
+     */
     public double getMonto() {
         return monto;
     }
-
+    /**
+     * Metodo para setear el monto de la transaccion
+     * @param monto
+     */
     public void setMonto(double monto) {
         this.monto = monto;
     }

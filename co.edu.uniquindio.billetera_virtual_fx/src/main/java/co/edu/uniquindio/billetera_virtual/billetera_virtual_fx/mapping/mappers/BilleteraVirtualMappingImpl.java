@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BilleteraVirtualMappingImpl implements IBilleteraVirtualMapping {
-
+    /**
+     * Metodo para obtener los usuarios en formato dto
+     * @param listaUsuarios
+     * @return
+     */
     @Override
     public List<UsuarioDto> getUsuariosDto(List<Usuario> listaUsuarios){
         if(listaUsuarios == null) {
@@ -22,6 +26,11 @@ public class BilleteraVirtualMappingImpl implements IBilleteraVirtualMapping {
         return listaUsuariosDto;
     }
 
+    /**
+     * Metodo para convertir un usuario a un usuarioDto
+     * @param usuario
+     * @return
+     */
     @Override
     public UsuarioDto usuarioToUsuarioDto(Usuario usuario) {
         return new UsuarioDto (usuario.getNombre(),
@@ -32,9 +41,21 @@ public class BilleteraVirtualMappingImpl implements IBilleteraVirtualMapping {
                 usuario.getDireccion());
     }
 
+    /**
+     * Metodo para convertir un usuarioDto a un usuario
+     * @param usuarioDto
+     * @return
+     */
     @Override
     public Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto) {
-        return new Usuario (usuarioDto.nombre(), usuarioDto.apellidos(), usuarioDto.email(), usuarioDto.telefono(), usuarioDto.idUsuario(), usuarioDto.direccion(), "", "");
+        Usuario usuario = new Usuario();
+        usuario.setIdUsuario(usuarioDto.idUsuario());
+        usuario.setNombre(usuarioDto.nombre());
+        usuario.setApellidos(usuarioDto.apellidos());
+        usuario.setEmail(usuarioDto.email());
+        usuario.setTelefono(usuarioDto.telefono());
+        usuario.setDireccion(usuarioDto.direccion());
+        return usuario;
     }
 
 }

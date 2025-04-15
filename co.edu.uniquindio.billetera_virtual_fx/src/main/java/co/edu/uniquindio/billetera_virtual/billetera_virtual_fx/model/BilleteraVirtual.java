@@ -1,10 +1,14 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CuentaDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.*;
 
 import java.util.ArrayList;
 
-public class BilleteraVirtual {
+public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudTransaccion,
+                                         ICrudCuenta, ICrudPresupuesto, ICrudCategoria {
     private String nombre;
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     private ArrayList<Administrador> listaAdministradores = new ArrayList<>();
@@ -12,67 +16,63 @@ public class BilleteraVirtual {
     private ArrayList<Transaccion> listaTransacciones = new ArrayList<>();
     private ArrayList<Presupuesto> listaPresupuestos = new ArrayList<>();
     private ArrayList<Categoria> listaCategorias = new ArrayList<>();
-
+    /**
+     * Constructor de la clase BilleteraVirtual
+     * @param nombre
+     */
     public BilleteraVirtual(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getNombre() {
-        return nombre;
+    /**
+     * Metodo para crear un administrador
+     * @param administrador
+     */
+    @Override
+    public void agregarAdministrador(Administrador administrador) {
+        listaAdministradores.add(administrador);
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    /**
+     * Metodo para filtrar las transacciones sea por fecha, tipo de transaccion o categoria
+     *  debe añadir en el metodo
+     */
+    @Override
+    public void filtrarTransaccion() {
+
     }
 
-    public ArrayList<Usuario> getListaUsuarios() {
-        return listaUsuarios;
+    @Override
+    public void estadoPresupuesto() {
+
     }
 
-    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
+    @Override
+    public void montoGastado() {
+
     }
 
-    public ArrayList<Administrador> getListaAdministradores() {
-        return listaAdministradores;
+    @Override
+    public void eliminarCuentasDesuso() {
+
     }
 
-    public void setListaAdministradores(ArrayList<Administrador> listaAdministradores) {
-        this.listaAdministradores = listaAdministradores;
+    @Override
+    public void listarUsuarios() {
+
     }
 
-    public ArrayList<Cuenta> getListaCuentas() {
-        return listaCuentas;
+    @Override
+    public void listarCategorias() {
+
     }
 
-    public void setListaCuentas(ArrayList<Cuenta> listaCuentas) {
-        this.listaCuentas = listaCuentas;
-    }
-
-    public ArrayList<Transaccion> getListaTransacciones() {
-        return listaTransacciones;
-    }
-
-    public void setListaTransacciones(ArrayList<Transaccion> listaTransacciones) {
-        this.listaTransacciones = listaTransacciones;
-    }
-
-    public ArrayList<Presupuesto> getListaPresupuestos() {
-        return listaPresupuestos;
-    }
-
-    public void setListaPresupuestos(ArrayList<Presupuesto> listaPresupuestos) {
-        this.listaPresupuestos = listaPresupuestos;
-    }
-
-    public ArrayList<Categoria> getListaCategorias() {
-        return listaCategorias;
-    }
-
-    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
-        this.listaCategorias = listaCategorias;
-    }
-
+    /**
+     * Metodo para buscar un usuario en la lista de usuarios
+     * @param id
+     * @return
+     */
+    @Override
     public Usuario buscarUsuario(String id) {
         for(Usuario usuario: listaUsuarios){
             if(id.equalsIgnoreCase(usuario.getIdUsuario())){
@@ -82,7 +82,13 @@ public class BilleteraVirtual {
         return null;
     }
 
-    public boolean crearUsuario (Usuario nuevoUsuario){
+    /**
+     * Metodo para agregar un usuario a la lista de usuarios
+     * @param nuevoUsuario
+     * @return
+     */
+    @Override
+    public boolean agregarUsuario(Usuario nuevoUsuario){
         Usuario usuario = buscarUsuario(nuevoUsuario.getIdUsuario());
         if (usuario == null) {
             listaUsuarios.add(nuevoUsuario);
@@ -91,7 +97,13 @@ public class BilleteraVirtual {
         return false;
     }
 
-    public boolean actualizarUsuario (Usuario usuarioActualizado){
+    /**
+     * Metodo para actualizar un usuario en la lista de usuarios
+     * @param usuarioActualizado
+     * @return
+     */
+    @Override
+    public boolean actualizarUsuario(Usuario usuarioActualizado){
         Usuario usuario = buscarUsuario(usuarioActualizado.getIdUsuario());
         if(usuario != null){
             usuario.setNombre(usuarioActualizado.getNombre());
@@ -104,7 +116,13 @@ public class BilleteraVirtual {
         return false;
     }
 
-    public boolean eliminarUsuario (Usuario usuarioEliminado) {
+    /**
+     * Metodo para eliminar un usuario de la lista de usuarios
+     * @param usuarioEliminado
+     * @return
+     */
+    @Override
+    public boolean eliminarUsuario(Usuario usuarioEliminado) {
         Usuario usuario = buscarUsuario(usuarioEliminado.getIdUsuario());
         if (usuario != null) {
             listaUsuarios.remove(usuarioEliminado);
@@ -113,7 +131,163 @@ public class BilleteraVirtual {
         return false;
     }
 
-    public void agregarAdministrador(Administrador administrador1) {
-        listaAdministradores.add(administrador1);
+    @Override
+    public boolean agregarCategoria() {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarCategoria() {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarCategoria() {
+        return false;
+    }
+
+    @Override
+    public boolean agregarCuenta(CuentaDto cuentaDto) {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarCuenta(CuentaDto cuentaDto) {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarCuenta(CuentaDto cuentaDto) {
+        return false;
+    }
+
+    @Override
+    public boolean detallesCuenta(CuentaDto cuentaDto) {
+        return false;
+    }
+
+    @Override
+    public boolean agregarPresupuesto() {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarPresupuesto() {
+        return false;
+    }
+
+    @Override
+    public boolean actualizarPresupuesto() {
+        return false;
+    }
+
+    @Override
+    public boolean agregarTransaccion(TransaccionDto transaccionDto) {
+        return false;
+    }
+
+    @Override
+    public boolean eliminarTransaccion(TransaccionDto transaccionDto) {
+        return false;
+    }
+
+
+    /**
+     * Metodo para obtener el nombre de la billetera
+     * @return
+     */
+    public String getNombre() {
+        return nombre;
+    }
+    /**
+     * Metodo para setear el nombre de la billetera
+     * @param nombre
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    /**
+     * Metodo para obtener la lista de usuarios
+     * @return
+     */
+    public ArrayList<Usuario> getListaUsuarios() {
+        return listaUsuarios;
+    }
+    /**
+     * Metodo para setear la lista de usuarios
+     * @param listaUsuarios
+     */
+    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+        this.listaUsuarios = listaUsuarios;
+    }
+    /**
+     * Metodo para obtener la lista de administradores
+     * @return
+     */
+    public ArrayList<Administrador> getListaAdministradores() {
+        return listaAdministradores;
+    }
+    /**
+     * Metodo para setear la lista de administradores
+     * @param listaAdministradores
+     */
+    public void setListaAdministradores(ArrayList<Administrador> listaAdministradores) {
+        this.listaAdministradores = listaAdministradores;
+    }
+    /**
+     * Metodo para obtener la lista de cuentas
+     * @return
+     */
+    public ArrayList<Cuenta> getListaCuentas() {
+        return listaCuentas;
+    }
+    /**
+     * Metodo para setear la lista de cuentas
+     * @param listaCuentas
+     */
+    public void setListaCuentas(ArrayList<Cuenta> listaCuentas) {
+        this.listaCuentas = listaCuentas;
+    }
+    /**
+     *  Metodo para obtener la lista de transacciones
+     * @return
+     */
+    public ArrayList<Transaccion> getListaTransacciones() {
+        return listaTransacciones;
+    }
+    /**
+     * Metodo para setear la lista de transacciones
+     * @param listaTransacciones
+     */
+    public void setListaTransacciones(ArrayList<Transaccion> listaTransacciones) {
+        this.listaTransacciones = listaTransacciones;
+    }
+    /**
+     * Metodo para obtener la lista de presupuestos
+     * @return
+     */
+    public ArrayList<Presupuesto> getListaPresupuestos() {
+        return listaPresupuestos;
+    }
+    /**
+     *  Metodo para setear la lista de presupuestos
+     * @param listaPresupuestos
+     */
+    public void setListaPresupuestos(ArrayList<Presupuesto> listaPresupuestos) {
+        this.listaPresupuestos = listaPresupuestos;
+    }
+    /**
+     *  Metodo para obtener la lista de categorias
+     * @return
+     */
+    public ArrayList<Categoria> getListaCategorias() {
+        return listaCategorias;
+    }
+    /**
+     * Metodo para setear la lista de categorias
+     * @param listaCategorias
+     */
+    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+        this.listaCategorias = listaCategorias;
     }
 }
