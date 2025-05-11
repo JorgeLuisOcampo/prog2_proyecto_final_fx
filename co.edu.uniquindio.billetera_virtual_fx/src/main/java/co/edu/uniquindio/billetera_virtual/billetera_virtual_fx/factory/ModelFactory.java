@@ -16,10 +16,12 @@ public class ModelFactory implements IModelFactory {
     private static ModelFactory modelFactory;
     private BilleteraVirtual billetera;
     private IBilleteraVirtualMapping mapper;
+    private Administrador administrador;
 
     private ModelFactory() {
         mapper = new BilleteraVirtualMappingImpl();
         billetera = DataUtil.inicializarDatos();
+        administrador = billetera.getAdministrador();
     }
 
     public static ModelFactory getInstance() {
@@ -49,4 +51,19 @@ public class ModelFactory implements IModelFactory {
         return billetera.eliminarUsuario(mapper.usuarioDtoToUsuario(usuarioDto));
     }
 
+    public boolean verificarInfoAdm(String usuario, String contrasenia){
+        return billetera.verificarInfoAdm(usuario, contrasenia);
+    }
+
+    public boolean verificarInfoUsuario(String correo, String contrasenia){
+        return billetera.verificarInfoUsuario(correo, contrasenia);
+    }
+
+    public UsuarioDto obtenerUsuarioToUsuarioDto(Usuario usuario){
+        return mapper.usuarioToUsuarioDto(usuario);
+    }
+
+    public Usuario buscarUsuarioPorCredenciales(String correo, String contrasenia){
+        return billetera.obtenerUsuarioPorCredenciales(correo, contrasenia);
+    }
 }

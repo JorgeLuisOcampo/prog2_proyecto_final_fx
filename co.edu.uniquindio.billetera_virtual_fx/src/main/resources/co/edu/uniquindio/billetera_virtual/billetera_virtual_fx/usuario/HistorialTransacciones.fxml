@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="710.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuarioView.HistorialTransaccionesViewController">
+   <children>
+      <SplitPane fx:id="sp_historial_transacciones" dividerPositions="0.4102941176470588" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="682.0" prefWidth="948.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="258.0" layoutY="31.0" text="BUSQUEDA DE TRANSACCIONES">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <DatePicker fx:id="dp_fecha_inicial" layoutX="182.0" layoutY="96.0" />
+                  <DatePicker fx:id="dp_fecha_final" layoutX="182.0" layoutY="148.0" />
+                  <ComboBox fx:id="cbx_tipo_transaccion_busqueda" layoutX="633.0" layoutY="96.0" prefHeight="31.0" prefWidth="171.0" promptText="Tipo transaccion" />
+                  <Label layoutX="81.0" layoutY="101.0" text="Fecha inicial:" />
+                  <Label layoutX="91.0" layoutY="153.0" text="Fecha final:" />
+                  <Button fx:id="btn_filtar" layoutX="291.0" layoutY="206.0" mnemonicParsing="false" onAction="#on_filtrar_transaccion" prefHeight="40.0" prefWidth="160.0" text="FILTRAR">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btn_limpiar" layoutX="495.0" layoutY="206.0" mnemonicParsing="false" onAction="#on_limpiar_campos" prefHeight="40.0" prefWidth="160.0" text="LIMPIAR">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="367.0" prefWidth="918.0">
+                    <columns>
+                      <TableColumn fx:id="tc_fecha_busqueda" prefWidth="98.0" text="Fecha" />
+                      <TableColumn fx:id="tc_id_transaccion_busqueda" prefWidth="107.0" text="Id transaccion" />
+                        <TableColumn fx:id="tc_tipo_transaccion_busqueda" prefWidth="128.0" text="Tipo transaccion" />
+                        <TableColumn fx:id="tc_descripccion_busqueda" prefWidth="261.0" text="Descripcion" />
+                        <TableColumn fx:id="tc_monto_busqueda" prefWidth="95.0" text="Monto" />
+                        <TableColumn fx:id="tc_cuenta_origen_busqueda" prefWidth="109.0" text="Cuenta origen" />
+                        <TableColumn fx:id="tc_cuenta_destino_busqueda" prefWidth="119.0" text="Cuenta destino" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

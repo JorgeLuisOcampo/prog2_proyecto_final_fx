@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ap_presupuestos" prefHeight="710.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuarioView.GestionPresupuestosViewController">
+   <children>
+      <SplitPane fx:id="sp_gestion_presupuestos" dividerPositions="0.49189985272459497" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="681.0" prefWidth="952.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <Label layoutX="317.0" layoutY="14.0" text="GESTION PRESUPUESTOS">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="-1.0" layoutY="62.0" prefHeight="12.0" prefWidth="952.0" />
+                  <Label layoutX="47.0" layoutY="105.0" text="Nombre presupuesto:" />
+                  <Label layoutX="88.0" layoutY="165.0" text="ID presupuesto:" />
+                  <Label layoutX="475.0" layoutY="105.0" text="Monto limite:" />
+                  <TextField fx:id="txt_nombre_presupuesto" layoutX="215.0" layoutY="100.0" prefHeight="31.0" prefWidth="194.0" />
+                  <TextField fx:id="txt_id_presupuesto" layoutX="215.0" layoutY="160.0" prefHeight="31.0" prefWidth="194.0" />
+                  <TextField fx:id="txt_monto_limite" layoutX="583.0" layoutY="100.0" prefHeight="31.0" prefWidth="194.0" />
+                  <ComboBox fx:id="cbx_categoria" layoutX="583.0" layoutY="160.0" prefHeight="31.0" prefWidth="194.0" />
+                  <Label layoutX="496.0" layoutY="165.0" text="Categoria:" />
+                  <Separator layoutX="-1.0" layoutY="205.0" prefHeight="12.0" prefWidth="952.0" />
+                  <Button fx:id="btn_agregar_presupuesto" layoutX="233.0" layoutY="244.0" mnemonicParsing="false" onAction="#on_agregar_presupuesto" prefHeight="31.0" prefWidth="110.0" text="AGREGAR" />
+                  <Button fx:id="btn_actualizar_presupuesto" layoutX="420.0" layoutY="244.0" mnemonicParsing="false" onAction="#on_actualizar_presupuesto" prefHeight="31.0" prefWidth="110.0" text="ACTUALIZAR" />
+                  <Button fx:id="btn_limpiar_campos" layoutX="604.0" layoutY="244.0" mnemonicParsing="false" onAction="#on_limpiar_campos" prefHeight="31.0" prefWidth="110.0" text="LIMPIAR" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <TableView layoutX="14.0" layoutY="14.0" prefHeight="249.0" prefWidth="921.0">
+                    <columns>
+                      <TableColumn fx:id="tc_nombre" prefWidth="158.0" text="Nombre" />
+                      <TableColumn fx:id="tc_id_presupuesto" prefWidth="147.0" text="ID presupuesto" />
+                        <TableColumn fx:id="tc_cuenta_asociada" prefWidth="167.0" text="Cuenta asociada" />
+                        <TableColumn fx:id="tc_monto_limite" prefWidth="169.0" text="Monto limite" />
+                        <TableColumn fx:id="tc_monto_gastado" prefWidth="143.0" text="Monto gastado" />
+                        <TableColumn fx:id="tc_categoria" prefWidth="136.0" text="Categoria" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btn_eliminar_presupuesto" layoutX="420.0" layoutY="277.0" mnemonicParsing="false" onAction="#on_eliminar_presupuesto" prefHeight="31.0" prefWidth="110.0" text="ELIMINAR" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

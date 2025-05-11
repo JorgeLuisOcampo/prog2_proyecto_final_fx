@@ -1,9 +1,4 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
-
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
-import javafx.scene.control.Alert;
-
-import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.administradorView;
 
 public class UsuarioViewController {
     /*

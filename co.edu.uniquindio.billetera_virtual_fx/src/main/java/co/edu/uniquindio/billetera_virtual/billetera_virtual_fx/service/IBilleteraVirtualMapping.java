@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface IBilleteraVirtualMapping {
     List<UsuarioDto> getUsuariosDto(List<Usuario> listaUsuarios);
-    UsuarioDto usuarioToUsuarioDto (Usuario usuario);
+    UsuarioDto  usuarioToUsuarioDto (Usuario usuario);
     Usuario usuarioDtoToUsuario (UsuarioDto usuarioDto);
 }

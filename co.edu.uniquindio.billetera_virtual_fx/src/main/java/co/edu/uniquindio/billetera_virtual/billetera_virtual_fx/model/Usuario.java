@@ -30,7 +30,6 @@ public class Usuario extends InicioSesion implements IEntidadUsuario {
      * Constructor con parametros de la clase Usuario
      * @param contrasenia
      * @param email
-     * @param palabraSecreta
      * @param idUsuario
      * @param nombre
      * @param apellidos
@@ -38,12 +37,11 @@ public class Usuario extends InicioSesion implements IEntidadUsuario {
      * @param direccion
      * @param billetera
      */
-    public Usuario(String contrasenia, String email,
-                   String palabraSecreta, String idUsuario,
+    public Usuario(String contrasenia, String email, String idUsuario,
                    String nombre, String apellidos, String telefono,
                    String direccion, BilleteraVirtual billetera
                    ) {
-        super(contrasenia, email, palabraSecreta);
+        super(contrasenia, email);
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellidos = apellidos;

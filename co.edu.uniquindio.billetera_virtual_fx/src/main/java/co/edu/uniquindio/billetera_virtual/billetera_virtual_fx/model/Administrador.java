@@ -1,10 +1,12 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.IEntidadAdministrador;
 
 import java.util.ArrayList;
 
 public class Administrador extends InicioSesion implements IEntidadAdministrador {
+    private BilleteraVirtual billetera;
     private ArrayList<Usuario> listaUsuarios;
     private ArrayList<Cuenta> listaCuentas;
     private ArrayList<Transaccion> listaTransacciones;
@@ -16,16 +18,17 @@ public class Administrador extends InicioSesion implements IEntidadAdministrador
         listaUsuarios = new ArrayList<>();
         listaCuentas = new ArrayList<>();
         listaTransacciones = new ArrayList<>();
+        billetera = new BilleteraVirtual();
     }
 
     /**
      * Constructor con parametros de la clase Administrador
      * @param contrasenia
      * @param email
-     * @param palabraSecreta
+
      */
-    public Administrador(String contrasenia, String email, String palabraSecreta) { // ArrayList<Usuario> listaUsuarios) {
-        super(contrasenia, email, palabraSecreta);
+    public Administrador(String contrasenia, String email) { // ArrayList<Usuario> listaUsuarios) {
+        super(contrasenia, email);
         this.listaUsuarios = new ArrayList<>();
     }
 
@@ -42,6 +45,10 @@ public class Administrador extends InicioSesion implements IEntidadAdministrador
     @Override
     public void saldoPromedioUsuarios() {
 
+    }
+
+    public Usuario buscarUsuario(Usuario usuario){
+        return billetera.obtenerUsuario(usuario.getEmail());
     }
     /**
      * Metodo para obtener la lista de usuarios

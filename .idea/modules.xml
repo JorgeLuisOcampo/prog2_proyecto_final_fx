@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/co.edu.uniquindio.billetera_virtual_fx/billetera_virtual_fx.iml" filepath="$PROJECT_DIR$/co.edu.uniquindio.billetera_virtual_fx/billetera_virtual_fx.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/prog2_proyecto_final_fx.iml" filepath="$PROJECT_DIR$/.idea/prog2_proyecto_final_fx.iml" />
     </modules>
   </component>

@@ -3,12 +3,12 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 public abstract class InicioSesion {
     private String contrasenia;
     private String email;
-    private String palabraSecreta;
 
-    public InicioSesion(String contrasenia, String email, String palabraSecreta) {
+
+    public InicioSesion(String contrasenia, String email) {
         this.contrasenia = contrasenia;
         this.email = email;
-        this.palabraSecreta = palabraSecreta;
+
     }
     protected InicioSesion() {
     }
@@ -40,15 +40,6 @@ public abstract class InicioSesion {
     public void setEmail(String email) {
         this.email = email;
     }
-    /**
-     * metodo para obtener la palabra secreta
-     * @return
-     */
-    public String getPalabraSecreta() {return palabraSecreta;}
-    /**
-     * metodo para setear la palabra secreta
-     * @param palabraSecreta
-     */
-    public void setPalabraSecreta(String palabraSecreta) {this.palabraSecreta = palabraSecreta;}
+
 }
 

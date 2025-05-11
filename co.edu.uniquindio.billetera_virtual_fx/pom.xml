@@ -61,7 +61,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                co.edu.uniquindio.billetera_virtual.billetera_virtual_fx/co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.BilleteraApplication
+                                co.edu.uniquindio.billetera_virtual.billetera_virtual_fx/co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.App
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>

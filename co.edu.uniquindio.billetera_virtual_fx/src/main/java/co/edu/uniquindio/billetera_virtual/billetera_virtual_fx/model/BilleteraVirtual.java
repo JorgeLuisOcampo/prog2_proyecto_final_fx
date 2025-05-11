@@ -9,9 +9,9 @@ import java.util.ArrayList;
 
 public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudTransaccion,
                                          ICrudCuenta, ICrudPresupuesto, ICrudCategoria {
+    private Administrador administrador = new Administrador("123456789", "jorgeO25@gmail.com");
     private String nombre;
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
-    private ArrayList<Administrador> listaAdministradores = new ArrayList<>();
     private ArrayList<Cuenta> listaCuentas = new ArrayList<>();
     private ArrayList<Transaccion> listaTransacciones = new ArrayList<>();
     private ArrayList<Presupuesto> listaPresupuestos = new ArrayList<>();
@@ -23,15 +23,9 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
     public BilleteraVirtual(String nombre) {
         this.nombre = nombre;
     }
+    public BilleteraVirtual() {}
 
-    /**
-     * Metodo para crear un administrador
-     * @param administrador
-     */
-    @Override
-    public void agregarAdministrador(Administrador administrador) {
-        listaAdministradores.add(administrador);
-    }
+
 
     /**
      * Metodo para filtrar las transacciones sea por fecha, tipo de transaccion o categoria
@@ -88,7 +82,7 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
      * @return
      */
     @Override
-    public boolean agregarUsuario(Usuario nuevoUsuario){
+    public boolean  agregarUsuario(Usuario nuevoUsuario){
         Usuario usuario = buscarUsuario(nuevoUsuario.getIdUsuario());
         if (usuario == null) {
             listaUsuarios.add(nuevoUsuario);
@@ -191,6 +185,35 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
         return false;
     }
 
+    public boolean verificarInfoAdm (String usuario, String contrasenia){
+        if(administrador != null
+                && administrador.getEmail() != null
+                && administrador.getContrasenia() != null) {
+
+            return administrador.getEmail().equals(usuario)
+                    && administrador.getContrasenia().equals(contrasenia);
+        }
+        return false;
+    }
+
+    public boolean verificarInfoUsuario (String correo, String contrasenia){
+        for(Usuario usuario: listaUsuarios){
+            if(usuario.getEmail().equals(correo) && usuario.getContrasenia().equals(contrasenia)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Usuario obtenerUsuarioPorCredenciales(String correo, String contrasenia){
+        for(Usuario usuario : listaUsuarios){
+            if(usuario.getEmail().equals(correo) && usuario.getContrasenia().equals(contrasenia)){
+                return usuario;
+            }
+        }
+        return null;
+    }
+
 
     /**
      * Metodo para obtener el nombre de la billetera
@@ -219,20 +242,6 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
      */
     public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
-    }
-    /**
-     * Metodo para obtener la lista de administradores
-     * @return
-     */
-    public ArrayList<Administrador> getListaAdministradores() {
-        return listaAdministradores;
-    }
-    /**
-     * Metodo para setear la lista de administradores
-     * @param listaAdministradores
-     */
-    public void setListaAdministradores(ArrayList<Administrador> listaAdministradores) {
-        this.listaAdministradores = listaAdministradores;
     }
     /**
      * Metodo para obtener la lista de cuentas
@@ -289,5 +298,22 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
      */
     public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
         this.listaCategorias = listaCategorias;
+    }
+
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
+    public Usuario obtenerUsuario(String correo) {
+        for (Usuario usuario : listaUsuarios) {
+            if (usuario.getEmail().equalsIgnoreCase(correo)) {
+                return usuario;
+            }
+        }
+        return null;
     }
 }
