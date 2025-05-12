@@ -12,6 +12,7 @@ import javafx.scene.control.Tab;
 public class UsuarioMenuViewController {
 
     UsuarioDto usuario;
+
     @FXML
     private ResourceBundle resources;
 
@@ -23,6 +24,9 @@ public class UsuarioMenuViewController {
 
     @FXML
     private Tab tab_presupuesto;
+
+    @FXML
+    private Tab tab_reportes_financieros;
 
     @FXML
     private Tab tab_cuentas;
@@ -44,5 +48,7 @@ public class UsuarioMenuViewController {
     public void setUsuario(UsuarioDto usuario){
         this.usuario = usuario;
     }
+
+
 }
 

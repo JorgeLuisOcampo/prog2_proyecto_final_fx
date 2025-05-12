@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ap_transaccion" prefHeight="710.0" prefWidth="980.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.administradorView.TransaccionViewController">
+    <children>
+        <TabPane fx:id="tp_transacciones_administrador" layoutX="10.0" layoutY="9.0" prefHeight="693.0" prefWidth="961.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="tab_realizar_transaccion" text="Realizar transaccion">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane fx:id="sp_centro_transacciones" layoutX="-4.0" layoutY="6.0" orientation="VERTICAL" prefHeight="686.0" prefWidth="954.0">
+                                    <items>
+                                        <fx:include source="RealizarTransaccion.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_historial_transaccion" text="historial transacciones">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane fx:id="sp_historial_transaccion" orientation="VERTICAL" prefHeight="686.0" prefWidth="954.0">
+                                    <items>
+                                        <fx:include source="HistorialTransacciones.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

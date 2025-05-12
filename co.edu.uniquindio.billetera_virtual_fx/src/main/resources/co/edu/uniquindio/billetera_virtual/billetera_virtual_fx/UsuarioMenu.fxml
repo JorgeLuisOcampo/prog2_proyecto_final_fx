@@ -36,7 +36,7 @@
                 </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="tab_cuentas" text="Cuentas">
+            <Tab fx:id="tab_categorias" text="Categorias">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
@@ -49,7 +49,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="tab_categorias" text="Categorias">
+            <Tab fx:id="tab_cuentas" text="Cuentas">
               <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                       <children>
@@ -73,6 +73,11 @@
                           </SplitPane>
                       </children>
                   </AnchorPane>
+              </content>
+            </Tab>
+            <Tab fx:id="tab_reportes_financieros" text="Reportes financieros">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
               </content>
             </Tab>
         </tabs>
