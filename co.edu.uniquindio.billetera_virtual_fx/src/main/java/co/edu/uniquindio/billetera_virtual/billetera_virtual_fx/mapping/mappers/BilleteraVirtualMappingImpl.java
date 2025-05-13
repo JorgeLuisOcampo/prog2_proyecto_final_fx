@@ -1,6 +1,9 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.mappers;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Categoria;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Presupuesto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Usuario;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.IBilleteraVirtualMapping;
 
@@ -52,10 +55,44 @@ public class BilleteraVirtualMappingImpl implements IBilleteraVirtualMapping {
         usuario.setIdUsuario(usuarioDto.idUsuario());
         usuario.setNombre(usuarioDto.nombre());
         usuario.setApellidos(usuarioDto.apellidos());
-        usuario.setEmail(usuarioDto.email());
+        usuario.setEmail(usuarioDto.correo());
         usuario.setTelefono(usuarioDto.telefono());
         usuario.setDireccion(usuarioDto.direccion());
         return usuario;
     }
+
+    @Override
+    public ArrayList<CategoriaDto> getCategoriaDto(ArrayList<Categoria> listaCategoria) {
+        if(listaCategoria == null) {
+            return null;
+        }
+        ArrayList<CategoriaDto> listaCategoriaDto = new ArrayList<CategoriaDto>(listaCategoria.size());
+        for(Categoria categoria : listaCategoria) {
+            listaCategoriaDto.add(categoriaToCategoriaDto(categoria));
+        }
+
+        return listaCategoriaDto;
+    }
+
+    @Override
+    public Categoria categoriaDtoToCategoria(CategoriaDto categoriaDto) {
+        return new Categoria (
+                categoriaDto.id(),
+                categoriaDto.nombre(),
+                categoriaDto.descripcion(),
+                null
+        );
+    }
+
+    @Override
+    public CategoriaDto categoriaToCategoriaDto(Categoria categoria) {
+        return new CategoriaDto(
+                categoria.getNombre(),
+                categoria.getDescripcion(),
+                categoria.getId(),
+                null
+        );
+    }
+
 
 }

@@ -7,6 +7,6 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Transaccio
 import java.util.ArrayList;
 
 public record UsuarioDto(
-        String nombre, String apellidos, String email, String telefono,
+        String nombre, String apellidos, String correo, String telefono,
         String idUsuario, String direccion) {
 }

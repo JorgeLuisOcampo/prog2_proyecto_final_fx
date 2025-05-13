@@ -1,5 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CuentaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
@@ -10,6 +11,7 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Usuario;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.*;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.DataUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ModelFactory implements IModelFactory {
@@ -49,6 +51,22 @@ public class ModelFactory implements IModelFactory {
     @Override
     public boolean eliminarUsuario(UsuarioDto usuarioDto) {
         return billetera.eliminarUsuario(mapper.usuarioDtoToUsuario(usuarioDto));
+    }
+
+    @Override
+    public String contraseniaDto(UsuarioDto usuarioDto) {
+        return billetera.contraseniaDto(mapper.usuarioDtoToUsuario(usuarioDto));
+    }
+
+    @Override
+    public ArrayList<CategoriaDto> obtenerCategorias(UsuarioDto usuarioDto) {
+        Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
+        return mapper.getCategoriaDto(billetera.obtenerCategorias(usuario));
+    }
+
+    @Override
+    public boolean agregarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
+        return billetera.agregarCategoriaAUsuario(mapper.categoriaDtoToCategoria(categoriaDto), mapper.usuarioDtoToUsuario(usuarioDto));
     }
 
     public boolean verificarInfoAdm(String usuario, String contrasenia){

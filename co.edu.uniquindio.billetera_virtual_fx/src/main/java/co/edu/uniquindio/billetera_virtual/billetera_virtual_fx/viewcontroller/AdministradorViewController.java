@@ -165,7 +165,7 @@ public class AdministradorViewController {
     private void initDataBinding() {
         tcNombre.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
         tcApellidos.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().apellidos()));
-        tcEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().email()));
+        tcEmail.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().correo()));
         tcTelefono.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().telefono()));
         tcIdUsuario.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().idUsuario()));
         tcDireccion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().direccion()));
@@ -214,7 +214,7 @@ public class AdministradorViewController {
     private boolean datosValidos(UsuarioDto usuarioDto) {
         if(usuarioDto.nombre().isEmpty() ||
                 usuarioDto.apellidos().isEmpty() ||
-                usuarioDto.email().isEmpty() ||
+                usuarioDto.correo().isEmpty() ||
                 usuarioDto.telefono().isEmpty() ||
                 usuarioDto.idUsuario().isEmpty() ||
                 usuarioDto.direccion().isEmpty()){
@@ -227,7 +227,7 @@ public class AdministradorViewController {
         if(usuarioSeleccionado != null){
             txtNombre.setText(usuarioSeleccionado.nombre());
             txtApellidos.setText(usuarioSeleccionado.apellidos());
-            txtEmail.setText(usuarioSeleccionado.email());
+            txtEmail.setText(usuarioSeleccionado.correo());
             txtTelefono.setText(usuarioSeleccionado.telefono());
             txtIdUsuario.setText(usuarioSeleccionado.idUsuario());
             txtDireccion.setText(usuarioSeleccionado.direccion());

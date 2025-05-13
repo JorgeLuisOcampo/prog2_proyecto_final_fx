@@ -2,15 +2,25 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.
 
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuarioController.GestionCategoriasController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
 public class GestionCategoriasViewController {
+
+    GestionCategoriasController gestionCategoriasController;
+    ObservableList<CategoriaDto> listaCategorias = FXCollections.observableArrayList();
+    CategoriaDto categoriaSeleccionada;
 
     @FXML
     private ResourceBundle resources;
@@ -20,6 +30,9 @@ public class GestionCategoriasViewController {
 
     @FXML
     private Button btn_agregar_categoria;
+
+    @FXML
+    private TableView<CategoriaDto> tableCategoria;
 
     @FXML
     private TextField txt_descripcion;
@@ -34,13 +47,13 @@ public class GestionCategoriasViewController {
     private Button btn_eliminar_categoria;
 
     @FXML
-    private TableColumn<?, ?> tc_id_categoria;
+    private TableColumn<CategoriaDto, String> tc_id_categoria;
 
     @FXML
     private TextField txt_id_categoria;
 
     @FXML
-    private TableColumn<?, ?> tc_presupuesto_asociado;
+    private TableColumn<CategoriaDto, String> tc_presupuesto_asociado;
 
     @FXML
     private AnchorPane ap_gestion_categorias;
@@ -49,27 +62,71 @@ public class GestionCategoriasViewController {
     private SplitPane sp_gestion_categorias;
 
     @FXML
-    private TableColumn<?, ?> tc_nombre_categoria;
+    private TableColumn<CategoriaDto, String> tc_nombre_categoria;
 
     @FXML
-    private TableColumn<?, ?> tc_descripcion;
+    private TableColumn<CategoriaDto, String> tc_descripcion;
 
     @FXML
     private Button btn_actualizar_categoria;
 
     @FXML
     void on_agregar_categoria() {
+        agregarCategoria();
 
+    }
+
+    private void agregarCategoria() {
+        CategoriaDto categoriaDto = crearCategoriaDto();
+        if(validarDatos(categoriaDto)){
+            if(gestionCategoriasController.agregarCategoria(categoriaDto, usuarioDto)){
+                listaCategorias.add(categoriaDto);
+                limpiarCampos();
+
+
+            }
+
+        }
+    }
+
+    private boolean validarDatos(CategoriaDto categoriaDto) {
+        if(!txt_id_categoria.getText().isEmpty() &&
+                !txt_descripcion.getText().isEmpty() &&
+                !txt_nombre_categoria.getText().isEmpty()){
+            return true;
+        }
+        return false;
+    }
+
+    private CategoriaDto crearCategoriaDto() {
+        CategoriaDto categoriaDto = new CategoriaDto(
+                txt_id_categoria.getText(),
+                txt_nombre_categoria.getText(),
+                txt_descripcion.getText(),
+                null
+        );
+        return categoriaDto;
     }
 
     @FXML
     void on_limpiar_campos() {
+        limpiarCampos();
 
+    }
+
+    private void limpiarCampos() {
+        txt_nombre_categoria.setText("");
+        txt_id_categoria.setText("");
+        txt_descripcion.setText("");
     }
 
     @FXML
     void on_actualizar_categoria() {
+        actualizarCategoria();
 
+    }
+
+    private void actualizarCategoria() {
     }
 
     @FXML
@@ -79,20 +136,53 @@ public class GestionCategoriasViewController {
 
     @FXML
     void initialize() {
-        assert btn_agregar_categoria != null : "fx:id=\"btn_agregar_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert txt_descripcion != null : "fx:id=\"txt_descripcion\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert btn_limpiar_campos != null : "fx:id=\"btn_limpiar_campos\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert txt_nombre_categoria != null : "fx:id=\"txt_nombre_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert btn_eliminar_categoria != null : "fx:id=\"btn_eliminar_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert tc_id_categoria != null : "fx:id=\"tc_id_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert txt_id_categoria != null : "fx:id=\"txt_id_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert tc_presupuesto_asociado != null : "fx:id=\"tc_presupuesto_asociado\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert ap_gestion_categorias != null : "fx:id=\"ap_gestion_categorias\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert sp_gestion_categorias != null : "fx:id=\"sp_gestion_categorias\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert tc_nombre_categoria != null : "fx:id=\"tc_nombre_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert tc_descripcion != null : "fx:id=\"tc_descripcion\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
-        assert btn_actualizar_categoria != null : "fx:id=\"btn_actualizar_categoria\" was not injected: check your FXML file 'GestionCategorias.fxml'.";
+        gestionCategoriasController = new GestionCategoriasController();
 
     }
+
+    private UsuarioDto usuarioDto;
+
+    public void setUsuario(UsuarioDto usuarioDto) {
+        this.usuarioDto = usuarioDto;
+        initView();
+
+    }
+
+    private void initView() {
+        initDataBinding();
+        obtenerCategorias();
+        tableCategoria.getItems().clear();
+        tableCategoria.setItems(listaCategorias);
+        listenerSelection();
+    }
+
+    private void obtenerCategorias() {
+        listaCategorias.clear();
+        listaCategorias.addAll(gestionCategoriasController.obtenerCategorias(usuarioDto));
+
+    }
+
+    private void initDataBinding() {
+        tc_id_categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().id()));
+        tc_nombre_categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
+        tc_descripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().descripcion()));
+        tc_presupuesto_asociado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().presupuestoAsociado()));
+    }
+
+    private void listenerSelection() {
+        tableCategoria.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            categoriaSeleccionada = newSelection;
+            mostrarInformacionCategoria(categoriaSeleccionada);
+        });
+    }
+
+    private void mostrarInformacionCategoria(CategoriaDto categoriaSeleccionada) {
+        if(categoriaSeleccionada != null){
+            txt_nombre_categoria.setText(categoriaSeleccionada.nombre());
+            txt_id_categoria.setText(categoriaSeleccionada.id());
+            txt_descripcion.setText(categoriaSeleccionada.descripcion());
+        }
+    }
+
 }
 

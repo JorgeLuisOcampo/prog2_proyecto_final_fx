@@ -2,7 +2,6 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CuentaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.*;
 
 import java.util.ArrayList;
@@ -105,6 +104,7 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
             usuario.setEmail(usuarioActualizado.getEmail());
             usuario.setDireccion(usuarioActualizado.getDireccion());
             usuario.setTelefono(usuarioActualizado.getTelefono());
+            usuario.setContrasenia(usuarioActualizado.getContrasenia());
             return true;
         }
         return false;
@@ -308,12 +308,47 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
         this.administrador = administrador;
     }
 
-    public Usuario obtenerUsuario(String correo) {
+    public Usuario obtenerUsuario(String idUsuario) {
         for (Usuario usuario : listaUsuarios) {
-            if (usuario.getEmail().equalsIgnoreCase(correo)) {
+            if (usuario.getIdUsuario().equalsIgnoreCase(idUsuario)) {
                 return usuario;
             }
         }
         return null;
     }
+
+    public String contraseniaDto(Usuario usuario) {
+        for (Usuario u : listaUsuarios){
+            if (usuario.getIdUsuario().equalsIgnoreCase(u.getIdUsuario())){
+                return u.getContrasenia();
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Presupuesto> getListaPresupuestoUsuario(Usuario usuario) {
+        for(Usuario u : listaUsuarios){
+            if(u.getIdUsuario().equalsIgnoreCase(usuario.getIdUsuario())){
+                return u.getListaPresupuestos();
+            }
+        }
+        return null;
+
+    }
+
+    public ArrayList<Categoria> obtenerCategorias(Usuario usuario) {
+        ArrayList<Presupuesto> listaPresupuestos = getListaPresupuestoUsuario(usuario);
+        ArrayList<Categoria> listaCategoria = new ArrayList<>();
+        for (Presupuesto p : listaPresupuestos){
+            listaCategoria.add(p.getCategoria());
+        }
+        return listaCategoria;
+    }
+
+    public boolean agregarCategoriaAUsuario(Categoria categoria, Usuario usuario) {
+        Usuario usuario1 = buscarUsuario(usuario.getIdUsuario());
+        usuario1.getListaPresupuestos();
+        return false;
+    }
+
 }

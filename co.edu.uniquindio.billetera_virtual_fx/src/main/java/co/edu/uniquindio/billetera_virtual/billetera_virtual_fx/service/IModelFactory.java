@@ -1,5 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 
 import java.util.List;
@@ -10,4 +11,8 @@ public interface IModelFactory {
     public boolean actualizarUsuario(UsuarioDto usuarioDto);
     public boolean eliminarUsuario(UsuarioDto usuarioDto);
 
+    String contraseniaDto(UsuarioDto usuarioDto);
+
+    List<CategoriaDto> obtenerCategorias(UsuarioDto usuarioDto);
+    boolean agregarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto);
 }
