@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuarioView.GestionCategoriasViewController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuarioView.GestionPresupuestosViewController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuarioView.PerfilViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +55,20 @@ public class UsuarioMenuViewController {
         this.usuarioDto = usuarioDto;
         cargarVistaPerfil();
         cargarVistaGestionCategorias();
+        cargarVistaGestionPresupuestos();
+    }
+
+    private void cargarVistaGestionPresupuestos() {
+        try {
+            FXMLLoader fxmlPresupuestos = new FXMLLoader(getClass().getResource(
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/GestionPresupuestos.fxml"));
+            AnchorPane presupuestosContent = fxmlPresupuestos.load();
+            GestionPresupuestosViewController gestionPresupuestosViewController = fxmlPresupuestos.getController();
+            gestionPresupuestosViewController.setUsuario(usuarioDto);
+            tab_presupuesto.setContent(presupuestosContent);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void cargarVistaGestionCategorias() {

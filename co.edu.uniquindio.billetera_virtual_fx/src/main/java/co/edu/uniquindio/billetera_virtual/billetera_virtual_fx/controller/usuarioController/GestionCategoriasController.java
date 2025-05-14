@@ -20,4 +20,12 @@ public class GestionCategoriasController {
     public boolean agregarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
         return modelFactory.agregarCategoria(categoriaDto, usuarioDto);
     }
+
+    public boolean actualizarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
+        return modelFactory.actualizarCategoria(categoriaDto, usuarioDto);
+    }
+
+    public boolean eliminarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
+        return modelFactory.eliminarCategoria(categoriaDto, usuarioDto);
+    }
 }

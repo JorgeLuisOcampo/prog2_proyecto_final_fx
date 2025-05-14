@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuarioController.GestionCategoriasController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.CategoriaObserver;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,11 +17,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 
+import javax.swing.*;
+
 public class GestionCategoriasViewController {
 
     GestionCategoriasController gestionCategoriasController;
     ObservableList<CategoriaDto> listaCategorias = FXCollections.observableArrayList();
     CategoriaDto categoriaSeleccionada;
+
+
 
     @FXML
     private ResourceBundle resources;
@@ -76,16 +81,74 @@ public class GestionCategoriasViewController {
 
     }
 
+    @FXML
+    void on_actualizar_categoria() {
+        actualizarCategoria();
+
+    }
+
+    @FXML
+    void on_limpiar_campos() {
+        limpiarCampos();
+
+    }
+
+    @FXML
+    void on_eliminar_categoria() {
+        eliminarCategoria();
+
+    }
+
+    @FXML
+    void initialize() {
+        gestionCategoriasController = new GestionCategoriasController();
+
+    }
+
     private void agregarCategoria() {
         CategoriaDto categoriaDto = crearCategoriaDto();
         if(validarDatos(categoriaDto)){
             if(gestionCategoriasController.agregarCategoria(categoriaDto, usuarioDto)){
                 listaCategorias.add(categoriaDto);
                 limpiarCampos();
+                JOptionPane.showMessageDialog(null, "Categoria agregada");
+            } else {
+                JOptionPane.showMessageDialog(null, "Categoria no agregada, id o nombre ya utilizados");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos no validos");
+        }
+    }
 
-
+    private void actualizarCategoria() {
+        CategoriaDto categoriaDto = crearCategoriaDto();
+        if(validarDatos(categoriaDto)){
+            if(gestionCategoriasController.actualizarCategoria(categoriaDto, usuarioDto)){
+                intercambiarCategoriaDto(categoriaDto);
+                tableCategoria.refresh();
+                limpiarCampos();
             }
 
+        }else {
+            JOptionPane.showMessageDialog(null, "Campos no validos");
+        }
+
+    }
+
+    private void limpiarCampos() {
+        txt_nombre_categoria.setText("");
+        txt_id_categoria.setText("");
+        txt_descripcion.setText("");
+    }
+
+    private void eliminarCategoria() {
+        if(categoriaSeleccionada != null) {
+            if(gestionCategoriasController.eliminarCategoria(categoriaSeleccionada, usuarioDto)){
+                listaCategorias.remove(categoriaSeleccionada);
+                limpiarCampos();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Campos no validos");
         }
     }
 
@@ -103,41 +166,18 @@ public class GestionCategoriasViewController {
                 txt_id_categoria.getText(),
                 txt_nombre_categoria.getText(),
                 txt_descripcion.getText(),
-                null
+                categoriaSeleccionada != null ? categoriaSeleccionada.presupuestoAsociado() : null
         );
         return categoriaDto;
     }
 
-    @FXML
-    void on_limpiar_campos() {
-        limpiarCampos();
-
-    }
-
-    private void limpiarCampos() {
-        txt_nombre_categoria.setText("");
-        txt_id_categoria.setText("");
-        txt_descripcion.setText("");
-    }
-
-    @FXML
-    void on_actualizar_categoria() {
-        actualizarCategoria();
-
-    }
-
-    private void actualizarCategoria() {
-    }
-
-    @FXML
-    void on_eliminar_categoria() {
-
-    }
-
-    @FXML
-    void initialize() {
-        gestionCategoriasController = new GestionCategoriasController();
-
+    private void intercambiarCategoriaDto(CategoriaDto categoriaDto) {
+        for (int i = 0; i < listaCategorias.size(); i++){
+            CategoriaDto categoria = listaCategorias.get(i);
+            if (categoria.id().equals(categoriaSeleccionada.id())) {
+                listaCategorias.set(i, categoriaDto);
+            }
+        }
     }
 
     private UsuarioDto usuarioDto;
@@ -156,17 +196,17 @@ public class GestionCategoriasViewController {
         listenerSelection();
     }
 
-    private void obtenerCategorias() {
-        listaCategorias.clear();
-        listaCategorias.addAll(gestionCategoriasController.obtenerCategorias(usuarioDto));
-
-    }
-
     private void initDataBinding() {
         tc_id_categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().id()));
         tc_nombre_categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().nombre()));
         tc_descripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().descripcion()));
         tc_presupuesto_asociado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().presupuestoAsociado()));
+    }
+
+    private void obtenerCategorias() {
+        listaCategorias.clear();
+        listaCategorias.addAll(gestionCategoriasController.obtenerCategorias(usuarioDto));
+
     }
 
     private void listenerSelection() {
@@ -178,8 +218,8 @@ public class GestionCategoriasViewController {
 
     private void mostrarInformacionCategoria(CategoriaDto categoriaSeleccionada) {
         if(categoriaSeleccionada != null){
-            txt_nombre_categoria.setText(categoriaSeleccionada.nombre());
             txt_id_categoria.setText(categoriaSeleccionada.id());
+            txt_nombre_categoria.setText(categoriaSeleccionada.nombre());
             txt_descripcion.setText(categoriaSeleccionada.descripcion());
         }
     }

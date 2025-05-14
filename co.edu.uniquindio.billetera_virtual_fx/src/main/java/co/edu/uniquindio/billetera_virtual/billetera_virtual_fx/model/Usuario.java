@@ -15,6 +15,7 @@ public class Usuario extends InicioSesion implements IEntidadUsuario {
     private ArrayList<Cuenta> listaCuentas;
     private ArrayList<Transaccion> listaTransacciones;
     private ArrayList<Presupuesto> listaPresupuestos;
+    private ArrayList<Categoria> listaCategorias;
 
     /**
      * Constructor vacio de la clase Usuario
@@ -24,6 +25,7 @@ public class Usuario extends InicioSesion implements IEntidadUsuario {
         listaCuentas = new ArrayList<>();
         listaTransacciones = new ArrayList<>();
         listaPresupuestos = new ArrayList<>();
+        listaCategorias = new ArrayList<>();
     }
 
     /**
@@ -51,6 +53,7 @@ public class Usuario extends InicioSesion implements IEntidadUsuario {
         listaCuentas = new ArrayList<>();
         listaTransacciones = new ArrayList<>();
         listaPresupuestos = new ArrayList<>();
+        listaCategorias = new ArrayList<>();
     }
 
 
@@ -236,5 +239,11 @@ public class Usuario extends InicioSesion implements IEntidadUsuario {
         this.listaPresupuestos = listaPresupuestos;
     }
 
+    public ArrayList<Categoria> getListaCategorias() {
+        return listaCategorias;
+    }
 
+    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+        this.listaCategorias = listaCategorias;
+    }
 }

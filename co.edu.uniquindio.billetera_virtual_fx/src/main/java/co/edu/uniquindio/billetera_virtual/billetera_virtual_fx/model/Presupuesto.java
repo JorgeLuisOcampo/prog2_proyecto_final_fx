@@ -1,25 +1,28 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 public class Presupuesto {
-    private String id;
     private String nombre;
-    private double monto;
-    private String descripcion;
+    private String id;
+    private Cuenta cuentaAsociada;
+    private double montoLimite;
+    private double montoGastado;
     private Categoria categoria;
 
     /**
-     * Constructor de la clase Presupuesto
+     *  Constructor clase Presupuesto
      * @param id
      * @param nombre
-     * @param monto
-     * @param descripcion
+     * @param cuentaAsociada
+     * @param montoLimite
+     * @param montoGastado
      * @param categoria
      */
-    public Presupuesto(String id, String nombre, double monto, String descripcion, Categoria categoria) {
-        this.id = id;
+    public Presupuesto(String id, String nombre, Cuenta cuentaAsociada, double montoLimite, double montoGastado, Categoria categoria) {
         this.nombre = nombre;
-        this.monto = monto;
-        this.descripcion = descripcion;
+        this.id = id;
+        this.cuentaAsociada = cuentaAsociada;
+        this.montoLimite = montoLimite;
+        this.montoGastado = montoGastado;
         this.categoria = categoria;
     }
 
@@ -55,36 +58,28 @@ public class Presupuesto {
         this.nombre = nombre;
     }
 
-    /**
-     * Metodo para obtener el monto del presupuesto
-     * @return
-     */
-    public double getMonto() {
-        return monto;
+    public Cuenta getCuentaAsociada() {
+        return cuentaAsociada;
     }
 
-    /**
-     * Metodo para setear el monto del presupuesto
-     * @param monto
-     */
-    public void setMonto(double monto) {
-        this.monto = monto;
+    public void setCuentaAsociada(Cuenta cuentaAsociada) {
+        this.cuentaAsociada = cuentaAsociada;
     }
 
-    /**
-     * Metodo para obtener la descripcion del presupuesto
-     * @return
-     */
-    public String getDescripcion() {
-        return descripcion;
+    public double getMontoLimite() {
+        return montoLimite;
     }
 
-    /**
-     * Metodo para setear la descripcion del presupuesto
-     * @param descripcion
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setMontoLimite(double montoLimite) {
+        this.montoLimite = montoLimite;
+    }
+
+    public double getMontoGastado() {
+        return montoGastado;
+    }
+
+    public void setMontoGastado(double montoGastado) {
+        this.montoGastado = montoGastado;
     }
 
     /**
@@ -102,4 +97,5 @@ public class Presupuesto {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
 }

@@ -1,13 +1,8 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CuentaDto;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.*;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.mappers.BilleteraVirtualMappingImpl;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Administrador;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.BilleteraVirtual;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Usuario;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.*;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.*;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.DataUtil;
 
@@ -66,7 +61,27 @@ public class ModelFactory implements IModelFactory {
 
     @Override
     public boolean agregarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
-        return billetera.agregarCategoriaAUsuario(mapper.categoriaDtoToCategoria(categoriaDto), mapper.usuarioDtoToUsuario(usuarioDto));
+        return billetera.agregarCategoria(mapper.categoriaDtoToCategoria(categoriaDto), mapper.usuarioDtoToUsuario(usuarioDto));
+    }
+
+    @Override
+    public boolean actualizarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
+        Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
+        Categoria categoria = mapper.categoriaDtoToCategoria(categoriaDto);
+        return billetera.actualizarCategoria(categoria, usuario);
+    }
+
+    @Override
+    public boolean eliminarCategoria(CategoriaDto categoriaDto, UsuarioDto usuarioDto) {
+        Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
+        Categoria categoria = mapper.categoriaDtoToCategoria(categoriaDto);
+        return billetera.eliminarCategoria(categoria, usuario);
+    }
+
+    @Override
+    public ArrayList<PresupuestoDto> obtenerPresupuestos(UsuarioDto usuarioDto) {
+        Usuario usuario = mapper.usuarioDtoToUsuario(usuarioDto);
+        return mapper.getPresupuestoDto(billetera.obtenerPresupuestos(usuario));
     }
 
     public boolean verificarInfoAdm(String usuario, String contrasenia){

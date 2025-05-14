@@ -1,6 +1,7 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.*;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.TipoCuenta;
 
 public class DataUtil {
 
@@ -20,29 +21,34 @@ public class DataUtil {
                 "jorgeO25@gmail.com");
 
 
-        Categoria categoriaJorge1 = new Categoria("1", "Salud", "Gastos medicos", null);
-        Categoria categoriaJorge2 = new Categoria("2", "Servicios", "Gasto Servicio public", null);
-        Categoria categoriaJorge3 = new Categoria("3", "Transporte", "Gastos de transporte", null);
+        Categoria categoria1 = new Categoria("1", "Salud", "Gastos medicos", null);
+        Categoria categoria2 = new Categoria("2", "Servicios", "Gasto Servicio public", null);
+        Categoria categoria3 = new Categoria("3", "Transporte", "Gastos de transporte", null);
 
-        Presupuesto presupuestoJorge1 = new Presupuesto("1", "costos fijos", 250000, "costos mensuales", categoriaJorge1);
-        Presupuesto presupuestoJorge2 = new Presupuesto("2", "costos variables", 536450, "costos semanales", categoriaJorge2);
-        Presupuesto presupuestoJorge3 = new Presupuesto("3", "costos impredecibles", 831500, "costos anuales", categoriaJorge3);
+        usuario1.getListaCategorias().add(categoria1);
+        usuario1.getListaCategorias().add(categoria2);
+        usuario1.getListaCategorias().add(categoria3);
 
-        categoriaJorge1.setPresupuestoAsociado(presupuestoJorge1);
-        categoriaJorge2.setPresupuestoAsociado(presupuestoJorge2);
-        categoriaJorge3.setPresupuestoAsociado(presupuestoJorge3);
 
-        usuario2.getListaPresupuestos().add(presupuestoJorge1);
-        usuario2.getListaPresupuestos().add(presupuestoJorge2);
-        usuario2.getListaPresupuestos().add(presupuestoJorge3);
+        Presupuesto presupuesto1 = new Presupuesto("1","Medicamentos", null, 91240, 29800, categoria1);
+        Presupuesto presupuesto2 = new Presupuesto("2","Agua y Energia", null, 250000, 101220, categoria2);
+        Presupuesto presupuesto3 = new Presupuesto("3","Gasolina y buses", null, 250000, 123450, categoria3);
 
-        usuario1.getListaPresupuestos().add(presupuestoJorge1);
-        usuario1.getListaPresupuestos().add(presupuestoJorge2);
-        usuario1.getListaPresupuestos().add(presupuestoJorge3);
+        Cuenta cuenta1 = new Cuenta ( "1","Banbolombia", "182182", TipoCuenta.AHORRO, 5000000 );
 
-        usuario3.getListaPresupuestos().add(presupuestoJorge1);
-        usuario3.getListaPresupuestos().add(presupuestoJorge2);
-        usuario3.getListaPresupuestos().add(presupuestoJorge3);
+        presupuesto1.setCuentaAsociada(cuenta1);
+        presupuesto2.setCuentaAsociada(cuenta1);
+        presupuesto3.setCuentaAsociada(cuenta1);
+
+
+        categoria1.setPresupuestoAsociado(presupuesto1);
+        categoria2.setPresupuestoAsociado(presupuesto2);
+        categoria3.setPresupuestoAsociado(presupuesto3);
+
+        usuario1.getListaPresupuestos().add(presupuesto1);
+        usuario1.getListaPresupuestos().add(presupuesto2);
+        usuario1.getListaPresupuestos().add(presupuesto3);
+
 
         billeteraVirtual.agregarUsuario(usuario1);
         billeteraVirtual.agregarUsuario(usuario2);

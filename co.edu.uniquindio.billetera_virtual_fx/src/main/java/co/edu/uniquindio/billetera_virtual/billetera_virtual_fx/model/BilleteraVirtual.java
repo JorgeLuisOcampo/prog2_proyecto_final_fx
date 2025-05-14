@@ -4,6 +4,7 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.Cuen
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.*;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudTransaccion,
@@ -57,6 +58,24 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
 
     @Override
     public void listarCategorias() {
+
+    }
+
+    @Override
+    public Presupuesto buscarPresupuestoAsociado(Categoria categoria, Usuario usuario) {
+        for(Categoria c : usuario.getListaCategorias()){
+            if(categoria.getPresupuestoAsociado().getId().equalsIgnoreCase(c.getPresupuestoAsociado().getId())){
+                return c.getPresupuestoAsociado();
+            }
+
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<Presupuesto> obtenerPresupuestos(Usuario usuario) {
+        Usuario u = buscarUsuario(usuario.getIdUsuario());
+        return u.getListaPresupuestos();
 
     }
 
@@ -126,17 +145,47 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
     }
 
     @Override
-    public boolean agregarCategoria() {
+    public boolean agregarCategoria(Categoria categoria, Usuario usuario) {
+        Usuario u = buscarUsuario(usuario.getIdUsuario());
+        if(u != null){
+            for(Categoria c : u.getListaCategorias()){
+                if(c.getId().equalsIgnoreCase(categoria.getId()) || c.getNombre().equalsIgnoreCase(categoria.getNombre())){
+                    return false;
+                }
+            }
+            u.getListaCategorias().add(categoria);
+            listaCategorias.add(categoria);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean actualizarCategoria(Categoria categoria, Usuario usuario) {
+        Usuario u = buscarUsuario(usuario.getIdUsuario());
+        if (u != null){
+            for (Categoria c : u.getListaCategorias()){
+                if(c.getId().equalsIgnoreCase(categoria.getId())){
+                    c.setNombre(categoria.getNombre());
+                    c.setDescripcion(categoria.getDescripcion());
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
     @Override
-    public boolean actualizarCategoria() {
-        return false;
-    }
-
-    @Override
-    public boolean eliminarCategoria() {
+    public boolean eliminarCategoria(Categoria categoria, Usuario usuario) {
+        Usuario u = buscarUsuario(usuario.getIdUsuario());
+        if (u != null){
+            for (Categoria c : u.getListaCategorias()){
+                if(c.getId().equalsIgnoreCase(categoria.getId())){
+                    u.getListaCategorias().remove(c);
+                    listaCategorias.remove(c);
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -345,10 +394,6 @@ public class BilleteraVirtual implements IMetodosBilletera, ICrudUsuario, ICrudT
         return listaCategoria;
     }
 
-    public boolean agregarCategoriaAUsuario(Categoria categoria, Usuario usuario) {
-        Usuario usuario1 = buscarUsuario(usuario.getIdUsuario());
-        usuario1.getListaPresupuestos();
-        return false;
-    }
+
 
 }

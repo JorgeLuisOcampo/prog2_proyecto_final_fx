@@ -39,8 +39,8 @@
                   <Button fx:id="btn_eliminar_categoria" layoutX="420.0" layoutY="322.0" mnemonicParsing="false" onAction="#on_eliminar_categoria" prefHeight="31.0" prefWidth="110.0" text="ELIMINAR" />
                   <TableView fx:id="tableCategoria" layoutX="14.0" layoutY="14.0" prefHeight="295.0" prefWidth="920.0">
                     <columns>
-                      <TableColumn fx:id="tc_nombre_categoria" prefWidth="193.0" text="Nombre" />
                       <TableColumn fx:id="tc_id_categoria" prefWidth="216.0" text="ID categoria" />
+                      <TableColumn fx:id="tc_nombre_categoria" prefWidth="193.0" text="Nombre" />
                         <TableColumn fx:id="tc_descripcion" prefWidth="267.0" text="Descripcion" />
                         <TableColumn fx:id="tc_presupuesto_asociado" prefWidth="243.0" text="Presupuesto asociado" />
                     </columns>

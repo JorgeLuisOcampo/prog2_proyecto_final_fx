@@ -1,6 +1,7 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.mappers;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.PresupuestoDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Categoria;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Presupuesto;
@@ -81,16 +82,54 @@ public class BilleteraVirtualMappingImpl implements IBilleteraVirtualMapping {
                 categoriaDto.nombre(),
                 categoriaDto.descripcion(),
                 null
+
         );
     }
 
     @Override
     public CategoriaDto categoriaToCategoriaDto(Categoria categoria) {
         return new CategoriaDto(
+                categoria.getId(),
                 categoria.getNombre(),
                 categoria.getDescripcion(),
-                categoria.getId(),
+                categoria.getPresupuestoAsociado().getNombre()
+        );
+    }
+
+    @Override
+    public ArrayList<PresupuestoDto> getPresupuestoDto(ArrayList<Presupuesto> listaPresupuestos) {
+        if(listaPresupuestos == null) {
+            return null;
+        }
+        ArrayList<PresupuestoDto> listaPresupuestosDto = new ArrayList<PresupuestoDto>(listaPresupuestos.size());
+        for(Presupuesto presupuesto : listaPresupuestos){
+            listaPresupuestosDto.add((presupuestoToPresupuestoDto(presupuesto)));
+        }
+        return listaPresupuestosDto;
+    }
+
+    @Override
+    public Presupuesto presupuestoDtoToPresupuesto(PresupuestoDto presupuestoDto) {
+        return new Presupuesto(
+                presupuestoDto.nombre(),
+                presupuestoDto.id(),
+                null,
+                presupuestoDto.montoLimite(),
+                presupuestoDto.montoGastado(),
                 null
+
+        );
+    }
+
+    @Override
+    public PresupuestoDto presupuestoToPresupuestoDto(Presupuesto presupuesto) {
+        return new PresupuestoDto(
+                presupuesto.getNombre(),
+                presupuesto.getId(),
+                presupuesto.getCuentaAsociada().getNumeroCuenta(),
+                presupuesto.getMontoLimite(),
+                presupuesto.getMontoGastado(),
+                presupuesto.getCategoria().getNombre()
         );
     }
 

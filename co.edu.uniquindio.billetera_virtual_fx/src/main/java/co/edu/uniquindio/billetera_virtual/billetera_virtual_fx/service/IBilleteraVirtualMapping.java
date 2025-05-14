@@ -1,8 +1,10 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.PresupuestoDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Categoria;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Presupuesto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Usuario;
 
 import java.util.ArrayList;
@@ -17,4 +19,8 @@ public interface IBilleteraVirtualMapping {
     Categoria categoriaDtoToCategoria (CategoriaDto categoriaDto);
     CategoriaDto categoriaToCategoriaDto (Categoria categoria);
 
+
+    ArrayList<PresupuestoDto> getPresupuestoDto(ArrayList<Presupuesto> presupuestos);
+    Presupuesto presupuestoDtoToPresupuesto (PresupuestoDto presupuestoDto);
+    PresupuestoDto presupuestoToPresupuestoDto (Presupuesto presupuesto);
 }
