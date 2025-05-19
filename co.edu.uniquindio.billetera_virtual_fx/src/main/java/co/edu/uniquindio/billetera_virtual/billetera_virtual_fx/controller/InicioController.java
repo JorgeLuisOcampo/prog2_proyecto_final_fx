@@ -2,13 +2,13 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory.ModelFactory;
 
-public class PrincipalController {
+public class InicioController {
     private ModelFactory modelFactory;
 
     /**
-     * Metodo constructor de la clase PrincipalController
+     * Metodo constructor de la clase InicioController
      */
-    public PrincipalController() {
+    public InicioController() {
         modelFactory = ModelFactory.getInstance();
     }
 

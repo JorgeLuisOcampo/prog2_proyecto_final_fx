@@ -71,78 +71,36 @@ public class MenuUsuarioViewController {
 
     public void setUsuario(UsuarioDto usuarioDto) {
         usuario = usuarioDto;
-        cargarVistaEditarPerfil();
-        cargarVistaGestionCuentasUsuario();
-        cargarVistaGestionCategorias();
-        cargarVistaGestionPresupuestos();
-        cargarVistaGestionTransaccionesUsuario();
-        cargarVistaReporteFinanciero();
+        mostrarVistaPerfil();
+        mostrarVistaGestionCategorias();
+        mostrarVistaGestionPresupuestos();
+        mostrarVistaCuentasUsuario();
+        mostrarVistaGestionTransaccionesUsuario();
+        mostrarVistaReporteFinanciero();
     }
 
-    private void configurarCambioDeTab() {
-        tp_menuUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
-            if (newTab == tab_editarPerfil) {
-                cargarVistaEditarPerfil();
-            } else if (newTab == tab_reporteFinanciero) {
-                cargarVistaReporteFinanciero();
-            } else if (newTab == tab_cuentas) {
-                cargarVistaGestionCuentasUsuario();
-            } else if (newTab == tab_categorias) {
-                cargarVistaGestionCategorias();
-            } else if (newTab == tab_presupuestos) {
-                cargarVistaGestionPresupuestos();
-            } else if (newTab == tab_transacciones) {
-                cargarVistaGestionTransaccionesUsuario();
-            }
-        });
-    }
 
-    private void cargarVistaEditarPerfil() {
+
+    private void mostrarVistaPerfil() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/EditarPerfil.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/Perfil.fxml"));
             AnchorPane nuevaVista = loader.load();
-            EditarPerfilViewController viewController = loader.getController();
+            PerfilViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
-            viewController.setControladorPadre(this);
+            viewController.setParentController(this);
             sp_editarPerfil.getItems().setAll(nuevaVista);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void cargarVistaGestionPresupuestos() {
+    private void mostrarVistaGestionCategorias() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/GestionPresupuestos.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/Categorias.fxml"));
             AnchorPane nuevaVista = loader.load();
-            GestionPresupuestosViewController viewController = loader.getController();
-            viewController.setUsuario(usuario);
-            sp_presupuestos.getItems().setAll(nuevaVista);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void cargarVistaGestionCuentasUsuario() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/GestionCuentasUsuario.fxml"));
-            AnchorPane nuevaVista = loader.load();
-            GestionCuentasUsuarioViewController viewController = loader.getController();
-            viewController.setUsuario(usuario);
-            sp_cuentas.getItems().setAll(nuevaVista);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void cargarVistaGestionCategorias() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/GestionCategorias.fxml"));
-            AnchorPane nuevaVista = loader.load();
-            GestionCategoriasViewController viewController = loader.getController();
+            CategoriasViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
             sp_categorias.getItems().setAll(nuevaVista);
         } catch (IOException e) {
@@ -150,12 +108,38 @@ public class MenuUsuarioViewController {
         }
     }
 
-    private void cargarVistaGestionTransaccionesUsuario() {
+    private void mostrarVistaGestionPresupuestos() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/GestionTransaccionesUsuario.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/Presupuestos.fxml"));
             AnchorPane nuevaVista = loader.load();
-            GestionTransaccionesUsuarioViewController viewController = loader.getController();
+            PresupuestosViewController viewController = loader.getController();
+            viewController.setUsuario(usuario);
+            sp_presupuestos.getItems().setAll(nuevaVista);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarVistaCuentasUsuario() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/CuentasUsuario.fxml"));
+            AnchorPane nuevaVista = loader.load();
+            CuentasUsuarioViewController viewController = loader.getController();
+            viewController.setUsuario(usuario);
+            sp_cuentas.getItems().setAll(nuevaVista);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void mostrarVistaGestionTransaccionesUsuario() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/TransaccionesUsuario.fxml"));
+            AnchorPane nuevaVista = loader.load();
+            TransaccionesUsuarioViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
             sp_transacciones.getItems().setAll(nuevaVista);
         } catch (IOException e) {
@@ -163,7 +147,7 @@ public class MenuUsuarioViewController {
         }
     }
 
-    private void cargarVistaReporteFinanciero() {
+    private void mostrarVistaReporteFinanciero() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
                     "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/ReporteFinanciero.fxml"));
@@ -174,5 +158,23 @@ public class MenuUsuarioViewController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void configurarCambioDeTab() {
+        tp_menuUsuario.getSelectionModel().selectedItemProperty().addListener((obs, oldTab, newTab) -> {
+            if (newTab == tab_editarPerfil) {
+                mostrarVistaPerfil();
+            } else if (newTab == tab_reporteFinanciero) {
+                mostrarVistaReporteFinanciero();
+            } else if (newTab == tab_cuentas) {
+                mostrarVistaCuentasUsuario();
+            } else if (newTab == tab_categorias) {
+                mostrarVistaGestionCategorias();
+            } else if (newTab == tab_presupuestos) {
+                mostrarVistaGestionPresupuestos();
+            } else if (newTab == tab_transacciones) {
+                mostrarVistaGestionTransaccionesUsuario();
+            }
+        });
     }
 }

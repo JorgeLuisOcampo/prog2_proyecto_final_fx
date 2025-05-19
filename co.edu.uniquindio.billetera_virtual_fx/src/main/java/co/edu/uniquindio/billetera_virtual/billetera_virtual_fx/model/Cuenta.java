@@ -5,7 +5,8 @@ import java.util.LinkedList;
 public class Cuenta {
     private BilleteraVirtual billeteraVirtual;
     private int idCuenta;
-    private String nombreBanco, numeroCuenta;
+    private String banco;
+    private String numeroCuenta;
     private Usuario usuarioAsociado;
     private TipoCuenta tipoCuenta;
     private LinkedList<Transaccion> listaTransacciones;
@@ -17,9 +18,9 @@ public class Cuenta {
         saldo = 0;
     }
 
-    public Cuenta(int idCuenta, String nombreBanco, String numeroCuenta, Usuario usuarioAsociado, TipoCuenta tipoCuenta, BilleteraVirtual billeteraVirtual, Presupuesto presupuestoAsociado) {
+    public Cuenta(int idCuenta, String banco, String numeroCuenta, Usuario usuarioAsociado, TipoCuenta tipoCuenta, BilleteraVirtual billeteraVirtual, Presupuesto presupuestoAsociado) {
         this.idCuenta = idCuenta;
-        this.nombreBanco = nombreBanco;
+        this.banco = banco;
         this.numeroCuenta = numeroCuenta;
         this.usuarioAsociado = usuarioAsociado;
         this.tipoCuenta = tipoCuenta;
@@ -45,12 +46,12 @@ public class Cuenta {
         this.idCuenta = idCuenta;
     }
 
-    public String getNombreBanco() {
-        return nombreBanco;
+    public String getBanco() {
+        return banco;
     }
 
-    public void setNombreBanco(String nombreBanco) {
-        this.nombreBanco = nombreBanco;
+    public void setBanco(String banco) {
+        this.banco = banco;
     }
 
     public String getNumeroCuenta() {

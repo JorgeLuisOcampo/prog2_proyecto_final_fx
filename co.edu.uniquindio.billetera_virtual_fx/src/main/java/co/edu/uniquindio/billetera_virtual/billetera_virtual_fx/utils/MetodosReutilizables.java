@@ -29,19 +29,7 @@ public class MetodosReutilizables {
         alert.showAndWait();
     }
 
-    public static boolean isInteger(String text){
-        if (text == null || text.isEmpty()) {
-            return false;
-        }
-        try {
-            int numero = Integer.parseInt(text);
-            return numero > 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    public static boolean isLong(String text){
+    public static boolean esTipoLong(String text){
         if (text == null || text.isEmpty()) {
             return false;
         }
@@ -53,7 +41,12 @@ public class MetodosReutilizables {
         }
     }
 
-    public static boolean isDouble(String text){
+    public static boolean esEmailValido(String correo) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
+        return correo.matches(regex);
+    }
+
+    public static boolean esTipoDouble(String text){
         if (text == null || text.isEmpty()) {
             return false;
         }
@@ -65,8 +58,15 @@ public class MetodosReutilizables {
         }
     }
 
-    public static boolean esCorreoValido(String correo) {
-        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
-        return correo.matches(regex);
+    public static boolean esTipoInteger(String text){
+        if (text == null || text.isEmpty()) {
+            return false;
+        }
+        try {
+            int numero = Integer.parseInt(text);
+            return numero > 0;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

@@ -15,7 +15,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
-import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.esCorreoValido;
+import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.esEmailValido;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.mostrarMensaje;
 
 public class RegistrarUsuarioViewController {
@@ -116,7 +116,7 @@ public class RegistrarUsuarioViewController {
         return isInteger(tf_clave.getText())
                 && isLong(tf_telefono.getText())
                 && isLong(tf_id.getText())
-                && esCorreoValido(tf_correo.getText());
+                && esEmailValido(tf_correo.getText());
     }
 
     private void limpiarCamposTexto() {

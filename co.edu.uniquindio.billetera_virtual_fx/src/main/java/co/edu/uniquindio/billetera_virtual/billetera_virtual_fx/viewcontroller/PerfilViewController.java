@@ -1,6 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.EditarPerfilController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.PerfilController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,9 +14,9 @@ import java.util.ResourceBundle;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.*;
 
-public class EditarPerfilViewController {
+public class PerfilViewController {
 
-    private EditarPerfilController editarPerfilController;
+    private PerfilController perfilController;
     private MenuUsuarioViewController menuUsuarioViewController;
     private UsuarioDto usuario;
 
@@ -74,7 +74,7 @@ public class EditarPerfilViewController {
         limpiarCampos();
     }
 
-    public void setControladorPadre(MenuUsuarioViewController menuUsuarioViewController) {
+    public void setParentController(MenuUsuarioViewController menuUsuarioViewController) {
         this.menuUsuarioViewController = menuUsuarioViewController;
     }
 
@@ -83,11 +83,18 @@ public class EditarPerfilViewController {
                 usuario.direccion(), Integer.parseInt(tf_clave.getText()));
     }
 
+    public void limpiarCampos() {
+        tf_clave.setText(String.valueOf(usuario.clave()));
+        tf_correo.setText(usuario.correoElectronico());
+        tf_nombre.setText(usuario.nombreCompleto());
+        tf_telefono.setText(usuario.numeroTelefono());
+    }
+
     private void actualizar() {
-        if (verificarCamposLlenos()) {
-            if (verificarCamposCorrectos()){
+        if (validarCamposCompletos()) {
+            if (validarCamposValidos()){
                 UsuarioDto usuarioNuevo = crearUsuario();
-                if (editarPerfilController.actualizarUsuario(usuario.idUsuario(), usuarioNuevo)) {
+                if (perfilController.actualizarUsuario(usuario.idUsuario(), usuarioNuevo)) {
                     usuario = usuarioNuevo;
                     menuUsuarioViewController.setUsuario(usuario);
                     limpiarCampos();
@@ -110,14 +117,7 @@ public class EditarPerfilViewController {
         }
     }
 
-    public void limpiarCampos() {
-        tf_clave.setText(String.valueOf(usuario.clave()));
-        tf_correo.setText(usuario.correoElectronico());
-        tf_nombre.setText(usuario.nombreCompleto());
-        tf_telefono.setText(usuario.numeroTelefono());
-    }
-
-    private boolean verificarCamposLlenos() {
+    private boolean validarCamposCompletos() {
         if (tf_correo.getText().isEmpty() || tf_telefono.getText().isEmpty()||
                 tf_clave.getText().isEmpty() || tf_nombre.getText().isEmpty()) {
             return false;
@@ -125,32 +125,20 @@ public class EditarPerfilViewController {
         return true;
     }
 
-    private boolean verificarCamposCorrectos(){
-        if (isInteger(tf_clave.getText()) && isLong(tf_telefono.getText()) && esCorreoValido(tf_correo.getText())) {
+    private boolean validarCamposValidos(){
+        if (esTipoInteger(tf_clave.getText()) && esTipoLong(tf_telefono.getText()) && validarCorreo(tf_correo.getText())) {
             return true;
         }
         return false;
     }
 
-    public static boolean esCorreoValido(String correo) {
+    public static boolean validarCorreo(String correo) {
         String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
         return correo.matches(regex);
     }
 
     @FXML
     void initialize() {
-        editarPerfilController = new EditarPerfilController();
-        assert lb_titulo != null : "fx:id=\"lb_titulo\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert tf_telefono != null : "fx:id=\"tf_telefono\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert lb_nombre != null : "fx:id=\"lb_nombre\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert bt_actualizar != null : "fx:id=\"bt_actualizar\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert tf_correo != null : "fx:id=\"tf_correo\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert tf_nombre != null : "fx:id=\"tf_nombre\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert lb_telefono != null : "fx:id=\"lb_telefono\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert bt_limpiar != null : "fx:id=\"bt_limpiar\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert lb_correo != null : "fx:id=\"lb_correo\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert lb_clave != null : "fx:id=\"lb_clave\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-        assert tf_clave != null : "fx:id=\"tf_clave\" was not injected: check your FXML file 'EditarPerfil.fxml'.";
-
+        perfilController = new PerfilController();
     }
 }

@@ -33,7 +33,7 @@ public class GestionCuentasController {
     }
 
     public boolean verificarCuentaNumCuenta(String numCuenta) {
-        return modelFactory.verificarCuentaNumCuenta(numCuenta);
+        return modelFactory.verificarNumeroCuenta(numCuenta);
     }
 
     public boolean verificarCuentaId(int id) {

@@ -5,10 +5,10 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.Pres
 
 import java.util.LinkedList;
 
-public class GestionPresupuestoController {
+public class PresupuestosController {
     ModelFactory modelFactory;
 
-    public GestionPresupuestoController() {
+    public PresupuestosController() {
         this.modelFactory = ModelFactory.getInstance();
     }
 

@@ -1,6 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.GestionPresupuestoController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.PresupuestosController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.PresupuestoDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -17,10 +17,10 @@ import java.util.ResourceBundle;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.*;
 
-public class GestionPresupuestosViewController {
+public class PresupuestosViewController {
 
     private UsuarioDto usuario;
-    private GestionPresupuestoController gestionPresupuestoController;
+    private PresupuestosController presupuestosController;
     ObservableList<PresupuestoDto> listaPresupuestos = FXCollections.observableArrayList();
     PresupuestoDto presupuestoSeleccionado;
 
@@ -77,12 +77,12 @@ public class GestionPresupuestosViewController {
 
     @FXML
     void onNuevo() {
-        agregarPresupuesto();
+        agregar();
     }
 
     @FXML
     void onActualizar() {
-        actualizarPresupuesto();
+        actualizar();
     }
 
     @FXML
@@ -92,45 +92,34 @@ public class GestionPresupuestosViewController {
 
     @FXML
     void onEliminar() {
-        eliminarPresupuesto();
+        eliminar();
     }
 
     @FXML
     void initialize() {
-        gestionPresupuestoController = new GestionPresupuestoController();
+        presupuestosController = new PresupuestosController();
     }
 
     public void setUsuario(UsuarioDto usuario) {
         this.usuario = usuario;
-        configurarComboBox();
+        setCBoxCategorias();
         initView();
     }
 
-    private void configurarComboBox() {
+    private void setCBoxCategorias() {
         cb_categoria.getItems().clear();
-        cb_categoria.getItems().addAll(gestionPresupuestoController.obtenerCategoriasDisponibles(usuario.idUsuario()));
+        cb_categoria.getItems().addAll(presupuestosController.obtenerCategoriasDisponibles(usuario.idUsuario()));
     }
 
-    private PresupuestoDto crearPresupuesto() {
-        return new PresupuestoDto(Integer.parseInt(tf_idPresupuesto.getText()), tf_nombrePresupuesto.getText(),
-                Double.parseDouble(tf_tope.getText()), 0, usuario.idUsuario(), null, cb_categoria.getValue());
-    }
-
-    private PresupuestoDto crearPresupuesto(double montoGastado, String numCuenta) {
-        return new PresupuestoDto(Integer.parseInt(tf_idPresupuesto.getText()), tf_nombrePresupuesto.getText(),
-                Double.parseDouble(tf_tope.getText()), montoGastado, usuario.idUsuario(), numCuenta,
-                cb_categoria.getValue());
-    }
-
-    private void agregarPresupuesto() {
-        if (verificarCamposLlenos()){
-            if (verificarCamposCorrectos()) {
-                PresupuestoDto presupuestoDto = crearPresupuesto();
-                if (gestionPresupuestoController.agregarPresupuesto(presupuestoDto)){
+    private void agregar() {
+        if (validarCamposCompletos()){
+            if (validarCamposValidos()) {
+                PresupuestoDto presupuestoDto = crearPresupuestoMontos();
+                if (presupuestosController.agregarPresupuesto(presupuestoDto)){
                     listaPresupuestos.add(presupuestoDto);
                     tb_presupuestos.refresh();
                     limpiarSeleccion();
-                    configurarComboBox();
+                    setCBoxCategorias();
                     mostrarMensaje(TITULO_PRESUPUESTO_AGREGADO,
                             BODY_PRESUPUESTO_AGREGADO, Alert.AlertType.INFORMATION);
                 }
@@ -148,19 +137,19 @@ public class GestionPresupuestosViewController {
         }
     }
 
-    private void actualizarPresupuesto() {
+    private void actualizar() {
         if (presupuestoSeleccionado != null) {
-            if (verificarCamposLlenos()){
-                if (verificarCamposCorrectos()) {
-                    PresupuestoDto presupuestoNuevo = crearPresupuesto(
+            if (validarCamposCompletos()){
+                if (validarCamposValidos()) {
+                    PresupuestoDto presupuestoNuevo = crearPresupuestoMontos(
                             presupuestoSeleccionado.montoGastado(), presupuestoSeleccionado.cuentaAsociada());
-                    if (verificarTopeCorrecto(presupuestoNuevo)){
-                        if (gestionPresupuestoController.actualizarPresupuesto
+                    if (validarMontoTope(presupuestoNuevo)){
+                        if (presupuestosController.actualizarPresupuesto
                                 (presupuestoSeleccionado.idPresupuesto(), presupuestoNuevo)){
                             intercambiarPresupuestos(presupuestoSeleccionado.idPresupuesto(), presupuestoNuevo);
                             limpiarSeleccion();
                             tb_presupuestos.refresh();
-                            configurarComboBox();
+                            setCBoxCategorias();
                             mostrarMensaje(TITULO_PRESUPUESTO_ACTUALIZADO,
                                     BODY_PRESUPUESTO_ACTUALIZADO, Alert.AlertType.INFORMATION);
                         }
@@ -188,12 +177,12 @@ public class GestionPresupuestosViewController {
         }
     }
 
-    private void eliminarPresupuesto() {
+    private void eliminar() {
         if (presupuestoSeleccionado != null) {
-            if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_PRESUPUESTO) && gestionPresupuestoController
+            if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_PRESUPUESTO) && presupuestosController
                     .eliminarPresupuesto(presupuestoSeleccionado.idPresupuesto(), usuario.idUsuario())){
                 listaPresupuestos.remove(presupuestoSeleccionado);
-                configurarComboBox();
+                setCBoxCategorias();
                 limpiarSeleccion();
                 mostrarMensaje(TITULO_PRESUPUESTO_ELIMINADO,
                         BODY_PRESUPUESTO_ELIMINADO, Alert.AlertType.INFORMATION);
@@ -208,6 +197,17 @@ public class GestionPresupuestosViewController {
         }
     }
 
+    private PresupuestoDto crearPresupuestoMontos() {
+        return new PresupuestoDto(Integer.parseInt(tf_idPresupuesto.getText()), tf_nombrePresupuesto.getText(),
+                Double.parseDouble(tf_tope.getText()), 0, usuario.idUsuario(), null, cb_categoria.getValue());
+    }
+
+    private PresupuestoDto crearPresupuestoMontos(double montoGastado, String numCuenta) {
+        return new PresupuestoDto(Integer.parseInt(tf_idPresupuesto.getText()), tf_nombrePresupuesto.getText(),
+                Double.parseDouble(tf_tope.getText()), montoGastado, usuario.idUsuario(), numCuenta,
+                cb_categoria.getValue());
+    }
+
     private void intercambiarPresupuestos(int idPresupuesto, PresupuestoDto presupuestoNuevo) {
         for (int i = 0; i < listaPresupuestos.size(); i++) {
             PresupuestoDto presupuesto = listaPresupuestos.get(i);
@@ -217,19 +217,19 @@ public class GestionPresupuestosViewController {
         }
     }
 
-    private boolean verificarTopeCorrecto(PresupuestoDto presupuesto) {
+    private boolean validarMontoTope(PresupuestoDto presupuesto) {
         return presupuesto.montoTotalAsignado() >= presupuestoSeleccionado.montoGastado();
     }
 
-    private boolean verificarCamposLlenos() {
+    private boolean validarCamposCompletos() {
         return !tf_nombrePresupuesto.getText().isEmpty() &&
                 !tf_tope.getText().isEmpty() &&
                 !tf_idPresupuesto.getText().isEmpty() &&
                 !cb_categoria.getSelectionModel().getSelectedItem().isEmpty();
     }
 
-    private boolean verificarCamposCorrectos(){
-        return isInteger(tf_idPresupuesto.getText()) && isDouble(tf_tope.getText());
+    private boolean validarCamposValidos(){
+        return esTipoInteger(tf_idPresupuesto.getText()) && esTipoDouble(tf_tope.getText());
     }
 
     private void mostrarInformacionPresupuesto(PresupuestoDto presupuesto) {
@@ -239,10 +239,6 @@ public class GestionPresupuestosViewController {
             tf_tope.setText(String.valueOf(presupuesto.montoTotalAsignado()));
             cb_categoria.getSelectionModel().select(presupuesto.categoria());
         }
-    }
-
-    private void obtenerPresupuestos() {
-        listaPresupuestos.addAll(gestionPresupuestoController.obtenerPresupuestos(usuario.idUsuario()));
     }
 
     private void initView() {
@@ -260,6 +256,10 @@ public class GestionPresupuestosViewController {
         cl_tope.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().montoTotalAsignado()).asObject());
         cl_montoGastado.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().montoGastado()).asObject());
         cl_categoria.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().categoria()));
+    }
+
+    private void obtenerPresupuestos() {
+        listaPresupuestos.addAll(presupuestosController.obtenerPresupuestos(usuario.idUsuario()));
     }
 
     private void listenerSelection(){

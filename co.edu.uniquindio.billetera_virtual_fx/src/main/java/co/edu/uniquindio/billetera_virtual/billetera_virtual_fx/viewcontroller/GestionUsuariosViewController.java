@@ -204,8 +204,8 @@ public class GestionUsuariosViewController {
     }
 
     private boolean verificarCamposCorrectos(){
-        return isInteger(tf_clave.getText()) && isLong(tf_telefono.getText()) &&
-                isLong(tf_id.getText()) && esCorreoValido(tf_correo.getText());
+        return esTipoInteger(tf_clave.getText()) && esTipoLong(tf_telefono.getText()) &&
+                esTipoLong(tf_id.getText()) && esEmailValido(tf_correo.getText());
     }
 
     private void mostrarInformacionUsuario(UsuarioDto usuario) {

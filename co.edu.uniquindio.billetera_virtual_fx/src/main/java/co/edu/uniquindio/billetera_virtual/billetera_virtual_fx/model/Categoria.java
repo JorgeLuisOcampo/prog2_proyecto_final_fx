@@ -1,13 +1,13 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Categoria {
     private BilleteraVirtual billeteraVirtual;
-    private int idCategoria;
+    private int id;
     private Usuario usuarioAsociado;
-    private String nombre, descripcionOpcional;
+    private String nombre;
+    private String descripcion;
     private LinkedList<Transaccion> listaTransacciones;
     private Presupuesto presupuestoAsociado;
 
@@ -15,12 +15,12 @@ public class Categoria {
         this.listaTransacciones = new LinkedList<>();
     }
 
-    public Categoria(int idCategoria, String nombre, String descripcionOpcional, Usuario usuario,
+    public Categoria(int id, String nombre, String descripcion, Usuario usuario,
                      Presupuesto presupuestoAsociado, BilleteraVirtual billeteraVirtual) {
-        this.idCategoria = idCategoria;
+        this.id = id;
         this.nombre = nombre;
         this.usuarioAsociado = usuario;
-        this.descripcionOpcional = descripcionOpcional;
+        this.descripcion = descripcion;
         this.billeteraVirtual = billeteraVirtual;
         this.presupuestoAsociado = presupuestoAsociado;
         this.listaTransacciones = new LinkedList<>();
@@ -34,12 +34,12 @@ public class Categoria {
         this.billeteraVirtual = billeteraVirtual;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
+    public int getId() {
+        return id;
     }
 
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -50,12 +50,12 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public String getDescripcionOpcional() {
-        return descripcionOpcional;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setDescripcionOpcional(String descripcionOpcional) {
-        this.descripcionOpcional = descripcionOpcional;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public LinkedList<Transaccion> getListaTransacciones() {

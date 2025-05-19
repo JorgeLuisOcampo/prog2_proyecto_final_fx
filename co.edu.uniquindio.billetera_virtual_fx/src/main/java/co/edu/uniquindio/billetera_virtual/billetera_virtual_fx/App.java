@@ -1,7 +1,7 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory.ModelFactory;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.PrincipalViewController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.InicioViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,15 +25,15 @@ public class App extends Application {
         try {
             invocar();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("PrincipalView.fxml"));
+            loader.setLocation(App.class.getResource("Inicio.fxml"));
             javafx.scene.layout.AnchorPane rootLayout = (javafx.scene.layout.AnchorPane) loader.load();
-            PrincipalViewController principalViewController = loader.getController();
+            InicioViewController inicioViewController = loader.getController();
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
-            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            System.err.println("Error loading FXML file: " + e.getMessage());
             e.printStackTrace();
         }
     }

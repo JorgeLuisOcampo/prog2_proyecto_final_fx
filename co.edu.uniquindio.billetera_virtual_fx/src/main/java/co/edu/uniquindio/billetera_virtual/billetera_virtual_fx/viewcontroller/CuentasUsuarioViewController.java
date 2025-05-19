@@ -1,6 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.GestionCuentasUsuarioController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.CuentasUsuarioController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CuentaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.TipoCuenta;
@@ -18,10 +18,10 @@ import java.util.ResourceBundle;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.*;
 
-public class GestionCuentasUsuarioViewController {
+public class CuentasUsuarioViewController {
 
     private UsuarioDto usuario;
-    private GestionCuentasUsuarioController gestionCuentasUsuarioController;
+    private CuentasUsuarioController cuentasUsuarioController;
     ObservableList<CuentaDto> listaCuentas = FXCollections.observableArrayList();
     CuentaDto cuentaSeleccionada;
 
@@ -87,12 +87,12 @@ public class GestionCuentasUsuarioViewController {
 
     @FXML
     void onNuevo() {
-        agregarCuenta();
+        agregar();
     }
 
     @FXML
     void onActualizar() {
-        actualizarCuenta();
+        actualizar();
     }
 
     @FXML
@@ -102,24 +102,24 @@ public class GestionCuentasUsuarioViewController {
 
     @FXML
     void onEliminar() {
-        eliminarCuenta();
+        eliminar();
     }
 
     @FXML
     void initialize() {
-        gestionCuentasUsuarioController = new GestionCuentasUsuarioController();
+        cuentasUsuarioController = new CuentasUsuarioController();
         cb_tipoCuenta.getItems().addAll(TipoCuenta.values());
     }
 
     public void setUsuario(UsuarioDto usuarioDto) {
         usuario = usuarioDto;
         initView();
-        configurarComboBoxPresupuestos();
+        setCBoxPresupuestos();
     }
 
-    private void configurarComboBoxPresupuestos() {
+    private void setCBoxPresupuestos() {
         cb_presupuestoAsociado.getItems().clear();
-        cb_presupuestoAsociado.getItems().addAll(gestionCuentasUsuarioController.obtenerPresupuestosDisponiblesNombres(usuario.idUsuario()));
+        cb_presupuestoAsociado.getItems().addAll(cuentasUsuarioController.obtenerPresupuestosDisponiblesNombres(usuario.idUsuario()));
     }
 
     private CuentaDto crearCuenta() {
@@ -128,20 +128,20 @@ public class GestionCuentasUsuarioViewController {
                 0, cb_presupuestoAsociado.getValue());
     }
 
-    private CuentaDto crearCuentaConSaldo(Double saldo) {
+    private CuentaDto crearCuentaSaldo(Double saldo) {
         return new CuentaDto(Integer.parseInt(tf_idCuenta.getText()), tf_nombreBanco.getText(),
                 tf_numeroCuenta.getText(), usuario.idUsuario(), cb_tipoCuenta.getValue(),
                 saldo, cb_presupuestoAsociado.getValue());
     }
 
-    private void agregarCuenta() {
-        if (verificarCamposLlenos()) {
-            if (verificarCamposCorrectos()) {
+    private void agregar() {
+        if (validarCamposCompletos()) {
+            if (validarCamposValidos()) {
                 CuentaDto cuenta = crearCuenta();
-                if (gestionCuentasUsuarioController.agregarCuentaUsuario(usuario.idUsuario(), cuenta)) {
+                if (cuentasUsuarioController.agregarCuentaUsuario(usuario.idUsuario(), cuenta)) {
                     listaCuentas.add(cuenta);
                     tb_cuentas.refresh();
-                    configurarComboBoxPresupuestos();
+                    setCBoxPresupuestos();
                     limpiarSeleccion();
                     mostrarMensaje(TITULO_CUENTA_AGREGADA, BODY_CUENTA_AGREGADA, Alert.AlertType.INFORMATION);
                 }
@@ -159,15 +159,15 @@ public class GestionCuentasUsuarioViewController {
     }
 
 
-    private void actualizarCuenta() {
+    private void actualizar() {
         if (cuentaSeleccionada != null) {
-            if (verificarCamposLlenos()) {
-                if (verificarCamposCorrectos()) {
-                    CuentaDto cuentaNueva = crearCuentaConSaldo(cuentaSeleccionada.saldo());
-                    if (gestionCuentasUsuarioController.
+            if (validarCamposCompletos()) {
+                if (validarCamposValidos()) {
+                    CuentaDto cuentaNueva = crearCuentaSaldo(cuentaSeleccionada.saldo());
+                    if (cuentasUsuarioController.
                             actualizarCuentaUsuario(usuario.idUsuario(), cuentaSeleccionada, cuentaNueva)) {
                         intercambiarCuentas(cuentaSeleccionada.idCuenta(), cuentaNueva);
-                        configurarComboBoxPresupuestos();
+                        setCBoxPresupuestos();
                         limpiarSeleccion();
                         tb_cuentas.refresh();
                         mostrarMensaje(TITULO_CUENTA_ACTUALIZADA,
@@ -194,11 +194,11 @@ public class GestionCuentasUsuarioViewController {
     private void mostrarMensajeNoActualizarCuenta(CuentaDto cuenta) {
         int idCuenta = Integer.parseInt(tf_idCuenta.getText());
         String numCuenta = tf_numeroCuenta.getText();
-        if (gestionCuentasUsuarioController.verificarCuentaId(idCuenta)
+        if (cuentasUsuarioController.verificarCuentaId(idCuenta)
                 && cuenta.idCuenta() != idCuenta) {
             mostrarMensaje(TITULO_CUENTA_NO_ACTUALIZADA, BODY_CUENTA_NO_ACTUALIZADA_ID, Alert.AlertType.ERROR);
         }
-        if (gestionCuentasUsuarioController.verificarCuentaNumCuenta(numCuenta)
+        if (cuentasUsuarioController.verificarNumeroCuenta(numCuenta)
                 && !cuenta.numCuenta().equals(numCuenta)) {
             mostrarMensaje(TITULO_CUENTA_NO_ACTUALIZADA,
                     BODY_CUENTA_NO_ACTUALIZADA_NUM_CUENTA, Alert.AlertType.ERROR);
@@ -214,13 +214,13 @@ public class GestionCuentasUsuarioViewController {
         }
     }
 
-    private void eliminarCuenta() {
+    private void eliminar() {
         if (cuentaSeleccionada != null) {
             if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_CUENTA) &&
-                    gestionCuentasUsuarioController.eliminarCuentaUsuario(usuario.idUsuario(),
+                    cuentasUsuarioController.eliminarCuentaUsuario(usuario.idUsuario(),
                             cuentaSeleccionada.idCuenta(), cuentaSeleccionada.numCuenta())) {
                 listaCuentas.remove(cuentaSeleccionada);
-                configurarComboBoxPresupuestos();
+                setCBoxPresupuestos();
                 limpiarSeleccion();
                 mostrarMensaje(TITULO_CUENTA_ELIMINADA, BODY_CUENTA_ELIMINADA, Alert.AlertType.INFORMATION);
             }
@@ -230,14 +230,14 @@ public class GestionCuentasUsuarioViewController {
         }
     }
 
-    private boolean verificarCamposLlenos() {
+    private boolean validarCamposCompletos() {
         return !tf_numeroCuenta.getText().isEmpty() && !tf_idCuenta.getText().isEmpty()
                 && !tf_nombreBanco.getText().isEmpty() && !cb_tipoCuenta.getSelectionModel().isEmpty()
                 && !cb_presupuestoAsociado.getSelectionModel().getSelectedItem().isEmpty();
     }
 
-    private boolean verificarCamposCorrectos(){
-        return isInteger(tf_idCuenta.getText()) && isLong(tf_numeroCuenta.getText());
+    private boolean validarCamposValidos(){
+        return esTipoInteger(tf_idCuenta.getText()) && esTipoLong(tf_numeroCuenta.getText());
     }
 
     private void mostrarInformacionCuenta(CuentaDto cuenta) {
@@ -248,10 +248,6 @@ public class GestionCuentasUsuarioViewController {
             cb_tipoCuenta.getSelectionModel().select(cuenta.tipoCuenta());
             cb_presupuestoAsociado.getSelectionModel().select(cuenta.presupuestoAsociado());
         }
-    }
-
-    private void obtenerCuentas() {
-        listaCuentas.addAll(gestionCuentasUsuarioController.obtenerCuentas(usuario.idUsuario()));
     }
 
     private void initView() {
@@ -269,6 +265,10 @@ public class GestionCuentasUsuarioViewController {
         cl_presupuestoAsociado.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().presupuestoAsociado()));
         cl_tipoCuenta.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().tipoCuenta().name()));
         cl_saldo.setCellValueFactory(cellData -> new SimpleDoubleProperty(cellData.getValue().saldo()).asObject());
+    }
+
+    private void obtenerCuentas() {
+        listaCuentas.addAll(cuentasUsuarioController.obtenerCuentas(usuario.idUsuario()));
     }
 
     private void listenerSelection(){

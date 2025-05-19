@@ -5,19 +5,19 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.ICrudUsu
 
 public class Administrador implements ICrudUsuario, ICrudCuenta {
     private BilleteraVirtual billeteraVirtual;
-    private int clave;
+    private int contrasenia;
 
-    public Administrador(BilleteraVirtual billeteraVirtual, int clave) {
+    public Administrador(BilleteraVirtual billeteraVirtual, int contrasenia) {
         this.billeteraVirtual = billeteraVirtual;
-        this.clave = clave;
+        this.contrasenia = contrasenia;
     }
 
-    public int getClave() {
-        return clave;
+    public int getContrasenia() {
+        return contrasenia;
     }
 
-    public void setClave(int clave) {
-        this.clave = clave;
+    public void setContrasenia(int contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     @Override

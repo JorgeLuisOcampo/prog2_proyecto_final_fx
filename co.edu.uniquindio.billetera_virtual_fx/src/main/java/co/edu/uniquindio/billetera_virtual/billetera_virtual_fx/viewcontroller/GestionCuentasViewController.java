@@ -224,7 +224,7 @@ public class GestionCuentasViewController {
     }
 
     private boolean verificarCamposCorrectos(){
-        return isInteger(tf_idCuenta.getText()) && isLong(tf_numeroCuenta.getText());
+        return esTipoInteger(tf_idCuenta.getText()) && esTipoLong(tf_numeroCuenta.getText());
     }
 
     private void mostrarInformacionCuenta(CuentaDto cuenta) {

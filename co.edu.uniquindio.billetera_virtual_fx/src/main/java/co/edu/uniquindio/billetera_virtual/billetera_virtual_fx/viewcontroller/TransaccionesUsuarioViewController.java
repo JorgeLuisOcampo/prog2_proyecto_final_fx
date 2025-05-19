@@ -1,6 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.GestionTransaccionesUsuarioController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.TransaccionesUsuarioController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.TipoTransaccion;
@@ -20,10 +20,10 @@ import java.util.ResourceBundle;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.*;
 
-public class GestionTransaccionesUsuarioViewController {
+public class TransaccionesUsuarioViewController {
 
     private UsuarioDto usuario;
-    private GestionTransaccionesUsuarioController gestionTransaccionesUsuarioController;
+    private TransaccionesUsuarioController transaccionesUsuarioController;
     ObservableList<TransaccionDto> listaTransacciones = FXCollections.observableArrayList();
     TransaccionDto transaccionSeleccionada;
     private FilteredList<String> filtroCuentasDestino;
@@ -94,17 +94,17 @@ public class GestionTransaccionesUsuarioViewController {
 
     @FXML
     void initialize() {
-        gestionTransaccionesUsuarioController = new GestionTransaccionesUsuarioController();
-        manejarSeleccionCategoria();
+        transaccionesUsuarioController = new TransaccionesUsuarioController();
+        seleccionCategoria();
     }
 
     public void setUsuario(UsuarioDto usuario) {
         this.usuario = usuario;
         initView();
-        inicializarComboBox();
+        initCBoxes();
     }
 
-    private void crearListaFiltrada(LinkedList<String> listaCuentasDestino) {
+    private void listaFiltrada(LinkedList<String> listaCuentasDestino) {
         ObservableList<String> listaCuentasDestinoFiltrada = FXCollections.observableArrayList(listaCuentasDestino);
         filtroCuentasDestino = new FilteredList<>(listaCuentasDestinoFiltrada, cuentas -> true);
         cb_cuentaDestino.setItems(filtroCuentasDestino);
@@ -119,7 +119,7 @@ public class GestionTransaccionesUsuarioViewController {
     }
 
     private void obtenerTransacciones() {
-        listaTransacciones.addAll(gestionTransaccionesUsuarioController.obtenerTransacciones(usuario.idUsuario()));
+        listaTransacciones.addAll(transaccionesUsuarioController.obtenerTransacciones(usuario.idUsuario()));
     }
 
     private void listenerSelection(){
@@ -142,7 +142,7 @@ public class GestionTransaccionesUsuarioViewController {
 
     private TransaccionDto crearTransaccion(){
         return new TransaccionDto(
-                gestionTransaccionesUsuarioController.obtenerNuevoIdTransaccion(),
+                transaccionesUsuarioController.obtenerNuevoIdTransaccion(),
                 dp_fecha.getValue(),
                 Double.parseDouble(tf_monto.getText()),
                 tf_descripcion.getText(),
@@ -152,19 +152,19 @@ public class GestionTransaccionesUsuarioViewController {
                 cb_tipoTransaccion.getSelectionModel().getSelectedItem());
     }
 
-    private void inicializarComboBox() {
+    private void initCBoxes() {
         cb_tipoTransaccion.getItems().addAll();
         cb_tipoTransaccion.getItems().addAll(TipoTransaccion.values());
-        cb_tipoTransaccion.setOnAction(event -> manejarSeleccionCategoria());
-        cb_cuentaOrigen.setOnAction(event -> manejarSeleccionCuentaOrigen());
-        LinkedList<String> listaNumCuentas = gestionTransaccionesUsuarioController.obtenerNumCuentasUsuario(usuario.idUsuario());
+        cb_tipoTransaccion.setOnAction(event -> seleccionCategoria());
+        cb_cuentaOrigen.setOnAction(event -> seleccionCuentaOrigen());
+        LinkedList<String> listaNumCuentas = transaccionesUsuarioController.obtenerNumCuentasUsuario(usuario.idUsuario());
         cb_cuentaOrigen.getItems().addAll(listaNumCuentas);
-        crearListaFiltrada(listaNumCuentas);
+        listaFiltrada(listaNumCuentas);
     }
 
     private void realizarMovimiento() {
-        if (verificarCamposLlenos()) {
-            if (verificarCamposCorrectos()) {
+        if (validarCamposCompletos()) {
+            if (validarCamposValidos()) {
                 TipoTransaccion tipoTransaccion = cb_tipoTransaccion.getSelectionModel().getSelectedItem();
                 TransaccionDto transaccionDto = crearTransaccion();
                 if (tipoTransaccion.equals(TipoTransaccion.DEPOSITO)) {
@@ -187,7 +187,7 @@ public class GestionTransaccionesUsuarioViewController {
     }
 
     private void realizarDeposito(TransaccionDto transaccionDto) {
-        if (gestionTransaccionesUsuarioController.agregarTransaccion(transaccionDto, usuario.idUsuario())){
+        if (transaccionesUsuarioController.agregarTransaccion(transaccionDto, usuario.idUsuario())){
             mostrarMensajeTransaccionExitosa(transaccionDto);
             listaTransacciones.add(transaccionDto);
         }
@@ -197,9 +197,9 @@ public class GestionTransaccionesUsuarioViewController {
     }
 
     private boolean falloSacarDinero(TransaccionDto transaccionDto) {
-        if (gestionTransaccionesUsuarioController.saldoCuentaEsSuficiente(transaccionDto)) {
-            if (gestionTransaccionesUsuarioController.validarPresupuesto(transaccionDto)) {
-                if (gestionTransaccionesUsuarioController.agregarTransaccion(transaccionDto, usuario.idUsuario())){
+        if (transaccionesUsuarioController.saldoCuentaEsSuficiente(transaccionDto)) {
+            if (transaccionesUsuarioController.validarPresupuesto(transaccionDto)) {
+                if (transaccionesUsuarioController.agregarTransaccion(transaccionDto, usuario.idUsuario())){
                     mostrarMensajeTransaccionExitosa(transaccionDto);
                     listaTransacciones.add(transaccionDto);
                 }
@@ -259,7 +259,7 @@ public class GestionTransaccionesUsuarioViewController {
         filtroCuentasDestino.setPredicate(cuenta -> true);
     }
 
-    private void manejarSeleccionCuentaOrigen() {
+    private void seleccionCuentaOrigen() {
         String cuentaOrigen = cb_cuentaOrigen.getSelectionModel().getSelectedItem();
         if (cuentaOrigen != null && cb_tipoTransaccion.getValue().equals(TipoTransaccion.TRANSFERENCIA)) {
             filtroCuentasDestino.setPredicate(cuenta -> !cuenta.equalsIgnoreCase(cuentaOrigen));
@@ -267,7 +267,7 @@ public class GestionTransaccionesUsuarioViewController {
         }
     }
 
-    private void manejarSeleccionCategoria() {
+    private void seleccionCategoria() {
         TipoTransaccion tipoTransaccion = cb_tipoTransaccion.getSelectionModel().getSelectedItem();
         cb_cuentaOrigen.setDisable(false);
         cb_cuentaDestino.setDisable(false);
@@ -294,7 +294,7 @@ public class GestionTransaccionesUsuarioViewController {
         tf_descripcion.clear();
     }
 
-    private boolean verificarCamposLlenos() {
+    private boolean validarCamposCompletos() {
         if (!cb_tipoTransaccion.getSelectionModel().isEmpty()
                 && !cb_cuentaOrigen.getSelectionModel().isEmpty()
                 && dp_fecha.getValue() != null
@@ -307,8 +307,8 @@ public class GestionTransaccionesUsuarioViewController {
         return false;
     }
 
-    private boolean verificarCamposCorrectos(){
-        return isDouble(tf_monto.getText());
+    private boolean validarCamposValidos(){
+        return esTipoDouble(tf_monto.getText());
     }
 
     private void initDataBinding() {

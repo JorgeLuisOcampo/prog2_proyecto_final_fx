@@ -25,7 +25,7 @@
                             <children>
                                 <SplitPane fx:id="sp_editarPerfil" layoutX="-1.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
                                     <items>
-                                        <fx:include source="EditarPerfil.fxml" />
+                                        <fx:include source="Perfil.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>
@@ -38,7 +38,7 @@
                             <children>
                                 <SplitPane fx:id="sp_cuentas" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
                                     <items>
-                                        <fx:include source="GestionCuentasUsuario.fxml" />
+                                        <fx:include source="CuentasUsuario.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>
@@ -51,7 +51,7 @@
                             <children>
                                 <SplitPane fx:id="sp_categorias" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
                                     <items>
-                                        <fx:include source="GestionCategorias.fxml" />
+                                        <fx:include source="Categorias.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>
@@ -64,7 +64,7 @@
                             <children>
                                 <SplitPane fx:id="sp_presupuestos" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
                                     <items>
-                                        <fx:include source="GestionPresupuestos.fxml" />
+                                        <fx:include source="Presupuestos.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>
@@ -77,7 +77,7 @@
                             <children>
                                 <SplitPane fx:id="sp_transacciones" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
                                     <items>
-                                        <fx:include source="GestionTransaccionesUsuario.fxml" />
+                                        <fx:include source="TransaccionesUsuario.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>

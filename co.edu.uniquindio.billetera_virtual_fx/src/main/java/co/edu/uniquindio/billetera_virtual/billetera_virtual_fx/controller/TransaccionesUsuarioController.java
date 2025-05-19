@@ -5,10 +5,10 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.Tran
 
 import java.util.LinkedList;
 
-public class GestionTransaccionesUsuarioController {
+public class TransaccionesUsuarioController {
     ModelFactory modelFactory;
 
-    public GestionTransaccionesUsuarioController() {
+    public TransaccionesUsuarioController() {
         modelFactory = ModelFactory.getInstance();
     }
 
@@ -17,7 +17,7 @@ public class GestionTransaccionesUsuarioController {
     }
 
     public LinkedList<String> obtenerNumCuentasUsuario(String idUsuario) {
-        return modelFactory.obtenerNumCuentasUsuario(idUsuario);
+        return modelFactory.obtenerNumeroCuentasUsuario(idUsuario);
     }
 
     public int obtenerNuevoIdTransaccion() {

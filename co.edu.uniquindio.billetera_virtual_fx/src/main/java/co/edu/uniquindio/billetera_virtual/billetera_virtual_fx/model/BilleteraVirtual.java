@@ -1,30 +1,29 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CuentaDto;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.*;
 
-import javax.swing.*;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategoria, ICrudPresupuesto, ICrudTransaccion {
     private String nombre;
     private Administrador administrador;
+    private LinkedList<Usuario> listaUsuarios;
     private LinkedList<Categoria> listaCategorias;
     private LinkedList<Presupuesto> listaPresupuestos;
-    private LinkedList<Transaccion> listaTransacciones;
     private LinkedList<Cuenta> listaCuentas;
-    private LinkedList<Usuario> listaUsuarios;
+    private LinkedList<Transaccion> listaTransacciones;
+
+
 
     public BilleteraVirtual(String nombre){
         this.nombre = nombre;
-        this.administrador = new Administrador(this, 2911);
+        this.administrador = new Administrador(this, 182);
+        this.listaUsuarios = new LinkedList<>();
         this.listaCategorias = new LinkedList<>();
         this.listaPresupuestos = new LinkedList<>();
-        this.listaTransacciones = new LinkedList<>();
         this.listaCuentas = new LinkedList<>();
-        this.listaUsuarios = new LinkedList<>();
+        this.listaTransacciones = new LinkedList<>();
+
     }
 
     public String getNombre() {
@@ -85,8 +84,8 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
 
     @Override
     public boolean agregarUsuario(Usuario usuario) {
-        if (obtenerUsuario(usuario.getIdUsuario()) == null
-                && !usuario.getIdUsuario().equals(String.valueOf(administrador.getClave()))){
+        if (obtenerUsuario(usuario.getId()) == null
+                && !usuario.getId().equals(String.valueOf(administrador.getContrasenia()))){
             listaUsuarios.add(usuario);
             return true;
         }
@@ -127,14 +126,14 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     @Override
     public boolean actualizarUsuario(String id, Usuario nuevoUsuario) {
         for (Usuario usuario : listaUsuarios){
-            if (usuario.getIdUsuario().equalsIgnoreCase(id)){
-                if (obtenerUsuario(nuevoUsuario.getIdUsuario()) == null || nuevoUsuario.getIdUsuario().equalsIgnoreCase(id)){
-                    usuario.setIdUsuario(nuevoUsuario.getIdUsuario());
-                    usuario.setClave(nuevoUsuario.getClave());
-                    usuario.setNombreCompleto(nuevoUsuario.getNombreCompleto());
-                    usuario.setDireccion(nuevoUsuario.getDireccion());
-                    usuario.setCorreoElectronico(nuevoUsuario.getCorreoElectronico());
-                    usuario.setNumeroTelefono(nuevoUsuario.getNumeroTelefono());
+            if (usuario.getId().equalsIgnoreCase(id)){
+                if (obtenerUsuario(nuevoUsuario.getId()) == null || nuevoUsuario.getId().equalsIgnoreCase(id)){
+                    usuario.setId(nuevoUsuario.getId());
+                    usuario.setContrasenia(nuevoUsuario.getContrasenia());
+                    usuario.setNombre(nuevoUsuario.getNombre());
+                    usuario.setDomicilio(nuevoUsuario.getDomicilio());
+                    usuario.setEmail(nuevoUsuario.getEmail());
+                    usuario.setTelefono(nuevoUsuario.getTelefono());
                     return true;
                 }
             }
@@ -145,7 +144,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     @Override
     public Usuario obtenerUsuario(String id) {
         for (Usuario usuario : listaUsuarios){
-            if (usuario.getIdUsuario().equalsIgnoreCase(id)){
+            if (usuario.getId().equalsIgnoreCase(id)){
                 return usuario;
             }
         }
@@ -182,10 +181,10 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
             if (cuenta.getIdCuenta() == cuentaVieja.getIdCuenta()){
                 if ((obtenerCuentaId(nuevaCuenta.getIdCuenta()) == null
                         || nuevaCuenta.getIdCuenta() == cuentaVieja.getIdCuenta()) &&
-                        (obtenerCuentaNumCuenta(nuevaCuenta.getNumeroCuenta()) == null
+                        (obtenerCuentaNumeroCuenta(nuevaCuenta.getNumeroCuenta()) == null
                                 || nuevaCuenta.getNumeroCuenta().equals(cuentaVieja.getNumeroCuenta()))){
                     cuenta.setIdCuenta(nuevaCuenta.getIdCuenta());
-                    cuenta.setNombreBanco(nuevaCuenta.getNombreBanco());
+                    cuenta.setBanco(nuevaCuenta.getBanco());
                     cuenta.setNumeroCuenta(nuevaCuenta.getNumeroCuenta());
                     cambiarUsuarioCuenta(cuenta, nuevaCuenta);
                     cuenta.setTipoCuenta(nuevaCuenta.getTipoCuenta());
@@ -217,7 +216,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
         return null;
     }
 
-    public Cuenta obtenerCuentaNumCuenta(String numCuenta){
+    public Cuenta obtenerCuentaNumeroCuenta(String numCuenta){
         for (Cuenta cuenta : listaCuentas){
             if (cuenta.getNumeroCuenta().equalsIgnoreCase(numCuenta)){
                 return cuenta;
@@ -226,7 +225,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
         return null;
     }
 
-    public boolean verificarCuentaId(int id) {
+    public boolean verificarIDCuenta(int id) {
         for (Cuenta cuenta : listaCuentas){
             if (cuenta.getIdCuenta() == id){
                 return true;
@@ -235,7 +234,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
         return false;
     }
 
-    public boolean verificarCuentaNumCuenta(String numCuenta) {
+    public boolean verificarNumeroCuenta(String numCuenta) {
         for (Cuenta cuenta : listaCuentas){
             if (cuenta.getNumeroCuenta().equalsIgnoreCase(numCuenta)){
                 return true;
@@ -247,7 +246,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     private void cambiarUsuarioCuenta(Cuenta cuenta, Cuenta nuevaCuenta) {
         Usuario usuarioViejo = cuenta.getUsuarioAsociado();
         Usuario usuarioNuevo = nuevaCuenta.getUsuarioAsociado();
-        if (!usuarioViejo.getIdUsuario().equals(usuarioNuevo.getIdUsuario())){
+        if (!usuarioViejo.getId().equals(usuarioNuevo.getId())){
             usuarioViejo.getListaCuentas().remove(cuenta);
             usuarioNuevo.getListaCuentas().add(cuenta);
         }
@@ -265,7 +264,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
 
     @Override
     public boolean agregarCategoria(Categoria categoria) {
-        if (obtenerCategoria(categoria.getIdCategoria()) == null){
+        if (obtenerCategoria(categoria.getId()) == null){
             listaCategorias.add(categoria);
             categoria.getUsuarioAsociado().getListaCategorias().add(categoria);
             return true;
@@ -276,12 +275,12 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     @Override
     public boolean actualizarCategoria(int idCategoria, Categoria nuevaCategoria) {
         for (Categoria categoria : listaCategorias){
-            if (categoria.getIdCategoria() == idCategoria){
-                if (obtenerCategoria(nuevaCategoria.getIdCategoria()) == null ||
-                        nuevaCategoria.getIdCategoria() == idCategoria){
-                    categoria.setIdCategoria(nuevaCategoria.getIdCategoria());
+            if (categoria.getId() == idCategoria){
+                if (obtenerCategoria(nuevaCategoria.getId()) == null ||
+                        nuevaCategoria.getId() == idCategoria){
+                    categoria.setId(nuevaCategoria.getId());
                     categoria.setNombre(nuevaCategoria.getNombre());
-                    categoria.setDescripcionOpcional(nuevaCategoria.getDescripcionOpcional());
+                    categoria.setDescripcion(nuevaCategoria.getDescripcion());
                     return true;
                 }
             }
@@ -314,7 +313,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     @Override
     public Categoria obtenerCategoria(int idCategoria) {
         for (Categoria categoria : listaCategorias){
-            if (categoria.getIdCategoria() == idCategoria){
+            if (categoria.getId() == idCategoria){
                 return categoria;
             }
         }
@@ -350,7 +349,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
             if (presupuesto.getIdPresupuesto() == id){
                 presupuesto.setIdPresupuesto(nuevoPresupuesto.getIdPresupuesto());
                 presupuesto.setNombre(nuevoPresupuesto.getNombre());
-                presupuesto.setMontoTotalAsignado(nuevoPresupuesto.getMontoTotalAsignado());
+                presupuesto.setMontoTotal(nuevoPresupuesto.getMontoTotal());
                 cambiarCategoriasPresupuestos(presupuesto, nuevoPresupuesto);
                 return true;
             }
@@ -361,7 +360,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     private void cambiarCategoriasPresupuestos(Presupuesto presupuesto, Presupuesto nuevoPresupuesto) {
         Categoria categoriaVieja = presupuesto.getCategoriaAsociada();
         Categoria categoriaNueva = nuevoPresupuesto.getCategoriaAsociada();
-        if (categoriaVieja.getIdCategoria() != categoriaNueva.getIdCategoria()){
+        if (categoriaVieja.getId() != categoriaNueva.getId()){
             presupuesto.setCategoriaAsociada(categoriaNueva);
             categoriaVieja.setPresupuestoAsociado(null);
             categoriaNueva.setPresupuestoAsociado(presupuesto);
@@ -380,9 +379,9 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
 
     @Override
     public boolean agregarTransaccion(Transaccion transaccion) {
-        if (obtenerTransaccion(transaccion.getIdTransaccion()) == null){
+        if (obtenerTransaccion(transaccion.getId()) == null){
             if (transaccion.getTipoTransaccion().equals(TipoTransaccion.RETIRO)) {
-                return retirarDinero(transaccion);
+                return retirarFondos(transaccion);
             } else if (transaccion.getTipoTransaccion().equals(TipoTransaccion.DEPOSITO)) {
                 return realizarDeposito(transaccion);
             } else if (transaccion.getTipoTransaccion().equals(TipoTransaccion.TRANSFERENCIA)) {
@@ -394,7 +393,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
 
     public boolean validarPresupuesto(Transaccion transaccion) {
         Presupuesto presupuesto = transaccion.getCuentaOrigen().getPresupuestoAsociado();
-        return presupuesto.getMontoGastado()+transaccion.getMonto() <= presupuesto.getMontoTotalAsignado();
+        return presupuesto.getMontoGastado()+transaccion.getMonto() <= presupuesto.getMontoTotal();
     }
 
     public boolean validarSaldo(Transaccion transaccion) {
@@ -402,7 +401,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
         return cuenta.getSaldo() >= transaccion.getMonto();
     }
 
-    private boolean retirarDinero(Transaccion transaccion) {
+    private boolean retirarFondos(Transaccion transaccion) {
         if (validarPresupuesto(transaccion) || validarSaldo(transaccion)) {
             Cuenta cuentaOrigen = transaccion.getCuentaOrigen();
             cuentaOrigen.actualizarSaldo(transaccion.getMonto()*-1);
@@ -441,20 +440,20 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     @Override
     public Transaccion obtenerTransaccion(int idTransaccion) {
         for (Transaccion transaccion : listaTransacciones){
-            if (transaccion.getIdTransaccion() == idTransaccion){
+            if (transaccion.getId() == idTransaccion){
                 return transaccion;
             }
         }
         return null;
     }
 
-    public boolean verificarClaveAdmin(int clave) {
-        return administrador.getClave() == clave;
+    public boolean validarContraseniaAdministrador(int contrasenia) {
+        return administrador.getContrasenia() == contrasenia;
     }
 
-    public boolean verificarCredencialesUsuario(String id, int clave) {
+    public boolean validarDatosUsuario(String id, int contrasenia) {
         for (Usuario usuario : listaUsuarios) {
-            if (usuario.getIdUsuario().equals(id) && usuario.getClave() == clave){
+            if (usuario.getId().equals(id) && usuario.getContrasenia() == contrasenia){
                 return true;
             }
         }
@@ -464,7 +463,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
     public LinkedList<String> obtenerUsuariosId() {
         LinkedList<String> listaUsuariosId = new LinkedList<>();
         for (Usuario usuario : listaUsuarios) {
-            listaUsuariosId.add(usuario.getIdUsuario());
+            listaUsuariosId.add(usuario.getId());
         }
         return listaUsuariosId;
     }
@@ -480,7 +479,7 @@ public class BilleteraVirtual implements ICrudUsuario, ICrudCuenta, ICrudCategor
         return listaCategoriasNombres;
     }
 
-    public LinkedList<String> obtenerNumCuentasUsuario(String idUsuario) {
+    public LinkedList<String> obtenerNumeroCuentasUsuario(String idUsuario) {
         Usuario usuario = obtenerUsuario(idUsuario);
         LinkedList<String> listaNumCuentasUsuario = new LinkedList<>();
         if (usuario != null) {

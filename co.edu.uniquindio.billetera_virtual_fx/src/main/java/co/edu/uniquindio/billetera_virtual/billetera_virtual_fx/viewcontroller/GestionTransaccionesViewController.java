@@ -268,7 +268,7 @@ public class GestionTransaccionesViewController {
     }
 
     private boolean verificarCamposCorrectos(){
-        return isDouble(tf_monto.getText());
+        return esTipoDouble(tf_monto.getText());
     }
 
     private void initDataBinding() {

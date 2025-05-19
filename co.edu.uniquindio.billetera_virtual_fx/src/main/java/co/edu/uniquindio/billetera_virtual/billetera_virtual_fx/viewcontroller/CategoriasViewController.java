@@ -1,6 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.GestionCategoriasController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.CategoriasController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -16,10 +16,10 @@ import java.util.ResourceBundle;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.BilleteraVirtualConstantes.*;
 import static co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils.MetodosReutilizables.*;
 
-public class GestionCategoriasViewController {
+public class CategoriasViewController {
 
     private UsuarioDto usuario;
-    private GestionCategoriasController gestionCategoriasController;
+    private CategoriasController categoriasController;
     ObservableList<CategoriaDto> listaCategorias = FXCollections.observableArrayList();
     CategoriaDto categoriaSeleccionada;
 
@@ -99,7 +99,7 @@ public class GestionCategoriasViewController {
 
     @FXML
     void initialize() {
-        gestionCategoriasController = new GestionCategoriasController();
+        categoriasController = new CategoriasController();
     }
 
     public void setUsuario(UsuarioDto usuario) {
@@ -113,10 +113,10 @@ public class GestionCategoriasViewController {
     }
 
     private void agregarCategoria() {
-        if (verificarCamposLlenos()) {
-            if (verificarCamposCorrectos()) {
+        if (validarCamposCompletos()) {
+            if (validarCamposValidos()) {
                 CategoriaDto categoria = crearCategoria();
-                if (gestionCategoriasController.agregarCategoria(categoria, usuario.idUsuario())) {
+                if (categoriasController.agregarCategoria(categoria, usuario.idUsuario())) {
                     listaCategorias.add(categoria);
                     tb_categorias.refresh();
                     limpiarSeleccion();
@@ -137,10 +137,10 @@ public class GestionCategoriasViewController {
 
     private void actualizarCategoria() {
         if (categoriaSeleccionada != null) {
-            if (verificarCamposLlenos()) {
-                if (verificarCamposCorrectos()) {
+            if (validarCamposCompletos()) {
+                if (validarCamposValidos()) {
                     CategoriaDto categoriaNueva = crearCategoria();
-                    if (gestionCategoriasController.actualizarCategoria(usuario.idUsuario(),
+                    if (categoriasController.actualizarCategoria(usuario.idUsuario(),
                             categoriaSeleccionada.idCategoria(), categoriaNueva)){
                         intercambiarCategorias(categoriaSeleccionada.idCategoria(), categoriaNueva);
                         limpiarSeleccion();
@@ -172,7 +172,7 @@ public class GestionCategoriasViewController {
     private void eliminarCategoria() {
         if (categoriaSeleccionada != null) {
             if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_CATEGORIA) &&
-                    gestionCategoriasController.
+                    categoriasController.
                             eliminarCategoria(usuario.idUsuario(), categoriaSeleccionada.idCategoria())) {
                 listaCategorias.remove(categoriaSeleccionada);
                 limpiarSeleccion();
@@ -196,13 +196,13 @@ public class GestionCategoriasViewController {
         }
     }
 
-    private boolean verificarCamposLlenos() {
+    private boolean validarCamposCompletos() {
         return !tf_nombreCategoria.getText().isEmpty() &&
                 !tf_idCategoria.getText().isEmpty();
     }
 
-    private boolean verificarCamposCorrectos(){
-        return isInteger(tf_idCategoria.getText());
+    private boolean validarCamposValidos(){
+        return esTipoInteger(tf_idCategoria.getText());
     }
 
     private void mostrarInformacionCategoria(CategoriaDto categoria) {
@@ -211,10 +211,6 @@ public class GestionCategoriasViewController {
             tf_descripcion.setText(categoria.descripcion());
             tf_idCategoria.setText(String.valueOf(categoria.idCategoria()));
         }
-    }
-
-    private void obtenerCategorias() {
-        listaCategorias.addAll(gestionCategoriasController.obtenerCategorias(usuario.idUsuario()));
     }
 
     private void initView() {
@@ -230,6 +226,10 @@ public class GestionCategoriasViewController {
         cl_idCategoria.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().idCategoria()).asObject());
         cl_descripcion.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().descripcion()));
         cl_presupuesto.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().presupuesto()));
+    }
+
+    private void obtenerCategorias() {
+        listaCategorias.addAll(categoriasController.obtenerCategorias(usuario.idUsuario()));
     }
 
     private void listenerSelection(){

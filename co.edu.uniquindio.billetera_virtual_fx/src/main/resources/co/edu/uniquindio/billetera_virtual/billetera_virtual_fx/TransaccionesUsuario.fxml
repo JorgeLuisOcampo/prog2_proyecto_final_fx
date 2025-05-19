@@ -16,7 +16,7 @@
             style="-fx-background-color: #2ECC71;"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.GestionTransaccionesUsuarioViewController">
+            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.TransaccionesUsuarioViewController">
     <children>
         <SplitPane dividerPositions="0.568904593639576" orientation="VERTICAL" prefHeight="568.0" prefWidth="1180.0">
             <items>

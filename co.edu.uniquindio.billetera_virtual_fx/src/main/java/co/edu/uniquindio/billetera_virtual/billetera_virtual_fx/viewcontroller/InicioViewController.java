@@ -1,6 +1,6 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.PrincipalController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.InicioController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitPane;
@@ -12,9 +12,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PrincipalViewController {
+public class InicioViewController {
 
-    PrincipalController principalController;
+    InicioController inicioController;
 
     @FXML
     private ResourceBundle resources;
@@ -83,11 +83,11 @@ public class PrincipalViewController {
     }
 
     /**
-     * Metodo para inicializar el PrincipalViewController
+     * Metodo para inicializar el InicioViewController
      */
     @FXML
     void initialize() {
         configurarCambioDeTab();
-        principalController = new PrincipalController();
+        inicioController = new InicioController();
     }
 }

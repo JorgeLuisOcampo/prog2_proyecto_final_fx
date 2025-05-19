@@ -133,6 +133,6 @@ public class LoginMenuViewController {
     }
 
     private boolean verificarCambosCorrectos(){
-        return isInteger(ta_clave.getText()) && isInteger(ta_id.getText());
+        return esTipoInteger(ta_clave.getText()) && esTipoInteger(ta_id.getText());
     }
 }

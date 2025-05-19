@@ -19,6 +19,6 @@ public class LoginMenuController {
     }
 
     public boolean verificarCredencialesAdmin(int clave) {
-        return modelFactory.verificarClaveAdmin(clave);
+        return modelFactory.validarContraseniaAdministrador(clave);
     }
 }

@@ -5,10 +5,10 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.Cuen
 
 import java.util.LinkedList;
 
-public class GestionCuentasUsuarioController {
+public class CuentasUsuarioController {
     ModelFactory modelFactory;
 
-    public GestionCuentasUsuarioController() {
+    public CuentasUsuarioController() {
         modelFactory = ModelFactory.getInstance();
     }
 
@@ -28,8 +28,8 @@ public class GestionCuentasUsuarioController {
         return modelFactory.actualizarCuentaUsuario(idUsuario, cuentaVieja, cuentaNueva);
     }
 
-    public boolean verificarCuentaNumCuenta(String numCuenta) {
-        return modelFactory.verificarCuentaNumCuenta(numCuenta);
+    public boolean verificarNumeroCuenta(String numCuenta) {
+        return modelFactory.verificarNumeroCuenta(numCuenta);
     }
 
     public boolean verificarCuentaId(int id) {

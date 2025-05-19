@@ -26,7 +26,7 @@ public interface IBilleteraMapping {
     Transaccion transaccionDtoToTransaccion(TransaccionDto transaccionDto,
                                             BilleteraVirtual billeteraVirtual, Usuario usuarioAsociado, Cuenta cuentaOrigen,
                                             Cuenta cuentaDestino);
-    String mapNumeroCuenta(Cuenta cuenta);
+    String mapperGetNumeroCuenta(Cuenta cuenta);
 
     LinkedList<UsuarioDto> getUsuariosDto(LinkedList<Usuario> listaUsuarios);
     UsuarioDto usuarioToUsuarioDto(Usuario usuario);

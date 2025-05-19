@@ -6,22 +6,23 @@ import java.time.LocalDate;
 
 public class Transaccion {
     private BilleteraVirtual billeteraVirtual;
-    private int idTransaccion;
+    private int id;
     private LocalDate fecha;
     private double monto;
-    private String descripcionOpcional;
+    private String detalle;
     private Usuario usuarioAsociado;
     private TipoTransaccion tipoTransaccion;
-    private Cuenta cuentaOrigen, cuentaDestino;
+    private Cuenta cuentaOrigen;
+    private Cuenta cuentaDestino;
 
     public Transaccion() {
     }
 
-    public Transaccion(int idTransaccion, LocalDate fecha, double monto, String descripcionOpcional, Usuario usuarioAsociado, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, BilleteraVirtual billeteraVirtual) {
-        this.idTransaccion = idTransaccion;
+    public Transaccion(int id, LocalDate fecha, double monto, String detalle, Usuario usuarioAsociado, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, BilleteraVirtual billeteraVirtual) {
+        this.id = id;
         this.fecha = fecha;
         this.monto = monto;
-        this.descripcionOpcional = descripcionOpcional;
+        this.detalle = detalle;
         this.usuarioAsociado = usuarioAsociado;
         this.tipoTransaccion = tipoTransaccion;
         this.cuentaOrigen = cuentaOrigen;
@@ -37,8 +38,8 @@ public class Transaccion {
         this.billeteraVirtual = billeteraVirtual;
     }
 
-    public int getIdTransaccion() {
-        return idTransaccion;
+    public int getId() {
+        return id;
     }
 
     public LocalDate getFecha() {
@@ -49,8 +50,8 @@ public class Transaccion {
         return monto;
     }
 
-    public String getDescripcionOpcional() {
-        return descripcionOpcional;
+    public String getDetalle() {
+        return detalle;
     }
 
     public Usuario getUsuarioAsociado() {

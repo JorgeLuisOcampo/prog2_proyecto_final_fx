@@ -4,17 +4,18 @@ public class Presupuesto {
     private BilleteraVirtual billeteraVirtual;
     private int idPresupuesto;
     private String nombre;
-    private double montoTotalAsignado, montoGastado;
+    private double montoTotal;
+    private double montoGastado;
     private Usuario usuarioAsociado;
     private Cuenta cuentaAsociada;
     private Categoria categoriaAsociada;
 
     public Presupuesto() {}
 
-    public Presupuesto(int idPresupuesto, String nombre, double montoTotalAsignado, Usuario usuarioAsociado, Categoria categoriaAsociada, BilleteraVirtual billeteraVirtual) {
+    public Presupuesto(int idPresupuesto, String nombre, double montoTotal, Usuario usuarioAsociado, Categoria categoriaAsociada, BilleteraVirtual billeteraVirtual) {
         this.idPresupuesto = idPresupuesto;
         this.nombre = nombre;
-        this.montoTotalAsignado = montoTotalAsignado;
+        this.montoTotal = montoTotal;
         this.montoGastado = 0;
         this.usuarioAsociado = usuarioAsociado;
         this.categoriaAsociada = categoriaAsociada;
@@ -45,12 +46,12 @@ public class Presupuesto {
         this.nombre = nombre;
     }
 
-    public double getMontoTotalAsignado() {
-        return montoTotalAsignado;
+    public double getMontoTotal() {
+        return montoTotal;
     }
 
-    public void setMontoTotalAsignado(double montoTotalAsignado) {
-        this.montoTotalAsignado = montoTotalAsignado;
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
     }
 
     public double getMontoGastado() {

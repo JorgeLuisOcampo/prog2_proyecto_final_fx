@@ -5,10 +5,10 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.Cate
 
 import java.util.LinkedList;
 
-public class GestionCategoriasController {
+public class CategoriasController {
     ModelFactory modelFactory;
 
-    public GestionCategoriasController() {
+    public CategoriasController() {
         modelFactory = ModelFactory.getInstance();
     }
 

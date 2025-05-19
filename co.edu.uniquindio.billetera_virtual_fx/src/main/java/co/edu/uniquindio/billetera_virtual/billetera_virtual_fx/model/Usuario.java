@@ -7,8 +7,12 @@ import java.util.LinkedList;
 
 public class Usuario implements ICrudTransaccion {
     private BilleteraVirtual billeteraVirtual;
-    private String nombreCompleto, idUsuario, correoElectronico, numeroTelefono, direccion;
-    private int clave;
+    private String nombre;
+    private String id;
+    private String email;
+    private String telefono;
+    private String domicilio;
+    private int contrasenia;
     private double saldoTotal;
     private LinkedList<Cuenta> listaCuentas;
     private LinkedList<Presupuesto> listaPresupuestos;
@@ -22,13 +26,13 @@ public class Usuario implements ICrudTransaccion {
         listaCategorias = new LinkedList<>();
     }
 
-    public Usuario(String nombreCompleto, String idUsuario, String correoElectronico, String numeroTelefono, String direccion, int clave, BilleteraVirtual billeteraVirtual) {
-        this.nombreCompleto = nombreCompleto;
-        this.idUsuario = idUsuario;
-        this.correoElectronico = correoElectronico;
-        this.numeroTelefono = numeroTelefono;
-        this.direccion = direccion;
-        this.clave = clave;
+    public Usuario(String nombre, String id, String email, String telefono, String domicilio, int contrasenia, BilleteraVirtual billeteraVirtual) {
+        this.nombre = nombre;
+        this.id = id;
+        this.email = email;
+        this.telefono = telefono;
+        this.domicilio = domicilio;
+        this.contrasenia = contrasenia;
         this.billeteraVirtual = billeteraVirtual;
         listaCuentas = new LinkedList<>();
         listaPresupuestos = new LinkedList<>();
@@ -44,52 +48,52 @@ public class Usuario implements ICrudTransaccion {
         this.billeteraVirtual = billeteraVirtual;
     }
 
-    public String getNombreCompleto() {
-        return nombreCompleto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreCompleto(String nombreCompleto) {
-        this.nombreCompleto = nombreCompleto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
-    public String getIdUsuario() {
-        return idUsuario;
+    public String getId() {
+        return id;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getNumeroTelefono() {
-        return numeroTelefono;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setNumeroTelefono(String numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getDomicilio() {
+        return domicilio;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
     }
 
-    public int getClave() {
-        return clave;
+    public int getContrasenia() {
+        return contrasenia;
     }
 
-    public void setClave(int clave) {
-        this.clave = clave;
+    public void setContrasenia(int contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
     public double getSaldoTotal() {
@@ -149,7 +153,7 @@ public class Usuario implements ICrudTransaccion {
     @Override
     public Transaccion obtenerTransaccion(int idTransaccion) {
         for (Transaccion transaccion : listaTransacciones) {
-            if (transaccion.getIdTransaccion() == idTransaccion) {
+            if (transaccion.getId() == idTransaccion) {
                 return transaccion;
             }
         }
@@ -164,8 +168,8 @@ public class Usuario implements ICrudTransaccion {
     }
 
     public boolean actualizarCuenta(Cuenta cuentaVieja, Cuenta nuevaCuenta) {
-        return billeteraVirtual.actualizarCuenta(cuentaVieja, this.idUsuario,
-                this.idUsuario, nuevaCuenta);
+        return billeteraVirtual.actualizarCuenta(cuentaVieja, this.id,
+                this.id, nuevaCuenta);
     }
 
     public boolean eliminarCuenta(int idCuenta, String numCuenta) {
@@ -190,7 +194,7 @@ public class Usuario implements ICrudTransaccion {
     private Categoria obtenerCategoria(Categoria categoria) {
         for (Categoria categoriaTemporal : listaCategorias){
             if (categoriaTemporal.getNombre().equals(categoria.getNombre()) ||
-                    categoriaTemporal.getIdCategoria() == categoria.getIdCategoria()) {
+                    categoriaTemporal.getId() == categoria.getId()) {
                 return categoria;
             }
         }
@@ -199,7 +203,7 @@ public class Usuario implements ICrudTransaccion {
 
     private Categoria obtenerCategoria(int idCategoria) {
         for (Categoria categoria : listaCategorias){
-            if (categoria.getIdCategoria() == idCategoria){
+            if (categoria.getId() == idCategoria){
                 return categoria;
             }
         }
@@ -231,8 +235,8 @@ public class Usuario implements ICrudTransaccion {
         if (categoriaVieja != null) {
             if (obtenerCategoria(nuevaCategoria.getNombre()) == null ||
                     categoriaVieja.getNombre().equalsIgnoreCase(nuevaCategoria.getNombre())) {
-                return obtenerCategoria(nuevaCategoria.getIdCategoria()) == null ||
-                        categoriaVieja.getIdCategoria() == nuevaCategoria.getIdCategoria();
+                return obtenerCategoria(nuevaCategoria.getId()) == null ||
+                        categoriaVieja.getId() == nuevaCategoria.getId();
             }
             return false;
         }

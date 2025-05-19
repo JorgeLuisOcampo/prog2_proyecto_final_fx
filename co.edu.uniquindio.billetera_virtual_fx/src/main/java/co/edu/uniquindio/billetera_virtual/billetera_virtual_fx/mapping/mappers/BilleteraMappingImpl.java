@@ -25,8 +25,8 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
         String presupuestoAsociado = categoria.getPresupuestoAsociado() != null
                 ? categoria.getPresupuestoAsociado().getNombre() : null;
 
-        return new CategoriaDto(categoria.getIdCategoria(), categoria.getUsuarioAsociado().getIdUsuario(),
-                categoria.getNombre(), categoria.getDescripcionOpcional(), presupuestoAsociado);
+        return new CategoriaDto(categoria.getId(), categoria.getUsuarioAsociado().getId(),
+                categoria.getNombre(), categoria.getDescripcion(), presupuestoAsociado);
     }
 
     @Override
@@ -36,8 +36,8 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
         categoria.setBilleteraVirtual(billeteraVirtual);
         categoria.setUsuarioAsociado(usuario);
         categoria.setNombre(categoriaDto.nombre());
-        categoria.setDescripcionOpcional(categoriaDto.descripcion());
-        categoria.setIdCategoria(categoriaDto.idCategoria());
+        categoria.setDescripcion(categoriaDto.descripcion());
+        categoria.setId(categoriaDto.idCategoria());
         return categoria;
     }
 
@@ -55,23 +55,23 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
 
     @Override
     public CuentaDto cuentaToCuentaDto(Cuenta cuenta) {
-        return new CuentaDto(cuenta.getIdCuenta(), cuenta.getNombreBanco(), cuenta.getNumeroCuenta(),
-                cuenta.getUsuarioAsociado().getIdUsuario(), cuenta.getTipoCuenta(), cuenta.getSaldo(),
+        return new CuentaDto(cuenta.getIdCuenta(), cuenta.getBanco(), cuenta.getNumeroCuenta(),
+                cuenta.getUsuarioAsociado().getId(), cuenta.getTipoCuenta(), cuenta.getSaldo(),
                 cuenta.getPresupuestoAsociado().getNombre());
     }
 
     @Override
     public Cuenta cuentaDtoToCuenta(CuentaDto cuentaDto, BilleteraVirtual billeteraVirtual,
                                     Usuario usuario, Presupuesto presupuesto) {
-        CuentaFactory cuentaFactory = obtenerCuentaFactory(cuentaDto.tipoCuenta());
-        return cuentaFactory.crearCuenta(cuentaDto.idCuenta(), cuentaDto.nombreBanco(), cuentaDto.numCuenta(), usuario, billeteraVirtual, presupuesto);
+        FactoryCuentas factoryCuentas = obtenerCuentaFactory(cuentaDto.tipoCuenta());
+        return factoryCuentas.crearCuenta(cuentaDto.idCuenta(), cuentaDto.nombreBanco(), cuentaDto.numCuenta(), usuario, billeteraVirtual, presupuesto);
     }
 
-    private CuentaFactory obtenerCuentaFactory(TipoCuenta tipoCuenta) {
+    private FactoryCuentas obtenerCuentaFactory(TipoCuenta tipoCuenta) {
         if (tipoCuenta.equals(TipoCuenta.AHORRO)) {
-            return new FactoryCuentaAhorro();
+            return new FactoryCuentasAhorro();
         } else if (tipoCuenta.equals(TipoCuenta.CORRIENTE)) {
-            return new FactoryCuentaCorriente();
+            return new FactoryCuentasCorriente();
         }
         throw new IllegalArgumentException("El tipo de cuenta no existe");
     }
@@ -90,17 +90,15 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
 
     @Override
     public PresupuestoDto presupuestoToPresupuestoDto(Presupuesto presupuesto) {
-        String numCuenta = presupuesto.getCuentaAsociada() != null
-                ? presupuesto.getCuentaAsociada().getNumeroCuenta() : null;
-        String categoria = presupuesto.getCategoriaAsociada() != null
-                ? presupuesto.getCategoriaAsociada().getNombre() : null;
+        String numCuenta = presupuesto.getCuentaAsociada() != null ? presupuesto.getCuentaAsociada().getNumeroCuenta() : null;
+        String categoria = presupuesto.getCategoriaAsociada() != null ? presupuesto.getCategoriaAsociada().getNombre() : null;
 
         return new PresupuestoDto(
                 presupuesto.getIdPresupuesto(),
                 presupuesto.getNombre(),
-                presupuesto.getMontoTotalAsignado(),
+                presupuesto.getMontoTotal(),
                 presupuesto.getMontoGastado(),
-                presupuesto.getUsuarioAsociado().getIdUsuario(),
+                presupuesto.getUsuarioAsociado().getId(),
                 numCuenta,
                 categoria);
     }
@@ -112,7 +110,7 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
         presupuesto.setBilleteraVirtual(billeteraVirtual);
         presupuesto.setIdPresupuesto(presupuestoDto.idPresupuesto());
         presupuesto.setNombre(presupuestoDto.nombre());
-        presupuesto.setMontoTotalAsignado(presupuestoDto.montoTotalAsignado());
+        presupuesto.setMontoTotal(presupuestoDto.montoTotalAsignado());
         presupuesto.setMontoGastado(presupuestoDto.montoGastado());
         presupuesto.setUsuarioAsociado(usuario);
         presupuesto.setCuentaAsociada(cuenta);
@@ -135,13 +133,13 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
     @Override
     public TransaccionDto transaccionToTransaccionDto(Transaccion transaccion) {
         return new TransaccionDto(
-                transaccion.getIdTransaccion(),
+                transaccion.getId(),
                 transaccion.getFecha(),
                 transaccion.getMonto(),
-                transaccion.getDescripcionOpcional(),
-                transaccion.getUsuarioAsociado().getIdUsuario(),
+                transaccion.getDetalle(),
+                transaccion.getUsuarioAsociado().getId(),
                 transaccion.getCuentaOrigen().getNumeroCuenta(),
-                mapNumeroCuenta(transaccion.getCuentaDestino()),
+                mapperGetNumeroCuenta(transaccion.getCuentaDestino()),
                 transaccion.getTipoTransaccion());
     }
 
@@ -163,7 +161,7 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
     }
 
     @Override
-    public String mapNumeroCuenta(Cuenta cuenta) {
+    public String mapperGetNumeroCuenta(Cuenta cuenta) {
         return (cuenta != null) ? cuenta.getNumeroCuenta() : null;
     }
 
@@ -181,20 +179,20 @@ public class BilleteraMappingImpl implements IBilleteraMapping {
 
     @Override
     public UsuarioDto usuarioToUsuarioDto(Usuario usuario) {
-        return new UsuarioDto(usuario.getNombreCompleto(), usuario.getIdUsuario(),
-                usuario.getCorreoElectronico(), usuario.getNumeroTelefono(),
-                usuario.getDireccion(), usuario.getClave());
+        return new UsuarioDto(usuario.getNombre(), usuario.getId(),
+                usuario.getEmail(), usuario.getTelefono(),
+                usuario.getDomicilio(), usuario.getContrasenia());
     }
 
     @Override
     public Usuario usuarioDtoToUsuario(UsuarioDto usuarioDto, BilleteraVirtual billeteraVirtual) {
         Usuario usuario = new Usuario();
-        usuario.setNombreCompleto(usuarioDto.nombreCompleto());
-        usuario.setIdUsuario(usuarioDto.idUsuario());
-        usuario.setCorreoElectronico(usuarioDto.correoElectronico());
-        usuario.setNumeroTelefono(usuarioDto.numeroTelefono());
-        usuario.setDireccion(usuarioDto.direccion());
-        usuario.setClave(usuarioDto.clave());
+        usuario.setNombre(usuarioDto.nombreCompleto());
+        usuario.setId(usuarioDto.idUsuario());
+        usuario.setEmail(usuarioDto.correoElectronico());
+        usuario.setTelefono(usuarioDto.numeroTelefono());
+        usuario.setDomicilio(usuarioDto.direccion());
+        usuario.setContrasenia(usuarioDto.clave());
         usuario.setBilleteraVirtual(billeteraVirtual);
         return usuario;
     }

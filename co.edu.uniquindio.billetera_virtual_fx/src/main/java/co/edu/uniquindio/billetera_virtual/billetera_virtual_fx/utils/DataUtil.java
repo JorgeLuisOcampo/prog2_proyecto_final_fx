@@ -7,18 +7,18 @@ import java.time.LocalDate;
 public class DataUtil {
 
     public static BilleteraVirtual inicializarDatos(){
-        BilleteraVirtual billeteraVirtual = new BilleteraVirtual("Nuqui");
-        Usuario usuario1 = new Usuario("Alejandro Hurtado", "1092850037", "alejo@gmail.com", "3161971519", "Cra 6 #11-13", 24, billeteraVirtual);
-        Usuario usuario2 = new Usuario("Veronica Ibarra", "1092850038", "alejo@gmail.com", "3161971519", "Cra 6 #11-13", 25, billeteraVirtual);
-        Categoria categoria1 = new Categoria(1, "Comida semanal", "Categoria semanal", usuario1, null, billeteraVirtual);
-        Categoria categoria2 = new Categoria(2, "Transporte semanal", "Categoria semanal", usuario1, null, billeteraVirtual);
-        Categoria categoria3 = new Categoria(3, "Rumba semanal", "Categoria semanal", usuario1, null, billeteraVirtual);
-        Presupuesto presupuesto1 = new Presupuesto(1, "Comidita", 500000, usuario1, categoria1, billeteraVirtual);
-        Presupuesto presupuesto2 = new Presupuesto(2, "Transporte", 300000, usuario1, categoria2, billeteraVirtual);
-        Presupuesto presupuesto3 = new Presupuesto(3, "Rumba", 150000, usuario1, categoria3, billeteraVirtual);
-        Cuenta cuenta = new Cuenta(1, "Davivienda", "13657348", usuario1, TipoCuenta.AHORRO, billeteraVirtual, presupuesto1);
-        Cuenta cuenta2 = new Cuenta(2, "Bancolombia", "25078922", usuario1, TipoCuenta.AHORRO, billeteraVirtual, presupuesto2);
-        Cuenta cuenta3 = new Cuenta(3, "NuBank", "7879250", usuario1, TipoCuenta.CORRIENTE, billeteraVirtual, presupuesto3);
+        BilleteraVirtual billeteraVirtual = new BilleteraVirtual("Billetera UQ");
+        Usuario usuario1 = new Usuario("Jorge Ocampo", "1094906443", "jorgeocampo@gmail.com", "315514514", "Calle 24-12", 5555, billeteraVirtual);
+        Usuario usuario2 = new Usuario("Esteban Valencia", "1094800800", "estebanvalencia@gmail.com", "315515515", "Avenida 182", 7777, billeteraVirtual);
+        Categoria categoria1 = new Categoria(1, "Mercado", "Mercado", usuario1, null, billeteraVirtual);
+        Categoria categoria2 = new Categoria(2, "Varios", "Gastos varios", usuario1, null, billeteraVirtual);
+        Categoria categoria3 = new Categoria(3, "Gasolina", "Transporte", usuario1, null, billeteraVirtual);
+        Presupuesto presupuesto1 = new Presupuesto(1, "Alimento", 500000, usuario1, categoria1, billeteraVirtual);
+        Presupuesto presupuesto2 = new Presupuesto(2, "Varios", 300000, usuario1, categoria2, billeteraVirtual);
+        Presupuesto presupuesto3 = new Presupuesto(3, "Transporte", 150000, usuario1, categoria3, billeteraVirtual);
+        Cuenta cuenta = new Cuenta(1, "Banco Agrario", "54781542", usuario1, TipoCuenta.AHORRO, billeteraVirtual, presupuesto1);
+        Cuenta cuenta2 = new Cuenta(2, "Banco Occidente", "26589454", usuario1, TipoCuenta.AHORRO, billeteraVirtual, presupuesto2);
+        Cuenta cuenta3 = new Cuenta(3, "Banco Popular", "9874561", usuario1, TipoCuenta.CORRIENTE, billeteraVirtual, presupuesto3);
         billeteraVirtual.agregarUsuario(usuario1);
         billeteraVirtual.agregarUsuario(usuario2);
         usuario1.agregarCategoria(categoria1);
