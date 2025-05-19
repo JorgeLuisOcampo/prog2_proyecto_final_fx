@@ -1,66 +1,77 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Categoria {
-    private String id;
-    private String nombre;
-    private String descripcion;
+    private BilleteraVirtual billeteraVirtual;
+    private int idCategoria;
+    private Usuario usuarioAsociado;
+    private String nombre, descripcionOpcional;
+    private LinkedList<Transaccion> listaTransacciones;
     private Presupuesto presupuestoAsociado;
 
-    public Categoria(String id, String nombre, String descripcion,Presupuesto presupuestoAsociado) {
-        this.id = id;
+    public Categoria() {
+        this.listaTransacciones = new LinkedList<>();
+    }
+
+    public Categoria(int idCategoria, String nombre, String descripcionOpcional, Usuario usuario,
+                     Presupuesto presupuestoAsociado, BilleteraVirtual billeteraVirtual) {
+        this.idCategoria = idCategoria;
         this.nombre = nombre;
-        this.descripcion = descripcion;
+        this.usuarioAsociado = usuario;
+        this.descripcionOpcional = descripcionOpcional;
+        this.billeteraVirtual = billeteraVirtual;
         this.presupuestoAsociado = presupuestoAsociado;
+        this.listaTransacciones = new LinkedList<>();
     }
 
-    /**
-     * Metodo para obtener el id de la categoria
-     * @return
-     */
-    public String getId() {
-        return id;
+    public BilleteraVirtual getBilleteraVirtual() {
+        return billeteraVirtual;
     }
 
-    /**
-     * Metodo para setear el id de la categoria
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id;
+    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
+        this.billeteraVirtual = billeteraVirtual;
     }
 
-    /**
-     * Metodo para obtener el nombre de la categoria
-     * @return
-     */
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * Metodo para setear el nombre de la categoria
-     * @param nombre
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    /**
-     * Metodo para obtener la descripcion de la categoria
-     * @return
-     */
-    public String getDescripcion() {
-        return descripcion;
+    public String getDescripcionOpcional() {
+        return descripcionOpcional;
     }
 
-    /**
-     * Metodo para setear la descripcion de la categoria
-     * @param descripcion
-     */
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setDescripcionOpcional(String descripcionOpcional) {
+        this.descripcionOpcional = descripcionOpcional;
+    }
+
+    public LinkedList<Transaccion> getListaTransacciones() {
+        return listaTransacciones;
+    }
+
+    public void setListaTransacciones(LinkedList<Transaccion> listaTransacciones) {
+        this.listaTransacciones = listaTransacciones;
+    }
+
+    public Usuario getUsuarioAsociado() {
+        return usuarioAsociado;
+    }
+
+    public void setUsuarioAsociado(Usuario usuarioAsociado) {
+        this.usuarioAsociado = usuarioAsociado;
     }
 
     public Presupuesto getPresupuestoAsociado() {

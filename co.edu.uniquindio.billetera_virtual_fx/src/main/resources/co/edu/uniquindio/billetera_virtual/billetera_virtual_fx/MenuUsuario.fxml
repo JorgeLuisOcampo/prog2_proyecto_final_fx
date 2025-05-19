@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ap_menuAdmin"
+            maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="600.0"
+            prefWidth="1180.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.MenuUsuarioViewController">
+    <children>
+        <TabPane fx:id="tp_menuUsuario" prefHeight="600.0" prefWidth="1180.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="tab_editarPerfil" style="-fx-font-size: 14px;" text="Perfil">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="1180.0">
+                            <children>
+                                <SplitPane fx:id="sp_editarPerfil" layoutX="-1.0" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
+                                    <items>
+                                        <fx:include source="EditarPerfil.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_cuentas" style="-fx-font-size: 14px;" text="Cuentas">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="1180.0">
+                            <children>
+                                <SplitPane fx:id="sp_cuentas" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
+                                    <items>
+                                        <fx:include source="GestionCuentasUsuario.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_categorias" style="-fx-font-size: 14px;" text="Categorias">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane fx:id="sp_categorias" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
+                                    <items>
+                                        <fx:include source="GestionCategorias.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_presupuestos" style="-fx-font-size: 14px;" text="Presupuestos">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane fx:id="sp_presupuestos" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
+                                    <items>
+                                        <fx:include source="GestionPresupuestos.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_transacciones" style="-fx-font-size: 14px;" text="Transacciones">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane fx:id="sp_transacciones" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
+                                    <items>
+                                        <fx:include source="GestionTransaccionesUsuario.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="tab_reporteFinanciero" style="-fx-font-size: 14px;" text="Reporte Financiero">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <SplitPane fx:id="sp_reporteFinanciero" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
+                                    <items>
+                                        <fx:include source="ReporteFinanciero.fxml" />
+                                    </items>
+                                </SplitPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

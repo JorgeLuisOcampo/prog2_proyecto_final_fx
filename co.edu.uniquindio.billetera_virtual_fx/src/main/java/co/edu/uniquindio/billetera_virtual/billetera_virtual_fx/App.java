@@ -1,26 +1,45 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx;
 
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory.ModelFactory;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.PrincipalViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.geometry.Rectangle2D;
-import javafx.stage.Screen;
 
 
 import java.io.IOException;
 
 public class App extends Application {
-    Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-    double anchoPantalla = screenBounds.getWidth();
-    double altoPantalla = screenBounds.getHeight();
+    private Stage primaryStage;
+    public ModelFactory modelFactory;
+
     @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/BilleteraApp.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Billetera Virtual");
-        stage.setScene(scene);
-        stage.show();
+    public void start(Stage primaryStage) throws IOException {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Billetera Virtual");
+        openPrincipalView();
+    }
+
+    public void openPrincipalView() {
+        try {
+            invocar();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource("PrincipalView.fxml"));
+            javafx.scene.layout.AnchorPane rootLayout = (javafx.scene.layout.AnchorPane) loader.load();
+            PrincipalViewController principalViewController = loader.getController();
+
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo FXML: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void invocar() {
+        modelFactory = ModelFactory.getInstance();
     }
 
     public static void main(String[] args) {

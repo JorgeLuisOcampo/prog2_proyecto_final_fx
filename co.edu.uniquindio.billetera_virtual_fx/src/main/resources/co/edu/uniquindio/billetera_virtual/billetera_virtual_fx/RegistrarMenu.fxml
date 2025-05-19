@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="ap_registrarUsuario"
+            maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="595.0"
+            prefWidth="1175.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.RegistrarUsuarioViewController">
+    <children>
+        <Button fx:id="bt_registrar" layoutX="535.0" layoutY="465.0" mnemonicParsing="false" onAction="#onRegistrar" text="Registrarse">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Button>
+        <TextField fx:id="tf_clave" layoutX="798.0" layoutY="314.0" prefHeight="31.0" prefWidth="289.0">
+            <font>
+                <Font name="Segoe UI" size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="tf_direccion" layoutX="798.0" layoutY="261.0" prefHeight="31.0" prefWidth="289.0">
+            <font>
+                <Font name="Segoe UI" size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="tf_correo" layoutX="798.0" layoutY="205.0" prefHeight="31.0" prefWidth="289.0">
+            <font>
+                <Font name="Segoe UI" size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="tf_telefono" layoutX="266.0" layoutY="313.0" prefHeight="31.0" prefWidth="289.0">
+            <font>
+                <Font name="Segoe UI" size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="tf_id" layoutX="266.0" layoutY="260.0" prefHeight="31.0" prefWidth="289.0">
+            <font>
+                <Font name="Segoe UI" size="15.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="tf_nombre" layoutX="266.0" layoutY="204.0" prefHeight="31.0" prefWidth="289.0">
+            <font>
+                <Font name="Segoe UI" size="15.0" />
+            </font>
+        </TextField>
+        <Label layoutX="739.0" layoutY="320.0" text="Clave:">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="713.0" layoutY="266.0" text="Dirección:">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="120.0" layoutY="320.0" text="Número teléfono:">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="649.0" layoutY="213.0" text="Correo Electronico:">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="83.0" layoutY="268.0" text="Número identificación:">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="110.0" layoutY="211.0" text="Nombre Completo:">
+            <font>
+                <Font name="Segoe UI" size="16.0" />
+            </font>
+        </Label>
+        <Label layoutX="517.0" layoutY="59.0" text="Registrar Usuario">
+            <font>
+                <Font name="Segoe UI" size="18.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>

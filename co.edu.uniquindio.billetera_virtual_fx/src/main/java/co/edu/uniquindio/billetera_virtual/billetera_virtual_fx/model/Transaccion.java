@@ -1,125 +1,75 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.TipoTransaccion;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.builder.TransaccionBuilder;
 
 import java.time.LocalDate;
 
 public class Transaccion {
-    private String id;
-    private LocalDate fechaTransaccion;
-    private TipoTransaccion tipoTransaccion;
+    private BilleteraVirtual billeteraVirtual;
+    private int idTransaccion;
+    private LocalDate fecha;
     private double monto;
-    private String descripcion;
-    private Cuenta cuentaOrigen;
-    private Cuenta cuentaDestino;
-    private Usuario usuario;
-    private Administrador administrador;
+    private String descripcionOpcional;
+    private Usuario usuarioAsociado;
+    private TipoTransaccion tipoTransaccion;
+    private Cuenta cuentaOrigen, cuentaDestino;
 
-    /**
-     * Constructor de la clase Transaccion
-     * @param id
-     * @param fechaTransaccion
-     * @param tipoTransaccion
-     * @param monto
-     * @param descripcion
-     * @param cuentaOrigen
-     * @param cuentaDestino
-     */
-    public Transaccion(String id, LocalDate fechaTransaccion, TipoTransaccion tipoTransaccion,
-                       double monto, String descripcion, Cuenta cuentaOrigen, Cuenta cuentaDestino) {
-        this.id = id;
-        this.fechaTransaccion = fechaTransaccion;
-        this.tipoTransaccion = tipoTransaccion;
+    public Transaccion() {
+    }
+
+    public Transaccion(int idTransaccion, LocalDate fecha, double monto, String descripcionOpcional, Usuario usuarioAsociado, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, BilleteraVirtual billeteraVirtual) {
+        this.idTransaccion = idTransaccion;
+        this.fecha = fecha;
         this.monto = monto;
-        this.descripcion = descripcion;
+        this.descripcionOpcional = descripcionOpcional;
+        this.usuarioAsociado = usuarioAsociado;
+        this.tipoTransaccion = tipoTransaccion;
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
+        this.billeteraVirtual = billeteraVirtual;
     }
 
-    /**
-     * Metodo para obtener el id de la transaccion
-     * @return
-     */
-    public String getId() {
-        return id;
+    public BilleteraVirtual getBilleteraVirtual() {
+        return billeteraVirtual;
     }
 
-    /**
-     * Metodo para setear el id de la transaccion
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id;
+    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
+        this.billeteraVirtual = billeteraVirtual;
     }
 
-    /**
-     * Metodo para obtener la fecha de la transaccion
-     * @return
-     */
-    public LocalDate getFechaTransaccion() {
-        return fechaTransaccion;
+    public int getIdTransaccion() {
+        return idTransaccion;
     }
 
-    /**
-     * Metodo para setear la fecha de la transaccion
-     * @param fechaTransaccion
-     */
-    public void setFechaTransaccion(LocalDate fechaTransaccion) {
-        this.fechaTransaccion = fechaTransaccion;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    /**
-     * Metodo para obtener el tipo de transaccion
-     * @return
-     */
-    public TipoTransaccion getTipoTransaccion() {
-        return tipoTransaccion;
-    }
-
-    /**
-     * Metodo para setear el tipo de transaccion
-     * @param tipoTransaccion
-     */
-    public void setTipoTransaccion(TipoTransaccion tipoTransaccion) {
-        this.tipoTransaccion = tipoTransaccion;
-    }
-
-    /**
-     * Metodo para obtener el monto de la transaccion
-     * @return
-     */
     public double getMonto() {
         return monto;
     }
-    /**
-     * Metodo para setear el monto de la transaccion
-     * @param monto
-     */
-    public void setMonto(double monto) {
-        this.monto = monto;
+
+    public String getDescripcionOpcional() {
+        return descripcionOpcional;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public Usuario getUsuarioAsociado() {
+        return usuarioAsociado;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public TipoTransaccion getTipoTransaccion() {
+        return tipoTransaccion;
     }
 
     public Cuenta getCuentaOrigen() {
         return cuentaOrigen;
     }
 
-    public void setCuentaOrigen(Cuenta cuentaOrigen) {
-        this.cuentaOrigen = cuentaOrigen;
-    }
-
     public Cuenta getCuentaDestino() {
         return cuentaDestino;
     }
 
-    public void setCuentaDestino(Cuenta cuentaDestino) {
-        this.cuentaDestino = cuentaDestino;
+    public static TransaccionBuilder builder() {
+        return new TransaccionBuilder();
     }
 }

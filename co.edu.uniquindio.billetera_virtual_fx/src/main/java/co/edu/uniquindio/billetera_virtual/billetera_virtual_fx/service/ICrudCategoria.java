@@ -5,7 +5,8 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Presupuest
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Usuario;
 
 public interface ICrudCategoria {
-    boolean agregarCategoria(Categoria categoria, Usuario usuario);
-    boolean actualizarCategoria(Categoria categoria, Usuario usuario);
-    boolean eliminarCategoria(Categoria categoria, Usuario usuario);
+    boolean agregarCategoria(Categoria categoria);
+    boolean actualizarCategoria(int idCategoria, Categoria nuevaCategoria);
+    boolean eliminarCategoria(int idCategoria);
+    Categoria obtenerCategoria(int idCategoria);
 }

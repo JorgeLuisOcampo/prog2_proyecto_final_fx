@@ -1,30 +1,48 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.TipoCuenta;
+import java.util.LinkedList;
 
 public class Cuenta {
-    private String id;
-    private String nombreBanco;
-    private String numeroCuenta;
+    private BilleteraVirtual billeteraVirtual;
+    private int idCuenta;
+    private String nombreBanco, numeroCuenta;
+    private Usuario usuarioAsociado;
     private TipoCuenta tipoCuenta;
+    private LinkedList<Transaccion> listaTransacciones;
     private double saldo;
+    private Presupuesto presupuestoAsociado;
 
+    public Cuenta(){
+        listaTransacciones = new LinkedList<>();
+        saldo = 0;
+    }
 
-    public Cuenta(String id, String nombreBanco, String numeroCuenta,
-                  TipoCuenta tipoCuenta, double saldo) {
-        this.id = id;
+    public Cuenta(int idCuenta, String nombreBanco, String numeroCuenta, Usuario usuarioAsociado, TipoCuenta tipoCuenta, BilleteraVirtual billeteraVirtual, Presupuesto presupuestoAsociado) {
+        this.idCuenta = idCuenta;
         this.nombreBanco = nombreBanco;
         this.numeroCuenta = numeroCuenta;
+        this.usuarioAsociado = usuarioAsociado;
         this.tipoCuenta = tipoCuenta;
-        this.saldo = saldo;
+        this.billeteraVirtual = billeteraVirtual;
+        listaTransacciones = new LinkedList<>();
+        this.saldo = 0;
+        this.presupuestoAsociado = presupuestoAsociado;
     }
 
-    public String getId() {
-        return id;
+    public BilleteraVirtual getBilleteraVirtual() {
+        return billeteraVirtual;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
+        this.billeteraVirtual = billeteraVirtual;
+    }
+
+    public int getIdCuenta() {
+        return idCuenta;
+    }
+
+    public void setIdCuenta(int idCuenta) {
+        this.idCuenta = idCuenta;
     }
 
     public String getNombreBanco() {
@@ -43,6 +61,14 @@ public class Cuenta {
         this.numeroCuenta = numeroCuenta;
     }
 
+    public Usuario getUsuarioAsociado() {
+        return usuarioAsociado;
+    }
+
+    public void setUsuarioAsociado(Usuario usuarioAsociado) {
+        this.usuarioAsociado = usuarioAsociado;
+    }
+
     public TipoCuenta getTipoCuenta() {
         return tipoCuenta;
     }
@@ -51,11 +77,35 @@ public class Cuenta {
         this.tipoCuenta = tipoCuenta;
     }
 
+    public LinkedList<Transaccion> getListaTransacciones() {
+        return listaTransacciones;
+    }
+
+    public void setListaTransacciones(LinkedList<Transaccion> listaTransacciones) {
+        this.listaTransacciones = listaTransacciones;
+    }
+
     public double getSaldo() {
         return saldo;
     }
 
     public void setSaldo(double saldo) {
         this.saldo = saldo;
+    }
+
+    public void modificarSaldoTotal(double saldoDado) {
+        saldo = saldo+saldoDado;
+    }
+
+    public Presupuesto getPresupuestoAsociado() {
+        return presupuestoAsociado;
+    }
+
+    public void setPresupuestoAsociado(Presupuesto presupuestoAsociado) {
+        this.presupuestoAsociado = presupuestoAsociado;
+    }
+
+    public void actualizarSaldo(double monto){
+        saldo += monto;
     }
 }

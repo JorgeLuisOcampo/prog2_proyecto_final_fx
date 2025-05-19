@@ -6,7 +6,8 @@ import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.Transaccio
 
 import java.util.ArrayList;
 
-public record UsuarioDto(
-        String nombre, String apellidos, String correo, String telefono,
-        String idUsuario, String direccion) {
+public record UsuarioDto (
+        String nombreCompleto, String idUsuario, String correoElectronico,
+        String numeroTelefono, String direccion, int clave
+){
 }

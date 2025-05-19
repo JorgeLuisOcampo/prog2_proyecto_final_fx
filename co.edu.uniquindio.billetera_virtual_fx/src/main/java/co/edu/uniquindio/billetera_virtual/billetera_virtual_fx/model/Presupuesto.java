@@ -1,77 +1,56 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
 public class Presupuesto {
+    private BilleteraVirtual billeteraVirtual;
+    private int idPresupuesto;
     private String nombre;
-    private String id;
+    private double montoTotalAsignado, montoGastado;
+    private Usuario usuarioAsociado;
     private Cuenta cuentaAsociada;
-    private double montoLimite;
-    private double montoGastado;
-    private Categoria categoria;
+    private Categoria categoriaAsociada;
 
-    /**
-     *  Constructor clase Presupuesto
-     * @param id
-     * @param nombre
-     * @param cuentaAsociada
-     * @param montoLimite
-     * @param montoGastado
-     * @param categoria
-     */
-    public Presupuesto(String id, String nombre, Cuenta cuentaAsociada, double montoLimite, double montoGastado, Categoria categoria) {
+    public Presupuesto() {}
+
+    public Presupuesto(int idPresupuesto, String nombre, double montoTotalAsignado, Usuario usuarioAsociado, Categoria categoriaAsociada, BilleteraVirtual billeteraVirtual) {
+        this.idPresupuesto = idPresupuesto;
         this.nombre = nombre;
-        this.id = id;
-        this.cuentaAsociada = cuentaAsociada;
-        this.montoLimite = montoLimite;
-        this.montoGastado = montoGastado;
-        this.categoria = categoria;
+        this.montoTotalAsignado = montoTotalAsignado;
+        this.montoGastado = 0;
+        this.usuarioAsociado = usuarioAsociado;
+        this.categoriaAsociada = categoriaAsociada;
+        this.billeteraVirtual = billeteraVirtual;
     }
 
-    /**
-     * Metodo para obtener el id del presupuesto
-     * @return
-     */
-    public String getId() {
-        return id;
+    public BilleteraVirtual getBilleteraVirtual() {
+        return billeteraVirtual;
     }
 
-    /**
-     * Metodo para setear el id del presupuesto
-     * @param id
-     */
-    public void setId(String id) {
-        this.id = id;
+    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
+        this.billeteraVirtual = billeteraVirtual;
     }
 
-    /**
-     * Metodo para obtener el nombre del presupuesto
-     * @return
-     */
+    public int getIdPresupuesto() {
+        return idPresupuesto;
+    }
+
+    public void setIdPresupuesto(int idPresupuesto) {
+        this.idPresupuesto = idPresupuesto;
+    }
+
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * Metodo para setear el nombre del
-     * @param nombre
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public Cuenta getCuentaAsociada() {
-        return cuentaAsociada;
+    public double getMontoTotalAsignado() {
+        return montoTotalAsignado;
     }
 
-    public void setCuentaAsociada(Cuenta cuentaAsociada) {
-        this.cuentaAsociada = cuentaAsociada;
-    }
-
-    public double getMontoLimite() {
-        return montoLimite;
-    }
-
-    public void setMontoLimite(double montoLimite) {
-        this.montoLimite = montoLimite;
+    public void setMontoTotalAsignado(double montoTotalAsignado) {
+        this.montoTotalAsignado = montoTotalAsignado;
     }
 
     public double getMontoGastado() {
@@ -82,20 +61,31 @@ public class Presupuesto {
         this.montoGastado = montoGastado;
     }
 
-    /**
-     * Metodo para obtener la categoria del presupuesto
-     * @return
-     */
-    public Categoria getCategoria() {
-        return categoria;
+    public Usuario getUsuarioAsociado() {
+        return usuarioAsociado;
     }
 
-    /**
-     * Metodo para setear la categoria del presupuesto
-     * @param categoria
-     */
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setUsuarioAsociado(Usuario usuarioAsociado) {
+        this.usuarioAsociado = usuarioAsociado;
     }
 
+    public Cuenta getCuentaAsociada() {
+        return cuentaAsociada;
+    }
+
+    public void setCuentaAsociada(Cuenta cuentaAsociada) {
+        this.cuentaAsociada = cuentaAsociada;
+    }
+
+    public Categoria getCategoriaAsociada() {
+        return categoriaAsociada;
+    }
+
+    public void setCategoriaAsociada(Categoria categoriaAsociada) {
+        this.categoriaAsociada = categoriaAsociada;
+    }
+
+    public void actualizarMontoGastado(double monto) {
+        montoGastado += monto;
+    }
 }

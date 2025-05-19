@@ -1,95 +1,62 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.IEntidadAdministrador;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.ICrudCuenta;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.ICrudUsuario;
 
-import java.util.ArrayList;
+public class Administrador implements ICrudUsuario, ICrudCuenta {
+    private BilleteraVirtual billeteraVirtual;
+    private int clave;
 
-public class Administrador extends InicioSesion implements IEntidadAdministrador {
-    private BilleteraVirtual billetera;
-    private ArrayList<Usuario> listaUsuarios;
-    private ArrayList<Cuenta> listaCuentas;
-    private ArrayList<Transaccion> listaTransacciones;
-
-    /**
-     * Constructor vacio de la clase Administrador
-     */
-    public Administrador() {
-        listaUsuarios = new ArrayList<>();
-        listaCuentas = new ArrayList<>();
-        listaTransacciones = new ArrayList<>();
-        billetera = new BilleteraVirtual();
+    public Administrador(BilleteraVirtual billeteraVirtual, int clave) {
+        this.billeteraVirtual = billeteraVirtual;
+        this.clave = clave;
     }
 
-    /**
-     * Constructor con parametros de la clase Administrador
-     * @param contrasenia
-     * @param email
+    public int getClave() {
+        return clave;
+    }
 
-     */
-    public Administrador(String contrasenia, String email) { // ArrayList<Usuario> listaUsuarios) {
-        super(contrasenia, email);
-        this.listaUsuarios = new ArrayList<>();
+    public void setClave(int clave) {
+        this.clave = clave;
     }
 
     @Override
-    public void gastosComunes() {
-
+    public boolean agregarUsuario(Usuario usuario) {
+        return billeteraVirtual.agregarUsuario(usuario);
     }
 
     @Override
-    public void usuariosMasTransacciones() {
-
+    public boolean eliminarUsuario(String id) {
+        return billeteraVirtual.eliminarUsuario(id);
     }
 
     @Override
-    public void saldoPromedioUsuarios() {
-
+    public boolean actualizarUsuario(String id, Usuario nuevoUsuario) {
+        return billeteraVirtual.actualizarUsuario(id, nuevoUsuario);
     }
 
-    public Usuario buscarUsuario(Usuario usuario){
-        return billetera.obtenerUsuario(usuario.getEmail());
+    @Override
+    public Usuario obtenerUsuario(String id) {
+        return billeteraVirtual.obtenerUsuario(id);
     }
-    /**
-     * Metodo para obtener la lista de usuarios
-     * @return
-     */
-    public ArrayList<Usuario> getListaUsuarios() {
-        return listaUsuarios;
+
+    @Override
+    public boolean agregarCuenta(Cuenta cuenta) {
+        return billeteraVirtual.agregarCuenta(cuenta);
     }
-    /**
-     * Metodo para setear la lista de usuarios
-     * @param listaUsuarios
-     */
-    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
-        this.listaUsuarios = listaUsuarios;
+
+    @Override
+    public boolean eliminarCuenta(int id, String numCuenta) {
+        return billeteraVirtual.eliminarCuenta(id, numCuenta);
     }
-    /**
-     * Metodo para obtener la lista de cuentas
-     * @return
-     */
-    public ArrayList<Cuenta> getListaCuentas() {
-        return listaCuentas;
+
+    @Override
+    public boolean actualizarCuenta(Cuenta cuentaVieja, String idUsuarioViejo, String idUsuarioNuevo,Cuenta nuevaCuenta) {
+        return billeteraVirtual.actualizarCuenta(cuentaVieja, idUsuarioViejo, idUsuarioNuevo, nuevaCuenta);
     }
-    /**
-     * Metodo para setear la lista de cuentas
-     * @param listaCuentas
-     */
-    public void setListaCuentas(ArrayList<Cuenta> listaCuentas) {
-        this.listaCuentas = listaCuentas;
-    }
-    /**
-     * Metodo para obtener la lista de transacciones
-     * @return
-     */
-    public ArrayList<Transaccion> getListaTransacciones() {
-        return listaTransacciones;
-    }
-    /**
-     * Metodo para setear la lista de transacciones
-     * @param listaTransacciones
-     */
-    public void setListaTransacciones(ArrayList<Transaccion> listaTransacciones) {
-        this.listaTransacciones = listaTransacciones;
+
+    @Override
+    public Cuenta obtenerCuenta(int id, String numCuenta) {
+        return billeteraVirtual.obtenerCuenta(id, numCuenta);
     }
 }

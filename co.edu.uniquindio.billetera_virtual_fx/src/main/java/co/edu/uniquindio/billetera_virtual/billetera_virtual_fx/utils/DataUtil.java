@@ -1,61 +1,56 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.utils;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.*;
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.TipoCuenta;
+
+import java.time.LocalDate;
 
 public class DataUtil {
 
-    public static BilleteraVirtual inicializarDatos() {
-        BilleteraVirtual billeteraVirtual = new BilleteraVirtual("TRST Wallet");
-        Usuario usuario1 = new Usuario("1", "1", "1005087768",
-                "esteban", "valencia bejarano", "3009824495", "B/ciudad Dorada", billeteraVirtual);
-        Usuario usuario2 = new Usuario("2", "2",
-                "1069870463", "Jorge", "Ocampo",
-                "3158876498", "Carrera 1 calle 2", billeteraVirtual);
-        Usuario usuario3 = new Usuario("3", "3", "10947894561", "Santiago",
-                "Vallejo", "3145874621", "Calle San Diego", billeteraVirtual);
-
-
-        Administrador administrador = new Administrador(
-                "123456789",
-                "jorgeO25@gmail.com");
-
-
-        Categoria categoria1 = new Categoria("1", "Salud", "Gastos medicos", null);
-        Categoria categoria2 = new Categoria("2", "Servicios", "Gasto Servicio public", null);
-        Categoria categoria3 = new Categoria("3", "Transporte", "Gastos de transporte", null);
-
-        usuario1.getListaCategorias().add(categoria1);
-        usuario1.getListaCategorias().add(categoria2);
-        usuario1.getListaCategorias().add(categoria3);
-
-
-        Presupuesto presupuesto1 = new Presupuesto("1","Medicamentos", null, 91240, 29800, categoria1);
-        Presupuesto presupuesto2 = new Presupuesto("2","Agua y Energia", null, 250000, 101220, categoria2);
-        Presupuesto presupuesto3 = new Presupuesto("3","Gasolina y buses", null, 250000, 123450, categoria3);
-
-        Cuenta cuenta1 = new Cuenta ( "1","Banbolombia", "182182", TipoCuenta.AHORRO, 5000000 );
-
-        presupuesto1.setCuentaAsociada(cuenta1);
-        presupuesto2.setCuentaAsociada(cuenta1);
-        presupuesto3.setCuentaAsociada(cuenta1);
-
-
-        categoria1.setPresupuestoAsociado(presupuesto1);
-        categoria2.setPresupuestoAsociado(presupuesto2);
-        categoria3.setPresupuestoAsociado(presupuesto3);
-
-        usuario1.getListaPresupuestos().add(presupuesto1);
-        usuario1.getListaPresupuestos().add(presupuesto2);
-        usuario1.getListaPresupuestos().add(presupuesto3);
-
-
+    public static BilleteraVirtual inicializarDatos(){
+        BilleteraVirtual billeteraVirtual = new BilleteraVirtual("Nuqui");
+        Usuario usuario1 = new Usuario("Alejandro Hurtado", "1092850037", "alejo@gmail.com", "3161971519", "Cra 6 #11-13", 24, billeteraVirtual);
+        Usuario usuario2 = new Usuario("Veronica Ibarra", "1092850038", "alejo@gmail.com", "3161971519", "Cra 6 #11-13", 25, billeteraVirtual);
+        Categoria categoria1 = new Categoria(1, "Comida semanal", "Categoria semanal", usuario1, null, billeteraVirtual);
+        Categoria categoria2 = new Categoria(2, "Transporte semanal", "Categoria semanal", usuario1, null, billeteraVirtual);
+        Categoria categoria3 = new Categoria(3, "Rumba semanal", "Categoria semanal", usuario1, null, billeteraVirtual);
+        Presupuesto presupuesto1 = new Presupuesto(1, "Comidita", 500000, usuario1, categoria1, billeteraVirtual);
+        Presupuesto presupuesto2 = new Presupuesto(2, "Transporte", 300000, usuario1, categoria2, billeteraVirtual);
+        Presupuesto presupuesto3 = new Presupuesto(3, "Rumba", 150000, usuario1, categoria3, billeteraVirtual);
+        Cuenta cuenta = new Cuenta(1, "Davivienda", "13657348", usuario1, TipoCuenta.AHORRO, billeteraVirtual, presupuesto1);
+        Cuenta cuenta2 = new Cuenta(2, "Bancolombia", "25078922", usuario1, TipoCuenta.AHORRO, billeteraVirtual, presupuesto2);
+        Cuenta cuenta3 = new Cuenta(3, "NuBank", "7879250", usuario1, TipoCuenta.CORRIENTE, billeteraVirtual, presupuesto3);
         billeteraVirtual.agregarUsuario(usuario1);
         billeteraVirtual.agregarUsuario(usuario2);
-        billeteraVirtual.agregarUsuario(usuario3);
+        usuario1.agregarCategoria(categoria1);
+        usuario1.agregarCategoria(categoria2);
+        usuario1.agregarCategoria(categoria3);
+        usuario1.agregarPresupuesto(presupuesto1);
+        usuario1.agregarPresupuesto(presupuesto2);
+        usuario1.agregarPresupuesto(presupuesto3);
+        usuario1.agregarCuenta(cuenta);
+        usuario1.agregarCuenta(cuenta2);
+        usuario1.agregarCuenta(cuenta3);
 
-
-
+        Transaccion transaccion1 = new Transaccion(1, LocalDate.of(2025,5,1), 700000, "Trabajo", usuario1, TipoTransaccion.DEPOSITO, cuenta, null, billeteraVirtual);
+        Transaccion transaccion2 = new Transaccion(2, LocalDate.of(2025,5,2), 25000, "Tarea", usuario1, TipoTransaccion.DEPOSITO, cuenta, null, billeteraVirtual);
+        Transaccion transaccion3 = new Transaccion(3, LocalDate.of(2025,5,3), 300000, "Consignación papás", usuario1, TipoTransaccion.DEPOSITO, cuenta, null, billeteraVirtual);
+        Transaccion transaccion4 = new Transaccion(4, LocalDate.of(2025,5,4), 150000, "Reembolso zapatos", usuario1, TipoTransaccion.DEPOSITO, cuenta2, null, billeteraVirtual);
+        Transaccion transaccion5 = new Transaccion(5, LocalDate.of(2025,5,5), 20000, "Apuesta ganada", usuario1, TipoTransaccion.DEPOSITO, cuenta2, null, billeteraVirtual);
+        Transaccion transaccion6 = new Transaccion(6, LocalDate.of(2025,5,6), 300000, "Consignación papás", usuario1, TipoTransaccion.DEPOSITO, cuenta2, null, billeteraVirtual);
+        Transaccion transaccion7 = new Transaccion(7, LocalDate.of(2025,5,7), 76000, "Pago deuda Camilo", usuario1, TipoTransaccion.DEPOSITO, cuenta2, null, billeteraVirtual);
+        Transaccion transaccion8 = new Transaccion(8, LocalDate.of(2025,5,8), 110000, "Pago deuda Sara", usuario1, TipoTransaccion.DEPOSITO, cuenta3, null, billeteraVirtual);
+        usuario1.agregarTransaccion(transaccion1);
+        usuario1.agregarTransaccion(transaccion2);
+        usuario1.agregarTransaccion(transaccion3);
+        usuario1.agregarTransaccion(transaccion4);
+        usuario1.agregarTransaccion(transaccion5);
+        usuario1.agregarTransaccion(transaccion6);
+        usuario1.agregarTransaccion(transaccion7);
+        usuario1.agregarTransaccion(transaccion8);
+        Transaccion transaccion9 = new Transaccion(9, LocalDate.of(2025,5,8), 15000, "Primer transferencia", usuario1, TipoTransaccion.TRANSFERENCIA, cuenta, cuenta2, billeteraVirtual);
+        Transaccion transaccion10 = new Transaccion(10, LocalDate.of(2025,5,9), 30000, "Primer retiro", usuario1, TipoTransaccion.RETIRO, cuenta2, null, billeteraVirtual);
+        usuario1.agregarTransaccion(transaccion9);
+        usuario1.agregarTransaccion(transaccion10);
         return billeteraVirtual;
     }
 }

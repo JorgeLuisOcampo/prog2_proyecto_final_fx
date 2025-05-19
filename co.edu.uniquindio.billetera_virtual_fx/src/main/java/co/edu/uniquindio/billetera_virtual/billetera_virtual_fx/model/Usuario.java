@@ -1,249 +1,367 @@
 package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.IEntidadUsuario;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.service.ICrudTransaccion;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.LinkedList;
 
-public class Usuario extends InicioSesion implements IEntidadUsuario {
-    private BilleteraVirtual billetera;
-    private String idUsuario;
-    private String nombre;
-    private String apellidos;
-    private String telefono;
-    private String direccion;
+public class Usuario implements ICrudTransaccion {
+    private BilleteraVirtual billeteraVirtual;
+    private String nombreCompleto, idUsuario, correoElectronico, numeroTelefono, direccion;
+    private int clave;
     private double saldoTotal;
-    private ArrayList<Cuenta> listaCuentas;
-    private ArrayList<Transaccion> listaTransacciones;
-    private ArrayList<Presupuesto> listaPresupuestos;
-    private ArrayList<Categoria> listaCategorias;
+    private LinkedList<Cuenta> listaCuentas;
+    private LinkedList<Presupuesto> listaPresupuestos;
+    private LinkedList<Transaccion> listaTransacciones;
+    private LinkedList<Categoria> listaCategorias;
 
-    /**
-     * Constructor vacio de la clase Usuario
-     */
     public Usuario(){
-
-        listaCuentas = new ArrayList<>();
-        listaTransacciones = new ArrayList<>();
-        listaPresupuestos = new ArrayList<>();
-        listaCategorias = new ArrayList<>();
+        listaCuentas = new LinkedList<>();
+        listaPresupuestos = new LinkedList<>();
+        listaTransacciones = new LinkedList<>();
+        listaCategorias = new LinkedList<>();
     }
 
-    /**
-     * Constructor con parametros de la clase Usuario
-     * @param contrasenia
-     * @param email
-     * @param idUsuario
-     * @param nombre
-     * @param apellidos
-     * @param telefono
-     * @param direccion
-     * @param billetera
-     */
-    public Usuario(String contrasenia, String email, String idUsuario,
-                   String nombre, String apellidos, String telefono,
-                   String direccion, BilleteraVirtual billetera
-                   ) {
-        super(contrasenia, email);
+    public Usuario(String nombreCompleto, String idUsuario, String correoElectronico, String numeroTelefono, String direccion, int clave, BilleteraVirtual billeteraVirtual) {
+        this.nombreCompleto = nombreCompleto;
         this.idUsuario = idUsuario;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.telefono = telefono;
+        this.correoElectronico = correoElectronico;
+        this.numeroTelefono = numeroTelefono;
         this.direccion = direccion;
-        this.saldoTotal = saldoTotal;
-        listaCuentas = new ArrayList<>();
-        listaTransacciones = new ArrayList<>();
-        listaPresupuestos = new ArrayList<>();
-        listaCategorias = new ArrayList<>();
+        this.clave = clave;
+        this.billeteraVirtual = billeteraVirtual;
+        listaCuentas = new LinkedList<>();
+        listaPresupuestos = new LinkedList<>();
+        listaTransacciones = new LinkedList<>();
+        listaCategorias = new LinkedList<>();
     }
 
-
-    @Override
-    public void iniciarSesion() {
-
+    public BilleteraVirtual getBilleteraVirtual() {
+        return billeteraVirtual;
     }
 
-    @Override
-    public void depositarDinero() {
-
+    public void setBilleteraVirtual(BilleteraVirtual billeteraVirtual) {
+        this.billeteraVirtual = billeteraVirtual;
     }
 
-    @Override
-    public void retirarDinero() {
-
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    @Override
-    public void transferirDinero() {
-
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
-    @Override
-    public void listarTransacciones() {
-
-    }
-
-    @Override
-    public void listarPresupuestos() {
-
-    }
-
-    @Override
-    public void consultarSaldo() {
-
-    }
-
-    @Override
-    public void transaccionesCuenta() {
-
-    }
-    /**
-     * Metodo para obtener el id de la cuenta
-     * @return
-     */
     public String getIdUsuario() {
         return idUsuario;
     }
 
-    /**
-     * Metodo para setear el id de la cuenta
-     * @param idUsuario
-     */
     public void setIdUsuario(String idUsuario) {
         this.idUsuario = idUsuario;
     }
 
-    /**
-     * Metodo para obtener el nombre de la cuenta
-     * @return
-     */
-    public String getNombre() {
-        return nombre;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
-    /**
-     * Metodo para setear el nombre de la cuenta
-     * @param nombre
-     */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCorreoElectronico(String correoElectronico) {
+        this.correoElectronico = correoElectronico;
     }
 
-    /**
-     * Metodo para obtener el apellido de la cuenta
-     * @return
-     */
-    public String getApellidos() {
-        return apellidos;
+    public String getNumeroTelefono() {
+        return numeroTelefono;
     }
 
-    /**
-     * Metodo para setear el apellido de la cuenta
-     * @param apellido
-     */
-    public void setApellidos(String apellido) {
-        this.apellidos = apellido;
+    public void setNumeroTelefono(String numeroTelefono) {
+        this.numeroTelefono = numeroTelefono;
     }
 
-    /**
-     * Metodo para obtener el telefono de la cuenta
-     * @return
-     */
-    public String getTelefono() {
-        return telefono;
-    }
-
-    /**
-     * Metodo para setear el telefono de la cuenta
-     * @param telefono
-     */
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    /**
-     * Metodo para obtener la direccion de la cuenta
-     * @return
-     */
     public String getDireccion() {
         return direccion;
     }
 
-    /**
-     * Metodo para setear la direccion de la cuenta
-     * @param direccion
-     */
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
-    /**
-     * Metodo para obtener el saldo total de la cuenta
-     * @return
-     */
+    public int getClave() {
+        return clave;
+    }
+
+    public void setClave(int clave) {
+        this.clave = clave;
+    }
+
     public double getSaldoTotal() {
         return saldoTotal;
     }
 
-    /**
-     * Metodo para setear el saldo total de la cuenta
-     * @param saldoTotal
-     */
     public void setSaldoTotal(double saldoTotal) {
         this.saldoTotal = saldoTotal;
     }
 
-    /**
-     * Metodo para obtener la lista de cuentas
-     * @return
-     */
-    public ArrayList<Cuenta> getListaCuentas() {
+    public LinkedList<Cuenta> getListaCuentas() {
         return listaCuentas;
     }
 
-    /**
-     * Metodo para setear la lista de cuentas
-     * @param listaCuentas
-     */
-    public void setListaCuentas(ArrayList<Cuenta> listaCuentas) {
+    public void setListaCuentas(LinkedList<Cuenta> listaCuentas) {
         this.listaCuentas = listaCuentas;
     }
 
-    /**
-     * Metodo para obtener la lista de transacciones
-     * @return
-     */
-    public ArrayList<Transaccion> getListaTransacciones() {
-        return listaTransacciones;
-    }
-    /**
-     * Metodo para setear la lista de transacciones
-     * @param listaTransacciones
-     */
-    public void setListaTransacciones(ArrayList<Transaccion> listaTransacciones) {
-        this.listaTransacciones = listaTransacciones;
-    }
-
-    /**
-     * Metodo para obtener la lista de presupuestos
-     * @return
-     */
-    public ArrayList<Presupuesto> getListaPresupuestos() {
+    public LinkedList<Presupuesto> getListaPresupuestos() {
         return listaPresupuestos;
     }
 
-    /**
-     * Metodo para setear la lista de presupuestos
-     * @param listaPresupuestos
-     */
-    public void setListaPresupuestos(ArrayList<Presupuesto> listaPresupuestos) {
+    public void setListaPresupuestos(LinkedList<Presupuesto> listaPresupuestos) {
         this.listaPresupuestos = listaPresupuestos;
     }
 
-    public ArrayList<Categoria> getListaCategorias() {
+    public LinkedList<Transaccion> getListaTransacciones() {
+        return listaTransacciones;
+    }
+
+    public void setListaTransacciones(LinkedList<Transaccion> listaTransacciones) {
+        this.listaTransacciones = listaTransacciones;
+    }
+
+    public LinkedList<Categoria> getListaCategorias() {
         return listaCategorias;
     }
 
-    public void setListaCategorias(ArrayList<Categoria> listaCategorias) {
+    public void setListaCategorias(LinkedList<Categoria> listaCategorias) {
         this.listaCategorias = listaCategorias;
+    }
+
+    private Cuenta obtenerCuenta(int idCuenta) {
+        for (Cuenta cuenta : listaCuentas) {
+            if (cuenta.getIdCuenta() == idCuenta) {
+                return cuenta;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean agregarTransaccion(Transaccion transaccion) {
+        return billeteraVirtual.agregarTransaccion(transaccion);
+    }
+
+    @Override
+    public Transaccion obtenerTransaccion(int idTransaccion) {
+        for (Transaccion transaccion : listaTransacciones) {
+            if (transaccion.getIdTransaccion() == idTransaccion) {
+                return transaccion;
+            }
+        }
+        return null;
+    }
+
+    public boolean agregarCuenta(Cuenta cuenta) {
+        if (cuenta.getPresupuestoAsociado().getCuentaAsociada() == null) {
+            return billeteraVirtual.agregarCuenta(cuenta);
+        }
+        return false;
+    }
+
+    public boolean actualizarCuenta(Cuenta cuentaVieja, Cuenta nuevaCuenta) {
+        return billeteraVirtual.actualizarCuenta(cuentaVieja, this.idUsuario,
+                this.idUsuario, nuevaCuenta);
+    }
+
+    public boolean eliminarCuenta(int idCuenta, String numCuenta) {
+        return billeteraVirtual.eliminarCuenta(idCuenta, numCuenta);
+    }
+
+    public void actualizarSaldoTotal() {
+        double saldoTotal = 0;
+        for (Cuenta cuenta : listaCuentas) {
+            saldoTotal += cuenta.getSaldo();
+        }
+        this.saldoTotal = saldoTotal;
+    }
+
+    public boolean agregarCategoria(Categoria categoria) {
+        if (obtenerCategoria(categoria) == null){
+            return billeteraVirtual.agregarCategoria(categoria);
+        }
+        return false;
+    }
+
+    private Categoria obtenerCategoria(Categoria categoria) {
+        for (Categoria categoriaTemporal : listaCategorias){
+            if (categoriaTemporal.getNombre().equals(categoria.getNombre()) ||
+                    categoriaTemporal.getIdCategoria() == categoria.getIdCategoria()) {
+                return categoria;
+            }
+        }
+        return null;
+    }
+
+    private Categoria obtenerCategoria(int idCategoria) {
+        for (Categoria categoria : listaCategorias){
+            if (categoria.getIdCategoria() == idCategoria){
+                return categoria;
+            }
+        }
+        return null;
+    }
+
+    private Categoria obtenerCategoria(String nombreCategoria) {
+        for (Categoria categoria : listaCategorias){
+            if (categoria.getNombre().equalsIgnoreCase(nombreCategoria)){
+                return categoria;
+            }
+        }
+        return null;
+    }
+
+    public boolean eliminarCategoria(int idCategoria) {
+        return billeteraVirtual.eliminarCategoria(idCategoria);
+    }
+
+    public boolean actualizarCategoria(int idCategoriaVieja, Categoria nuevaCategoria) {
+        if (verificarActualizacionCategoria(idCategoriaVieja, nuevaCategoria)) {
+            return billeteraVirtual.actualizarCategoria(idCategoriaVieja, nuevaCategoria);
+        }
+        return false;
+    }
+
+    public boolean verificarActualizacionCategoria(int idCategoriaVieja, Categoria nuevaCategoria) {
+        Categoria categoriaVieja = obtenerCategoria(idCategoriaVieja);
+        if (categoriaVieja != null) {
+            if (obtenerCategoria(nuevaCategoria.getNombre()) == null ||
+                    categoriaVieja.getNombre().equalsIgnoreCase(nuevaCategoria.getNombre())) {
+                return obtenerCategoria(nuevaCategoria.getIdCategoria()) == null ||
+                        categoriaVieja.getIdCategoria() == nuevaCategoria.getIdCategoria();
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public boolean agregarPresupuesto(Presupuesto presupuesto) {
+        if (obtenerPresupuesto(presupuesto) == null) {
+            if (billeteraVirtual.agregarPresupuesto(presupuesto)){
+                listaPresupuestos.add(presupuesto);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private Presupuesto obtenerPresupuesto(Presupuesto presupuesto) {
+        for (Presupuesto presupuestoTemporal : listaPresupuestos) {
+            if (presupuestoTemporal.getNombre().equalsIgnoreCase(presupuesto.getNombre()) ||
+                    presupuestoTemporal.getIdPresupuesto() == presupuesto.getIdPresupuesto()) {
+                return presupuestoTemporal;
+            }
+        }
+        return null;
+    }
+
+    private Presupuesto obtenerPresupuesto(int idPresupuesto) {
+        for (Presupuesto presupuesto : listaPresupuestos){
+            if (presupuesto.getIdPresupuesto() == idPresupuesto){
+                return presupuesto;
+            }
+        }
+        return null;
+    }
+
+    private Presupuesto obtenerPresupuesto(String nombrePresupuesto) {
+        for (Presupuesto presupuesto : listaPresupuestos){
+            if (presupuesto.getNombre().equalsIgnoreCase(nombrePresupuesto)){
+                return presupuesto;
+            }
+        }
+        return null;
+    }
+
+    public boolean actualizarPresupuesto(int idPresupuestoViejo, Presupuesto presupuestoNuevo) {
+        if (verificarActualizacionPresupuesto(idPresupuestoViejo, presupuestoNuevo)) {
+            return billeteraVirtual.actualizarPresupuesto(idPresupuestoViejo, presupuestoNuevo);
+        }
+        return false;
+    }
+
+    private boolean verificarActualizacionPresupuesto(int idPresupuestoViejo, Presupuesto presupuestoNuevo) {
+        Presupuesto presupuestoViejo = obtenerPresupuesto(idPresupuestoViejo);
+        if (presupuestoViejo != null) {
+            if (obtenerPresupuesto(presupuestoNuevo.getNombre()) == null ||
+                    presupuestoNuevo.getNombre().equalsIgnoreCase(presupuestoViejo.getNombre())) {
+                return obtenerPresupuesto(presupuestoNuevo.getIdPresupuesto()) == null ||
+                        presupuestoNuevo.getIdPresupuesto() == presupuestoViejo.getIdPresupuesto();
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public boolean eliminarPresupuesto(int idPresupuesto) {
+        return billeteraVirtual.eliminarPresupuesto(idPresupuesto);
+    }
+
+    public Presupuesto obtenerPresupuestoNombre(String nombrePresupuesto) {
+        for (Presupuesto presupuesto : listaPresupuestos) {
+            if (presupuesto.getNombre().equalsIgnoreCase(nombrePresupuesto)) {
+                return presupuesto;
+            }
+        }
+        return null;
+    }
+
+    public LinkedList<String> obtenerPresupuestosDisponiblesNombres() {
+        LinkedList<String> listaPresupuestosNombres = new LinkedList<>();
+        for (Presupuesto presupuesto : listaPresupuestos) {
+            if (presupuesto.getCuentaAsociada() == null) {
+                listaPresupuestosNombres.add(presupuesto.getNombre());
+            }
+        }
+        return listaPresupuestosNombres;
+    }
+
+    public LinkedList<String> obtenerPresupuestosNombres(){
+        LinkedList<String> listaPresupuestosNombres = new LinkedList<>();
+        for (Presupuesto presupuesto : listaPresupuestos) {
+            listaPresupuestosNombres.add(presupuesto.getNombre());
+        }
+        return listaPresupuestosNombres;
+    }
+
+    public LinkedList<Transaccion> obtenerListaTransaccionesIngresos(LocalDate fechaInicio, LocalDate fechaFin) {
+        LinkedList<Transaccion> listaTransaccionesIngresos = new LinkedList<>();
+        for (Transaccion transaccion : listaTransacciones) {
+            LocalDate fechaTransaccion = transaccion.getFecha();
+            if (transaccion.getTipoTransaccion().equals(TipoTransaccion.DEPOSITO)
+                    && !fechaTransaccion.isBefore(fechaInicio)
+                    && !fechaTransaccion.isAfter(fechaFin)){
+                listaTransaccionesIngresos.add(transaccion);
+            }
+        }
+        return listaTransaccionesIngresos;
+    }
+
+    public LinkedList<Transaccion> obtenerListaTransaccionesGastos(LocalDate fechaInicio, LocalDate fechaFin) {
+        LinkedList<Transaccion> listaTransaccionesGastos = new LinkedList<>();
+        for (Transaccion transaccion : listaTransacciones) {
+            TipoTransaccion tipoTransaccion = transaccion.getTipoTransaccion();
+            LocalDate fechaTransaccion = transaccion.getFecha();
+            if (!tipoTransaccion.equals(TipoTransaccion.DEPOSITO)
+                    && !fechaTransaccion.isBefore(fechaInicio)
+                    && !fechaTransaccion.isAfter(fechaFin)){
+                listaTransaccionesGastos.add(transaccion);
+            }
+        }
+        return listaTransaccionesGastos;
+    }
+
+    public LinkedList<String> obtenerCategoriasDisponibles() {
+        LinkedList<String> listaCategoriasDisponibles = new LinkedList<>();
+        for (Categoria categoria : listaCategorias) {
+            if (categoria.getPresupuestoAsociado() == null) {
+                listaCategoriasDisponibles.add(categoria.getNombre());
+            }
+        }
+        return listaCategoriasDisponibles;
     }
 }
