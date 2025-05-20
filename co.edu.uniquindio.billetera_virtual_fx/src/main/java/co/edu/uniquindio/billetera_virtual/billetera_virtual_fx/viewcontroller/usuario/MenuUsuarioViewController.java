@@ -151,7 +151,7 @@ public class MenuUsuarioViewController {
     private void mostrarVistaReporteFinanciero() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/ReporteFinanciero.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/ReporteFinanciero.fxml"));
             AnchorPane nuevaVista = loader.load();
             ReporteFinancieroViewController viewController = loader.getController();
             viewController.setUsuario(usuario);

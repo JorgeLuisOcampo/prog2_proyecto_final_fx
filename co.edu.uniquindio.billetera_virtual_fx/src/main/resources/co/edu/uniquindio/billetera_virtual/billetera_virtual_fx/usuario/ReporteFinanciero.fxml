@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity"
+<AnchorPane stylesheets="@styles.css"
+            maxHeight="-Infinity"
             maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity"
@@ -15,6 +16,7 @@
             prefWidth="1180.0"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="anchor-pane"
             fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.ReporteFinancieroViewController">
     <children>
         <ComboBox fx:id="cb_tipoReporte" layoutX="613.0" layoutY="193.0" prefHeight="29.0" prefWidth="185.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-font-size: 16px;" />

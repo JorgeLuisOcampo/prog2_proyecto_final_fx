@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity"
+<AnchorPane stylesheets="@styles.css"
+            maxHeight="-Infinity"
             maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity"
@@ -16,11 +17,12 @@
             style="-fx-background-color: #2ECC71;"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="anchor-pane"
             fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.TransaccionesUsuarioViewController">
     <children>
         <SplitPane dividerPositions="0.568904593639576" orientation="VERTICAL" prefHeight="568.0" prefWidth="1180.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="1178.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="1178.0" styleClass="anchor-pane">
                     <children>
                         <DatePicker fx:id="dp_fecha" layoutX="773.0" layoutY="135.0" prefHeight="12.0" prefWidth="281.0" style="-fx-font-size: 15px;" />
                         <Label layoutX="709.0" layoutY="141.0" text="Fecha:">
@@ -84,7 +86,7 @@
                         <ComboBox fx:id="cb_cuentaDestino" layoutX="252.0" layoutY="181.0" prefHeight="29.0" prefWidth="281.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-font-size: 15px;" />
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="1178.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="1178.0" styleClass="anchor-pane">
                     <children>
                         <TableView fx:id="tb_transacciones" layoutX="30.0" layoutY="29.0" prefHeight="184.0" prefWidth="1118.0" style="-fx-font-size: 14px;">
                             <columns>

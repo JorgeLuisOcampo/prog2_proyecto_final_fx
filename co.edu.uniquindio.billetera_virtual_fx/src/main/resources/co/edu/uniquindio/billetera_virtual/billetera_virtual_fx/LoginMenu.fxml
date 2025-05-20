@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane
+<AnchorPane stylesheets="@styles.css"
             fx:id="ap_principal"
             maxHeight="-Infinity"
             maxWidth="-Infinity"
