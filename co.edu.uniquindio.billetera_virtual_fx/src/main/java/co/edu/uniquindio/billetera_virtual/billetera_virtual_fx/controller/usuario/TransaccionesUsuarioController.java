@@ -1,4 +1,4 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuario;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.factory.ModelFactory;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;

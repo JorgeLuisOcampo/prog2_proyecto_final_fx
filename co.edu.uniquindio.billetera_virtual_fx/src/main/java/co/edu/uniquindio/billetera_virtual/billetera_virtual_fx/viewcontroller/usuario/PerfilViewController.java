@@ -1,6 +1,6 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.PerfilController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuario.PerfilController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;

@@ -15,7 +15,7 @@
             prefWidth="1180.0"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.MenuUsuarioViewController">
+            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.MenuUsuarioViewController">
     <children>
         <TabPane fx:id="tp_menuUsuario" prefHeight="600.0" prefWidth="1180.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -90,7 +90,7 @@
                             <children>
                                 <SplitPane fx:id="sp_reporteFinanciero" orientation="VERTICAL" prefHeight="570.0" prefWidth="1180.0">
                                     <items>
-                                        <fx:include source="ReporteFinanciero.fxml" />
+                                        <fx:include source="../ReporteFinanciero.fxml" />
                                     </items>
                                 </SplitPane>
                             </children>

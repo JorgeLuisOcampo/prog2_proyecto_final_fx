@@ -1,6 +1,7 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.ReporteFinancieroViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.SplitPane;
@@ -84,7 +85,7 @@ public class MenuUsuarioViewController {
     private void mostrarVistaPerfil() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/Perfil.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/Perfil.fxml"));
             AnchorPane nuevaVista = loader.load();
             PerfilViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
@@ -98,7 +99,7 @@ public class MenuUsuarioViewController {
     private void mostrarVistaGestionCategorias() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/Categorias.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/Categorias.fxml"));
             AnchorPane nuevaVista = loader.load();
             CategoriasViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
@@ -111,7 +112,7 @@ public class MenuUsuarioViewController {
     private void mostrarVistaGestionPresupuestos() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/Presupuestos.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/Presupuestos.fxml"));
             AnchorPane nuevaVista = loader.load();
             PresupuestosViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
@@ -124,7 +125,7 @@ public class MenuUsuarioViewController {
     private void mostrarVistaCuentasUsuario() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/CuentasUsuario.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/CuentasUsuario.fxml"));
             AnchorPane nuevaVista = loader.load();
             CuentasUsuarioViewController viewController = loader.getController();
             viewController.setUsuario(usuario);
@@ -137,7 +138,7 @@ public class MenuUsuarioViewController {
     private void mostrarVistaGestionTransaccionesUsuario() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/TransaccionesUsuario.fxml"));
+                    "/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/TransaccionesUsuario.fxml"));
             AnchorPane nuevaVista = loader.load();
             TransaccionesUsuarioViewController viewController = loader.getController();
             viewController.setUsuario(usuario);

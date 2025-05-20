@@ -14,6 +14,10 @@ module co.edu.uniquindio.billetera_virtual.billetera_virtual_fx {
 
     opens co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller to javafx.fxml;
     exports co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+    exports co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario;
+    opens co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario to javafx.fxml;
+    exports co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuario;
+    opens co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuario to javafx.fxml;
 
 
 }

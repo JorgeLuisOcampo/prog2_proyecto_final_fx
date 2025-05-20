@@ -1,6 +1,6 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.TransaccionesUsuarioController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuario.TransaccionesUsuarioController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.TransaccionDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.model.TipoTransaccion;

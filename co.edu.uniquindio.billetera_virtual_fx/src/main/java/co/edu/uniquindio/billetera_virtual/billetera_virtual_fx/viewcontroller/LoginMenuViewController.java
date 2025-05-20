@@ -2,6 +2,7 @@ package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
 
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.LoginMenuController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.MenuUsuarioViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -47,13 +48,15 @@ public class LoginMenuViewController {
     @FXML
     void initialize() {
         loginMenuController = new LoginMenuController();
+        System.out.println("CSS Path: " + getClass().getResource("/styles.css"));
+        // Should print a valid path (not null)
     }
 
     @FXML
     private void cambiarVistaUsuario(UsuarioDto usuarioDto) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource
-                    ("/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/MenuUsuario.fxml"));
+                    ("/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/usuario/MenuUsuario.fxml"));
             AnchorPane menuUsuario = loader.load();
             MenuUsuarioViewController menuUsuarioViewController = loader.getController();
             menuUsuarioViewController.setUsuario(usuarioDto);

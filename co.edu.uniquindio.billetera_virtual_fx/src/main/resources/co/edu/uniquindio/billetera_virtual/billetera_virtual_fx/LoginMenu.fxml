@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap_principal"
+<AnchorPane
+            fx:id="ap_principal"
             maxHeight="-Infinity"
             maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="595.0"
             prefWidth="1175.0"
-            xmlns="http://javafx.com/javafx/8"
+            xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
+            styleClass="anchor-pane"
             fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.LoginMenuViewController">
     <children>
-        <Label layoutX="538.0" layoutY="80.0" text="Iniciar Sesión">
+        <Label layoutX="538.0" layoutY="80.0" text="Inicio Sesión" styleClass="label-title">
             <font>
-                <Font name="Segoe UI" size="18.0" />
+                <Font name="Gill Sans MT" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="313.0" layoutY="258.0" text="Ingrese número de identificación:">
+        <Label layoutX="353.0" layoutY="255.0" text="Número de identificación :" styleClass="label-input">
             <font>
-                <Font name="Segoe UI" size="16.0" />
+                <Font name="Gill Sans MT" size="16.0" />
             </font>
         </Label>
-        <Button fx:id="bt_ingresar" layoutX="533.0" layoutY="472.0" mnemonicParsing="false" onAction="#onIngresar" text="Iniciar Sesión">
+        <Button fx:id="bt_ingresar" layoutX="533.0" layoutY="472.0" mnemonicParsing="false" onAction="#onIngresar" text="Iniciar Sesión" styleClass="button">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Button>
-        <TextField fx:id="ta_id" layoutX="600.0" layoutY="250.0" prefHeight="0.0" prefWidth="269.0">
+        <TextField fx:id="ta_id" layoutX="600.0" layoutY="250.0" prefHeight="0.0" prefWidth="269.0" styleClass="text-field">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </TextField>
-        <Label layoutX="373.0" layoutY="323.0" text="Ingrese contrasenia del usuario:">
+        <Label layoutX="440.0" layoutY="320.0" text="Contraseña :" styleClass="label-input">
             <font>
-                <Font name="Segoe UI" size="16.0" />
+                <Font name="Gill Sans MT" size="16.0" />
             </font>
         </Label>
-        <TextField fx:id="ta_clave" layoutX="600.0" layoutY="315.0" prefHeight="24.0" prefWidth="269.0">
+        <TextField fx:id="ta_clave" layoutX="600.0" layoutY="315.0" prefHeight="24.0" prefWidth="269.0" styleClass="text-field">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>

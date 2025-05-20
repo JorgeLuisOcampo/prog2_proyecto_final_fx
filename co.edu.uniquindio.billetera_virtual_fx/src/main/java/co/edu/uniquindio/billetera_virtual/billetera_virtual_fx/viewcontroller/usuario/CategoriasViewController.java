@@ -1,6 +1,6 @@
-package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller;
+package co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario;
 
-import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.CategoriasController;
+import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.controller.usuario.CategoriasController;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.CategoriaDto;
 import co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.mapping.dto.UsuarioDto;
 import javafx.beans.property.SimpleIntegerProperty;
