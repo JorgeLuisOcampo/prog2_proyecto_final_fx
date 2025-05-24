@@ -9,6 +9,7 @@ import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.borders.Border;
 import com.itextpdf.layout.borders.DashedBorder;
@@ -17,6 +18,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.properties.VerticalAlignment;
 
 import java.awt.*;
@@ -60,8 +62,9 @@ public class GeneradorPDF {
             PdfFont letra = PdfFontFactory.createFont("Helvetica");
             PdfFont letraBold = PdfFontFactory.createFont("Helvetica-Bold");
 
+
             Table tablaTitulo = new Table(COLUMNAS_TITULO);
-            Cell cellTitulo = new Cell().add(new Paragraph("Reporte de " + tipoReporte))
+            Cell cellTitulo = new Cell().add(new Paragraph("Informe de " + tipoReporte))
                     .setBorder(Border.NO_BORDER)
                     .setFont(letraBold)
                     .setFontSize(14)
@@ -111,38 +114,37 @@ public class GeneradorPDF {
             documentos.add(tableBorde);
 
             documentos.add(ESPACIO);
-            documentos.add(obtenerTextoColumna("Información Usuario", letraBold).setTextAlignment(TextAlignment.CENTER));
+            documentos.add(obtenerTextoColumna("INFORMACION USUARIO", letraBold).setTextAlignment(TextAlignment.CENTER));
             documentos.add(ESPACIO);
 
-            Table tablaUsuario1 = new Table(DOS_COLUMNAS);
-            tablaUsuario1.addCell(obtenerTextoColumna("Nombre Completo:", letraBold));
-            tablaUsuario1.addCell(obtenerTextoColumna("Cédula:", letraBold));
-            documentos.add(tablaUsuario1);
+            Table tablaUsuario = new Table(new float[]{3, 7}); // relación ajustada para juntar los datos
+            tablaUsuario.setWidth(UnitValue.createPercentValue(60)); // opcional: controla el ancho total
+            tablaUsuario.setTextAlignment(TextAlignment.LEFT);
 
-            Table tablaUsuario2 = new Table(DOS_COLUMNAS);
-            tablaUsuario2.addCell(obtenerTextoColumna(usuario.nombreCompleto(), letra));
-            tablaUsuario2.addCell(obtenerTextoColumna(usuario.idUsuario(), letra));
-            documentos.add(tablaUsuario2.setMarginBottom(12f));
+            tablaUsuario.addCell(obtenerTextoColumna("Nombre Completo:", letraBold).setTextAlignment(TextAlignment.LEFT));
+            tablaUsuario.addCell(obtenerTextoColumna(usuario.nombreCompleto(), letra).setTextAlignment(TextAlignment.LEFT));
 
-            Table tablaUsuario3 = new Table(DOS_COLUMNAS);
-            tablaUsuario3.addCell(obtenerTextoColumna("Correo Electrónico:", letraBold));
-            tablaUsuario3.addCell(obtenerTextoColumna("Número de Teléfono:", letraBold));
-            documentos.add(tablaUsuario3);
+            tablaUsuario.addCell(obtenerTextoColumna("Cédula:", letraBold).setTextAlignment(TextAlignment.LEFT));
+            tablaUsuario.addCell(obtenerTextoColumna(usuario.idUsuario(), letra).setTextAlignment(TextAlignment.LEFT));
 
-            Table tablaUsuario4 = new Table(DOS_COLUMNAS);
-            tablaUsuario4.addCell(obtenerTextoColumna(usuario.correoElectronico(), letra));
-            tablaUsuario4.addCell(obtenerTextoColumna(usuario.numeroTelefono(), letra));
-            documentos.add(tablaUsuario4.setMarginBottom(12f));
+            tablaUsuario.addCell(obtenerTextoColumna("Correo Electrónico:", letraBold).setTextAlignment(TextAlignment.LEFT));
+            tablaUsuario.addCell(obtenerTextoColumna(usuario.correoElectronico(), letra).setTextAlignment(TextAlignment.LEFT));
 
-            documentos.add(obtenerTextoColumna("Dirección:", letraBold)
-                    .setTextAlignment(TextAlignment.LEFT));
-            documentos.add(obtenerTextoColumna(usuario.direccion(), letra)
-                    .setTextAlignment(TextAlignment.LEFT));
+            tablaUsuario.addCell(obtenerTextoColumna("Número de Teléfono:", letraBold).setTextAlignment(TextAlignment.LEFT));
+            tablaUsuario.addCell(obtenerTextoColumna(usuario.numeroTelefono(), letra).setTextAlignment(TextAlignment.LEFT));
+
+            tablaUsuario.addCell(obtenerTextoColumna("Dirección:", letraBold).setTextAlignment(TextAlignment.LEFT));
+            tablaUsuario.addCell(obtenerTextoColumna(usuario.direccion(), letra).setTextAlignment(TextAlignment.LEFT));
+
+            tablaUsuario.setMarginBottom(15f);
+            documentos.add(tablaUsuario);
 
             Table tablaDivisoraTransacciones = new Table(BORDE_COMPLETO).setBorder(BORDE_PUNTEADO);
             documentos.add(tablaDivisoraTransacciones
                     .setMarginTop(15f)
                     .setMarginBottom(10f));
+
+
 
             switch (tipoReporte) {
                 case "Ingresos":
@@ -158,6 +160,20 @@ public class GeneradorPDF {
                     break;
             }
 
+            PdfCanvas canvas = new PdfCanvas(pdf.getLastPage());
+            canvas.beginText();
+            canvas.setFontAndSize(PdfFontFactory.createFont(), 12);
+
+            canvas.moveText(40, 35);
+            canvas.showText("Documento generado por el sistema de informes de la Billetera UQ");
+
+
+            canvas.moveText(0, -15); // Y se reduce para ir a la línea siguiente
+            canvas.showText("por Jorge Ocampo y Esteban Valencia");
+
+            canvas.endText();
+            canvas.release();
+
             documentos.close();
 
             if (archivo.exists()) {
@@ -168,6 +184,7 @@ public class GeneradorPDF {
             e.printStackTrace();
         }
     }
+
 
     private static void generarListaSaldos(Document documento, LinkedList<CuentaDto> cuentas, PdfFont letra, PdfFont letraBold, Table tablaDivisoraTransacciones) {
         Table tablaCuentas = new Table(COLUMNAS_SALDOS);
@@ -220,7 +237,7 @@ public class GeneradorPDF {
         Table tablaTransacciones = new Table(COLUMNAS_INGRESOS);
         tablaTransacciones.setWidth(100);
         tablaTransacciones.setFixedLayout();
-        tablaTransacciones.setBackgroundColor(ColorConstants.BLACK, 0.7f);
+        tablaTransacciones.setBackgroundColor(ColorConstants.BLUE, 0.7f);
 
         tablaTransacciones.addCell(new Cell().add(obtenerTextoColumna("Fecha", letra))
                 .setFontColor(ColorConstants.WHITE)
@@ -325,12 +342,14 @@ public class GeneradorPDF {
                 totalTransferencia);
         documento.add(tablaMontoTotal);
         return totalTransferencia;
+
+
     }
 
     private static void configurarTablaPrincipal(Table tabla) {
         tabla.setWidth(100);
         tabla.setFixedLayout();
-        tabla.setBackgroundColor(ColorConstants.BLACK, 0.7f);
+        tabla.setBackgroundColor(ColorConstants.BLUE, 0.7f);
     }
 
     private static Table obtenerDivisorMontoTotal(float[] columnasTotal, Table tablaDivisora) {
@@ -357,4 +376,6 @@ public class GeneradorPDF {
                 .setFont(letra)
                 .setTextAlignment(TextAlignment.LEFT);
     }
+
+
 }
