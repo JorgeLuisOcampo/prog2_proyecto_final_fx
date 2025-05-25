@@ -39,6 +39,10 @@ public class DataUtil {
         Transaccion transaccion6 = new Transaccion(6, LocalDate.of(2025,5,6), 300000, "Consignación papás", usuario1, TipoTransaccion.DEPOSITO, cuenta2, null, billeteraVirtual);
         Transaccion transaccion7 = new Transaccion(7, LocalDate.of(2025,5,7), 76000, "Pago deuda Camilo", usuario1, TipoTransaccion.DEPOSITO, cuenta2, null, billeteraVirtual);
         Transaccion transaccion8 = new Transaccion(8, LocalDate.of(2025,5,8), 110000, "Pago deuda Sara", usuario1, TipoTransaccion.DEPOSITO, cuenta3, null, billeteraVirtual);
+        Transaccion transaccion9 = new Transaccion(9, LocalDate.of(2025,5,8), 15000, "Primer transferencia", usuario1, TipoTransaccion.TRANSFERENCIA, cuenta, cuenta2, billeteraVirtual);
+        Transaccion transaccion10 = new Transaccion(10, LocalDate.of(2025,5,9), 30000, "Primer retiro", usuario1, TipoTransaccion.RETIRO, cuenta2, null, billeteraVirtual);
+
+
         usuario1.agregarTransaccion(transaccion1);
         usuario1.agregarTransaccion(transaccion2);
         usuario1.agregarTransaccion(transaccion3);
@@ -47,8 +51,6 @@ public class DataUtil {
         usuario1.agregarTransaccion(transaccion6);
         usuario1.agregarTransaccion(transaccion7);
         usuario1.agregarTransaccion(transaccion8);
-        Transaccion transaccion9 = new Transaccion(9, LocalDate.of(2025,5,8), 15000, "Primer transferencia", usuario1, TipoTransaccion.TRANSFERENCIA, cuenta, cuenta2, billeteraVirtual);
-        Transaccion transaccion10 = new Transaccion(10, LocalDate.of(2025,5,9), 30000, "Primer retiro", usuario1, TipoTransaccion.RETIRO, cuenta2, null, billeteraVirtual);
         usuario1.agregarTransaccion(transaccion9);
         usuario1.agregarTransaccion(transaccion10);
         return billeteraVirtual;

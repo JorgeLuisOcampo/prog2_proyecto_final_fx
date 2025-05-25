@@ -41,14 +41,14 @@ public class GeneradorPDF {
     public static void exportarTransacciones(UsuarioDto usuario, String tipoReporte,
                                              LinkedList<TransaccionDto> transacciones, LinkedList<CuentaDto> listaCuentas,
                                              LocalDate fechaInicio, LocalDate fechaFin) {
-        String nombreArchivo = "reporte_Usuario.pdf";
+        String nombreArchivo = "Informe_Usuario.pdf";
         String rutaUsuario = System.getProperty("user.home");
         String rutaSalida = rutaUsuario + "/Downloads/";
         File archivo = new File(rutaSalida);
 
         int contador = 1;
         while (archivo.exists()) {
-            nombreArchivo = "reporte_Usuario_" + contador + ".pdf";
+            nombreArchivo = "Informe_Usuario_" + contador + ".pdf";
             rutaSalida = rutaUsuario + "/Downloads/" + nombreArchivo;
             archivo = new File(rutaSalida);
             contador++;
@@ -64,48 +64,46 @@ public class GeneradorPDF {
 
 
             Table tablaTitulo = new Table(COLUMNAS_TITULO);
+            tablaTitulo.setMarginTop(0f);
             Cell cellTitulo = new Cell().add(new Paragraph("Informe de " + tipoReporte))
                     .setBorder(Border.NO_BORDER)
                     .setFont(letraBold)
                     .setFontSize(14)
                     .setVerticalAlignment(VerticalAlignment.TOP);
             tablaTitulo.addCell(cellTitulo);
-            Table tablaFechaFin = new Table(COLUMNAS_TITULO);
+            Table tablaFechas = new Table(UnitValue.createPercentArray(new float[]{40, 1, 40}))
+                    .useAllAvailableWidth();
             if (!tipoReporte.equals("Saldos")) {
-                Cell cellTituloFechaInicio = new Cell().add(new Paragraph("Fecha Inicio Reporte: "))
+                Cell cellTituloFechaInicio = new Cell().add(new Paragraph("Fecha Inicial Informe:"))
                         .setBorder(Border.NO_BORDER)
                         .setFont(letraBold)
-                        .setFontSize(11)
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
-                        .setTextAlignment(TextAlignment.RIGHT);;
+                        .setTextAlignment(TextAlignment.CENTER);
                 Cell cellFechaInicio = new Cell().add(new Paragraph(String.valueOf(fechaInicio)))
                         .setBorder(Border.NO_BORDER)
                         .setFont(letra)
-                        .setFontSize(11)
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
-                tablaTitulo.addCell(cellTituloFechaInicio);
-                tablaTitulo.addCell(cellFechaInicio);
-                Cell celdaVacia = new Cell().add(new Paragraph(""))
+
+                Cell cellVacia = new Cell().add(new Paragraph("")) // Espaciador central
                         .setBorder(Border.NO_BORDER);
-                Cell cellTituloFechaFin = new Cell().add(new Paragraph("Fecha Fin Reporte: "))
+
+                Cell cellTituloFechaFin = new Cell().add(new Paragraph("Fecha Final Informe:"))
                         .setBorder(Border.NO_BORDER)
                         .setFont(letraBold)
-                        .setFontSize(11)
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
-                        .setTextAlignment(TextAlignment.RIGHT);
+                        .setTextAlignment(TextAlignment.CENTER);
                 Cell cellFechaFin = new Cell().add(new Paragraph(String.valueOf(fechaFin)))
                         .setBorder(Border.NO_BORDER)
                         .setFont(letra)
-                        .setFontSize(11)
-                        .setVerticalAlignment(VerticalAlignment.MIDDLE)
                         .setTextAlignment(TextAlignment.CENTER);
-                tablaFechaFin.addCell(celdaVacia);
-                tablaFechaFin.addCell(cellTituloFechaFin);
-                tablaFechaFin.addCell(cellFechaFin);
+                tablaFechas.addCell(cellTituloFechaInicio);
+                tablaFechas.addCell(cellVacia);
+                tablaFechas.addCell(cellTituloFechaFin);
+                tablaFechas.addCell(cellFechaInicio);
+                tablaFechas.addCell(cellVacia);
+                tablaFechas.addCell(cellFechaFin);
             }
+            tablaTitulo.setMarginLeft(0f);
             documentos.add(tablaTitulo);
-            documentos.add(tablaFechaFin);
+            documentos.add(tablaFechas);
 
             documentos.add(ESPACIO);
             Border border = new SolidBorder(ColorConstants.GRAY, 1.5f);
