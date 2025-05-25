@@ -1,24 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@styles.css"
-            maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="568.0"
-            prefWidth="1180.0"
-            style="-fx-background-color: #2ECC71;"
-            xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            styleClass="anchor-pane"
-            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.TransaccionesUsuarioViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" style="-fx-background-color: #2ECC71;" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.TransaccionesUsuarioViewController">
     <children>
         <SplitPane dividerPositions="0.568904593639576" orientation="VERTICAL" prefHeight="568.0" prefWidth="1180.0">
             <items>
@@ -45,7 +31,7 @@
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
                         </Label>
-                        <Label layoutX="108.0" layoutY="95.0" text="Tipo Transacción:">
+                        <Label layoutX="85.0" layoutY="95.0" text="Tipo de Transacción:">
                             <font>
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
@@ -57,7 +43,7 @@
                         </Label>
                         <ComboBox fx:id="cb_tipoTransaccion" layoutX="252.0" layoutY="90.0" prefHeight="29.0" prefWidth="281.0" style="-fx-font-size: 15px; -fx-font-family: &quot;Segoe UI&quot;;" />
                         <ComboBox fx:id="cb_cuentaOrigen" layoutX="252.0" layoutY="136.0" prefHeight="29.0" prefWidth="281.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-font-size: 15px;" />
-                        <Label layoutX="594.0" layoutY="186.0" text="Descripción (opcional):">
+                        <Label layoutX="667.0" layoutY="186.0" text="Descripción:">
                             <font>
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
@@ -78,7 +64,7 @@
                                 <Font name="Segoe UI" size="18.0" />
                             </font>
                         </Label>
-                        <Button fx:id="bt_realizarTransaccion" layoutX="431.0" layoutY="260.0" mnemonicParsing="false" onAction="#onRealizarTransaccion" prefHeight="19.0" prefWidth="171.0" text="Realizar Transacción">
+                        <Button fx:id="bt_realizarTransaccion" layoutX="413.0" layoutY="260.0" mnemonicParsing="false" onAction="#onRealizarTransaccion" prefHeight="35.0" prefWidth="189.0" text="Realizar Transacción">
                             <font>
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
@@ -90,7 +76,7 @@
                     <children>
                         <TableView fx:id="tb_transacciones" layoutX="30.0" layoutY="29.0" prefHeight="184.0" prefWidth="1118.0" style="-fx-font-size: 14px;">
                             <columns>
-                                <TableColumn fx:id="cl_idTransaccion" prefWidth="124.0" text="Id Transacción" />
+                                <TableColumn fx:id="cl_idTransaccion" prefWidth="124.0" text="ID Transacción" />
                                 <TableColumn fx:id="cl_fecha" prefWidth="108.0" text="Fecha" />
                                 <TableColumn fx:id="cl_monto" prefWidth="118.0" text="Monto" />
                                 <TableColumn fx:id="cl_descripcion" prefWidth="198.0" text="Descripción" />

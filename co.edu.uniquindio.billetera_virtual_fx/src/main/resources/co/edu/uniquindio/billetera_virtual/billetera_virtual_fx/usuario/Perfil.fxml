@@ -1,23 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@styles.css"
-            maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="568.0"
-            prefWidth="1180.0"
-            xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            styleClass="anchor-pane"
-            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.PerfilViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.PerfilViewController">
     <children>
         <Label fx:id="lb_titulo" layoutX="570.0" layoutY="71.0" text="Perfil">
             <font>
@@ -29,7 +16,7 @@
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="bt_actualizar" layoutX="442.0" layoutY="438.0" mnemonicParsing="false" onAction="#onActualizar" prefHeight="31.0" prefWidth="118.0" text="Actualizar">
+        <Button fx:id="bt_actualizar" layoutX="399.0" layoutY="438.0" mnemonicParsing="false" onAction="#onActualizar" prefHeight="35.0" prefWidth="161.0" text="Actualizar Datos">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
@@ -54,7 +41,7 @@
                 <Font name="Segoe UI" size="15.0" />
             </font>
         </TextField>
-        <Label fx:id="lb_clave" layoutX="731.0" layoutY="288.0" text="Clave:">
+        <Label fx:id="lb_clave" layoutX="691.0" layoutY="288.0" text="Contraseña:">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>

@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane stylesheets="@styles.css"
-            maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="568.0"
-            prefWidth="1180.0"
-            xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1"
-            styleClass="anchor-pane"
-            fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.CuentasUsuarioViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.CuentasUsuarioViewController">
     <children>
         <SplitPane dividerPositions="0.5229681978798587" orientation="VERTICAL" prefHeight="568.0" prefWidth="1180.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="287.0" prefWidth="1178.0" styleClass="anchor-pane">
                     <children>
-                        <Label layoutX="158.0" layoutY="87.0" text="Id Cuenta:">
+                        <Label layoutX="155.0" layoutY="84.0" text="ID Cuenta:">
                             <font>
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
@@ -38,7 +25,7 @@
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
                         </Label>
-                        <Label layoutX="669.0" layoutY="135.0" text="Tipo Cuenta:">
+                        <Label layoutX="641.0" layoutY="137.0" text="Tipo de Cuenta:">
                             <font>
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
@@ -59,7 +46,7 @@
                                 <Font name="Segoe UI" size="15.0" />
                             </font>
                         </TextField>
-                        <Button fx:id="bt_nuevo" layoutX="313.0" layoutY="242.0" mnemonicParsing="false" onAction="#onNuevo" prefHeight="31.0" prefWidth="118.0" text="Nueva">
+                        <Button fx:id="bt_nuevo" layoutX="313.0" layoutY="242.0" mnemonicParsing="false" onAction="#onNuevo" prefHeight="31.0" prefWidth="118.0" text="Agregar">
                             <font>
                                 <Font name="Segoe UI" size="16.0" />
                             </font>
@@ -97,7 +84,7 @@
                         </Button>
                         <TableView fx:id="tb_cuentas" layoutX="59.0" layoutY="21.0" prefHeight="184.0" prefWidth="1047.0" style="-fx-font-size: 14px;">
                             <columns>
-                                <TableColumn fx:id="cl_idCuenta" prefWidth="136.0" text="Id Cuenta" />
+                                <TableColumn fx:id="cl_idCuenta" prefWidth="136.0" text="ID Cuenta" />
                                 <TableColumn fx:id="cl_nombreBanco" prefWidth="185.0" text="Nombre Banco" />
                                 <TableColumn fx:id="cl_numeroCuenta" prefWidth="188.0" text="Número Cuenta" />
                                 <TableColumn fx:id="cl_presupuestoAsociado" prefWidth="210.0" text="Presupuesto Asociado" />
