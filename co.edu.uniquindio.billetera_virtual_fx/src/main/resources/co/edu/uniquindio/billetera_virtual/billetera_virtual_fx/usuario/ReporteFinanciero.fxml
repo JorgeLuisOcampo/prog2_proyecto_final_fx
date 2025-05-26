@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.ReporteFinancieroViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.ReporteFinancieroViewController">
     <children>
-        <ComboBox fx:id="cb_tipoReporte" layoutX="613.0" layoutY="193.0" prefHeight="29.0" prefWidth="185.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-font-size: 16px;" />
-        <Label layoutX="451.0" layoutY="56.0" text="Generador de Informes Financieros">
+        <ComboBox fx:id="cb_tipoReporte" layoutX="276.0" layoutY="137.0" prefHeight="29.0" prefWidth="185.0" style="-fx-font-family: &quot;Segoe UI&quot;; -fx-font-size: 16px;" />
+        <Label layoutX="61.0" layoutY="50.0" text="REPORTE FINANZAS PERSONALES">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="bt_generarReporte" layoutX="501.0" layoutY="421.0" mnemonicParsing="false" onAction="#onGenerarReporte" prefHeight="35.0" prefWidth="163.0" text="Generar Informe ">
+        <Button fx:id="bt_generarReporte" layoutX="864.0" layoutY="381.0" mnemonicParsing="false" onAction="#onGenerarReporte" prefHeight="35.0" prefWidth="163.0" text="Generar Reporte">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Button>
-        <Label layoutX="388.0" layoutY="198.0" text="Seleccione el tipo de reporte:">
+        <Label layoutX="51.0" layoutY="142.0" text="Seleccione el tipo de reporte:">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="447.0" layoutY="255.0" text="Fecha Inicial:">
+        <Label layoutX="170.0" layoutY="243.0" text="Fecha Inicial:">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Label>
-        <Label layoutX="448.0" layoutY="307.0" prefHeight="23.0" prefWidth="90.0" text="Fecha Final:">
+        <Label layoutX="738.0" layoutY="243.0" prefHeight="23.0" prefWidth="90.0" text="Fecha Final:">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Label>
-        <DatePicker fx:id="dp_fechaInicio" layoutX="553.0" layoutY="250.0" style="-fx-font-size: 13px;" />
-        <DatePicker fx:id="dp_fechaFin" layoutX="553.0" layoutY="302.0" style="-fx-font-size: 13px;" />
-        <Button fx:id="bt_limpiar" layoutX="539.0" layoutY="474.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="31.0" prefWidth="104.0" text="Limpiar">
+        <DatePicker fx:id="dp_fechaInicio" layoutX="276.0" layoutY="238.0" style="-fx-font-size: 13px;" />
+        <DatePicker fx:id="dp_fechaFin" layoutX="843.0" layoutY="238.0" style="-fx-font-size: 13px;" />
+        <Button fx:id="bt_limpiar" layoutX="864.0" layoutY="134.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="35.0" prefWidth="163.0" text="Limpiar Campos">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>

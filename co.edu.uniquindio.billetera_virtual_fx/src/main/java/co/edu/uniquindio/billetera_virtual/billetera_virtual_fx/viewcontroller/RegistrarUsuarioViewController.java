@@ -87,19 +87,19 @@ public class RegistrarUsuarioViewController {
             if (verificarCamposCorrectos()){
                 UsuarioDto usuario = crearUsuario();
                 if (registrarUsuarioController.agregarUsuario(usuario)) {
-                    mostrarMensaje(TITULO_USUARIO_CREADO, BODY_USUARIO_CREADO, Alert.AlertType.INFORMATION);
+                    mostrarMensaje(TITLE_USER_CREADO, BODY_USER_CREADO, Alert.AlertType.INFORMATION);
                     limpiarCamposTexto();
                 }
                 else{
-                    mostrarMensaje(TITULO_USUARIO_NO_CREADO, BODY_USUARIO_NO_CREADO, Alert.AlertType.ERROR);
+                    mostrarMensaje(TITLE_USER_NO_CREADO, BODY_USER_NO_CREADO, Alert.AlertType.ERROR);
                 }
             }
             else{
-                mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
             }
         }
         else{
-            mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
         }
     }
 

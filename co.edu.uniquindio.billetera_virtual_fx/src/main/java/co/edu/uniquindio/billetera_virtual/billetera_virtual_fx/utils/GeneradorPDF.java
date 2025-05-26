@@ -17,9 +17,13 @@ import com.itextpdf.layout.borders.SolidBorder;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.properties.HorizontalAlignment;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.properties.VerticalAlignment;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.layout.element.Image;
 
 import java.awt.*;
 import java.io.File;
@@ -85,6 +89,7 @@ public class GeneradorPDF {
 
                 Cell cellVacia = new Cell().add(new Paragraph("")) // Espaciador central
                         .setBorder(Border.NO_BORDER);
+
 
                 Cell cellTituloFechaFin = new Cell().add(new Paragraph("Fecha Final Informe:"))
                         .setBorder(Border.NO_BORDER)
@@ -171,6 +176,18 @@ public class GeneradorPDF {
 
             canvas.endText();
             canvas.release();
+
+            String logoPath = "C:/Users/ASUS/Documents/GitHub/prog2_proyecto_final_fx/co.edu.uniquindio.billetera_virtual_fx/src/main/java/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/utils/wallet_logo.jpg";
+            try {
+                ImageData imageData = ImageDataFactory.create(logoPath);
+                Image logo = new Image(imageData);
+                logo.setAutoScale(true);
+                logo.setHorizontalAlignment(HorizontalAlignment.RIGHT);
+                logo.setMarginTop(30f);
+                documentos.add(logo);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
 
             documentos.close();
 

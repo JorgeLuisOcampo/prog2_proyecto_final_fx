@@ -120,18 +120,18 @@ public class CategoriasViewController {
                     listaCategorias.add(categoria);
                     tb_categorias.refresh();
                     limpiarSeleccion();
-                    mostrarMensaje(TITULO_CATEGORIA_AGREGADA, BODY_CATEGORIA_AGREGADA, Alert.AlertType.INFORMATION);
+                    mostrarMensaje(TITLE_CATEGORY_AGREGADA, BODY_CATEGORY_AGREGADA, Alert.AlertType.INFORMATION);
                 }
                 else {
-                    mostrarMensaje(TITULO_CATEGORIA_NO_AGREGADA, BODY_CATEGORIA_NO_AGREGADA, Alert.AlertType.ERROR);
+                    mostrarMensaje(TITLE_CATEGORY_NO_AGREGADA, BODY_CATEGORY_NO_AGREGADA, Alert.AlertType.ERROR);
                 }
             }
             else {
-                mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_CATEGORIA_NO_AGREGADA, BODY_CATEGORIA_NO_AGREGADA, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_CATEGORY_NO_AGREGADA, BODY_CATEGORY_NO_AGREGADA, Alert.AlertType.WARNING);
         }
     }
 
@@ -145,45 +145,45 @@ public class CategoriasViewController {
                         intercambiarCategorias(categoriaSeleccionada.idCategoria(), categoriaNueva);
                         limpiarSeleccion();
                         tb_categorias.refresh();
-                        mostrarMensaje(TITULO_CATEGORIA_ACTUALIZADA,
-                                BODY_CATEGORIA_ACTUALIZADA, Alert.AlertType.INFORMATION);
+                        mostrarMensaje(TITLE_CATEGORY_ACTUALIZADA,
+                                BODY_CATEGORY_ACTUALIZADA, Alert.AlertType.INFORMATION);
                     }
                     else {
-                        mostrarMensaje(TITULO_CATEGORIA_NO_ACTUALIZADA,
-                                BODY_CATEGORIA_NO_ACTUALIZADA, Alert.AlertType.ERROR);
+                        mostrarMensaje(TITLE_CATEGORY_NO_ACTUALIZADA,
+                                BODY_CATEGORY_NO_ACTUALIZADA, Alert.AlertType.ERROR);
                     }
                 }
                 else {
-                    mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                    mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
                 }
             }
             else {
-                mostrarMensaje(TITULO_CATEGORIA_NO_AGREGADA,
-                        BODY_CATEGORIA_NO_AGREGADA, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_CATEGORY_NO_AGREGADA,
+                        BODY_CATEGORY_NO_AGREGADA, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_CATEGORIA_NO_SELECCIONADA,
-                    BODY_CATEGORIA_NO_SELECCIONADA, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_CATEGORY_NO_SELECCIONADA,
+                    BODY_CATEGORY_NO_SELECCIONADA, Alert.AlertType.WARNING);
         }
     }
 
 
     private void eliminarCategoria() {
         if (categoriaSeleccionada != null) {
-            if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_CATEGORIA) &&
+            if (mostrarMensajeConfirmacion(BODY_CONFIRM_ELIMINAR_CATEGORIA) &&
                     categoriasController.
                             eliminarCategoria(usuario.idUsuario(), categoriaSeleccionada.idCategoria())) {
                 listaCategorias.remove(categoriaSeleccionada);
                 limpiarSeleccion();
-                mostrarMensaje(TITULO_CATEGORIA_ELIMINADA, BODY_CATEGORIA_ELIMINADA, Alert.AlertType.INFORMATION);
+                mostrarMensaje(TITLE_CATEGORY_ELIMINADA, BODY_CATEGORY_ELIMINADA, Alert.AlertType.INFORMATION);
             } else {
-                mostrarMensaje(TITULO_CATEGORIA_NO_ELIMINADA, BODY_CATEGORIA_NO_ELIMINADA, Alert.AlertType.ERROR);
+                mostrarMensaje(TITLE_CATEGORY_NO_ELIMINADA, BODY_CATEGORY_NO_ELIMINADA, Alert.AlertType.ERROR);
             }
         }
         else {
-            mostrarMensaje(TITULO_CATEGORIA_NO_SELECCIONADA,
-                    BODY_CATEGORIA_NO_SELECCIONADA, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_CATEGORY_NO_SELECCIONADA,
+                    BODY_CATEGORY_NO_SELECCIONADA, Alert.AlertType.WARNING);
         }
     }
 

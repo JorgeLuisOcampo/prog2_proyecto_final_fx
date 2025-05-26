@@ -132,18 +132,18 @@ public class GestionUsuariosViewController {
                     listaUsuarios.add(usuario);
                     tb_usuarios.refresh();
                     limpiarSeleccion();
-                    mostrarMensaje(TITULO_USUARIO_AGREGADO, BODY_USUARIO_AGREGADO, Alert.AlertType.INFORMATION);
+                    mostrarMensaje(TITLE_USER_AGREGADO, BODY_USER_AGREGADO, Alert.AlertType.INFORMATION);
                 }
                 else{
-                    mostrarMensaje(TITULO_USUARIO_NO_AGREGADO, BODY_USUARIO_NO_AGREGADO, Alert.AlertType.ERROR);
+                    mostrarMensaje(TITLE_USER_NO_AGREGADO, BODY_USER_NO_AGREGADO, Alert.AlertType.ERROR);
                 }
             }
             else{
-                mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
             }
         }
         else{
-            mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
         }
     }
 
@@ -156,22 +156,22 @@ public class GestionUsuariosViewController {
                         intercambiarUsuarios(usuarioSeleccionado.idUsuario(), usuarioNuevo);
                         limpiarSeleccion();
                         tb_usuarios.refresh();
-                        mostrarMensaje(TITULO_USUARIO_ACTUALIZADO, BODY_USUARIO_ACTUALIZADO, Alert.AlertType.INFORMATION);
+                        mostrarMensaje(TITLE_USER_ACTUALIZADO, BODY_USER_ACTUALIZADO, Alert.AlertType.INFORMATION);
                     }
                     else{
-                        mostrarMensaje(TITULO_USUARIO_NO_ACTUALIZADO, BODY_USUARIO_NO_ACTUALIZADO, Alert.AlertType.ERROR);
+                        mostrarMensaje(TITLE_USER_NO_ACTUALIZADO, BODY_USER_NO_ACTUALIZADO, Alert.AlertType.ERROR);
                     }
                 }
                 else{
-                    mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                    mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
                 }
             }
             else{
-                mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_USUARIO_NO_SELECCIONADO, BODY_USUARIO_NO_SELECCIONADO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_USER_NO_SELECCIONADO, BODY_USER_NO_SELECCIONADO, Alert.AlertType.WARNING);
         }
     }
 
@@ -186,14 +186,14 @@ public class GestionUsuariosViewController {
 
     private void eliminarUsuario() {
         if (usuarioSeleccionado != null) {
-            if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_USUARIO) && gestionUsuariosController.eliminarUsuario(usuarioSeleccionado.idUsuario())){
+            if (mostrarMensajeConfirmacion(BODY_CONFIRM_ELIMINAR_USUARIO) && gestionUsuariosController.eliminarUsuario(usuarioSeleccionado.idUsuario())){
                 listaUsuarios.remove(usuarioSeleccionado);
                 limpiarSeleccion();
-                mostrarMensaje(TITULO_USUARIO_ELIMINADO, BODY_USUARIO_ELIMINADO, Alert.AlertType.INFORMATION);
+                mostrarMensaje(TITLE_USER_ELIMINADO, BODY_USER_ELIMINADO, Alert.AlertType.INFORMATION);
             }
         }
         else{
-            mostrarMensaje(TITULO_USUARIO_NO_SELECCIONADO, BODY_USUARIO_NO_SELECCIONADO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_USER_NO_SELECCIONADO, BODY_USER_NO_SELECCIONADO, Alert.AlertType.WARNING);
         }
     }
 

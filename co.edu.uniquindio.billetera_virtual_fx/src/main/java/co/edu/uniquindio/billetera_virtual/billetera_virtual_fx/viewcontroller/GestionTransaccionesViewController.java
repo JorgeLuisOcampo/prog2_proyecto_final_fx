@@ -166,11 +166,11 @@ public class GestionTransaccionesViewController {
                 }
             }
             else {
-                mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
         }
     }
 
@@ -180,7 +180,7 @@ public class GestionTransaccionesViewController {
             listaTransacciones.add(transaccionDto);
         }
         else {
-            mostrarMensaje(TITULO_DEPOSITO_NO_EXITOSO, BODY_DEPOSITO_NO_EXITOSO, Alert.AlertType.ERROR);
+            mostrarMensaje(TITLE_DEPOSIT_NO_EXITOSO, BODY_DEPOSIT_NO_EXITOSO, Alert.AlertType.ERROR);
         }
     }
 
@@ -193,7 +193,7 @@ public class GestionTransaccionesViewController {
                 }
             }
             else {
-                mostrarMensaje(TITULO_PRESUPUESTO_SUPERADO, BODY_PRESUPUESTO_SUPERADO, Alert.AlertType.ERROR);
+                mostrarMensaje(TITLE_BUDGET_SUPERADO, BODY_BUDGET_SUPERADO, Alert.AlertType.ERROR);
             }
             return false;
         }
@@ -202,34 +202,34 @@ public class GestionTransaccionesViewController {
 
     private void realizarRetiro(TransaccionDto transaccionDto) {
         if (falloSacarDinero(transaccionDto)) {
-            mostrarMensaje(TITULO_RETIRO_NO_EXITOSO,
-                    BODY_RETIRO_NO_EXITOSO, Alert.AlertType.ERROR);
+            mostrarMensaje(TITLE_WITHDRAWAL_NO_EXITOSO,
+                    BODY_WITHDRAWAL_NO_EXITOSO, Alert.AlertType.ERROR);
         }
     }
 
     private void realizarTransferencia(TransaccionDto transaccionDto) {
         if (falloSacarDinero(transaccionDto)) {
-            mostrarMensaje(TITULO_TRANSFERENCIA_NO_EXITOSA,
-                    BODY_TRANSFERENCIA_NO_EXITOSA_DINERO, Alert.AlertType.ERROR);
+            mostrarMensaje(TITLE_TRANSFER_NO_EXITOSA,
+                    BODY_TRANSFER_NO_EXITOSA_NO_BALANCE, Alert.AlertType.ERROR);
         }
     }
 
     private void mostrarMensajeTransaccionExitosa(TransaccionDto transaccionDto) {
         String mensajeMonto = transaccionDto.monto() + " pesos.";
         if (transaccionDto.tipoTransaccion().equals(TipoTransaccion.DEPOSITO)) {
-            mostrarMensaje(TITULO_DEPOSITO_EXITOSO,
-                    BODY_DEPOSITO_EXITOSO + mensajeMonto,
+            mostrarMensaje(TITLE_DEPOSIT_EXITOSO,
+                    BODY_DEPOSIT_EXITOSO + mensajeMonto,
                     Alert.AlertType.INFORMATION);
         }
         else if (transaccionDto.tipoTransaccion().equals(TipoTransaccion.TRANSFERENCIA)) {
-            mostrarMensaje(TITULO_TRANSFERENCIA_EXITOSA,
-                    BODY_TRANSFERENCIA_EXITOSA + mensajeMonto,
+            mostrarMensaje(TITLE_TRANSFER_EXITOSA,
+                    BODY_TRANSFER_EXITOSA + mensajeMonto,
                     Alert.AlertType.INFORMATION);
 
         }
         else if (transaccionDto.tipoTransaccion().equals(TipoTransaccion.RETIRO)) {
-            mostrarMensaje(TITULO_RETIRO_EXITOSO,
-                    BODY_RETIRO_EXITOSO + mensajeMonto,
+            mostrarMensaje(TITLE_WITHDRAWAL_EXITOSO,
+                    BODY_WITHDRAWAL_EXITOSO + mensajeMonto,
                     Alert.AlertType.INFORMATION);
         }
         limpiarSeleccion();

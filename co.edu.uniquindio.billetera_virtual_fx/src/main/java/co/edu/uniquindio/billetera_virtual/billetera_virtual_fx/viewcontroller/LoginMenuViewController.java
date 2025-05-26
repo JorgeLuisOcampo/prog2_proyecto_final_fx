@@ -94,25 +94,25 @@ public class LoginMenuViewController {
                     return;
                 } else {
                     if (!iniciarSesionAdmin(clave)) {
-                        mostrarMensaje(TITULO_CREDENCIALES_INCORRECTAS,
-                                BODY_CREDENCIALES_INCORRECTAS, Alert.AlertType.WARNING);
+                        mostrarMensaje(TITLE_CREDENTIALS_INCORRECTAS,
+                                BODY_CREDENTIALS_INCORRECTAS, Alert.AlertType.WARNING);
                     }
                 }
             }
             else {
-                mostrarMensaje(TITULO_CREDENCIALES_NO_VALIDAS,
-                        BODY_CREDENCIALES_NO_VALIDAS, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_CREDENTIALS_NO_VALIDAS,
+                        BODY_CREDENTIALS_NO_VALIDAS, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_CREDENCIALES_NO_RELLENAS,
-                    BODY_CREDENCIALES_NO_RELLENAS, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_CREDENTIALS_NO_RELLENAS,
+                    BODY_CREDENTIALS_NO_RELLENAS, Alert.AlertType.WARNING);
         }
     }
 
     private boolean iniciarSesionAdmin(int clave) {
         if (loginMenuController.verificarCredencialesAdmin(clave)){
-            mostrarMensaje(TITULO_BIENVENIDA, BODY_BIENVENIDA + "Administrador",
+            mostrarMensaje(TITLE_BIENVENIDA, BODY_BIENVENIDA + "Administrador",
                     Alert.AlertType.INFORMATION);
             cambiarVistaAdmin();
             return true;
@@ -123,7 +123,7 @@ public class LoginMenuViewController {
     private boolean iniciarSesionUsuario(String usuario, int clave) {
         if (loginMenuController.verificarCredencialesUsuario(usuario, clave)){
             UsuarioDto usuarioDto = loginMenuController.obtenerUsuario(usuario);
-            mostrarMensaje(TITULO_BIENVENIDA, BODY_BIENVENIDA + usuarioDto.nombreCompleto(),
+            mostrarMensaje(TITLE_BIENVENIDA, BODY_BIENVENIDA + usuarioDto.nombreCompleto(),
                     Alert.AlertType.INFORMATION);
             cambiarVistaUsuario(usuarioDto);
             return true;

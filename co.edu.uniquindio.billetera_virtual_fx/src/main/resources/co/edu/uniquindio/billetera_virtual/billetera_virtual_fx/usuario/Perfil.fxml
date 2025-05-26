@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.PerfilViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="1180.0" styleClass="anchor-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.billetera_virtual.billetera_virtual_fx.viewcontroller.usuario.PerfilViewController">
     <children>
-        <Label fx:id="lb_titulo" layoutX="570.0" layoutY="71.0" text="Perfil">
+        <Label fx:id="lb_titulo" layoutX="102.0" layoutY="40.0" text="PERFIL DE USUARIO">
             <font>
                 <Font name="Segoe UI" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="bt_limpiar" layoutX="621.0" layoutY="438.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="31.0" prefWidth="118.0" text="Limpiar">
+        <Button fx:id="bt_limpiar" layoutX="790.0" layoutY="338.0" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="31.0" prefWidth="118.0" text="Limpiar">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>
         </Button>
-        <Button fx:id="bt_actualizar" layoutX="399.0" layoutY="438.0" mnemonicParsing="false" onAction="#onActualizar" prefHeight="35.0" prefWidth="161.0" text="Actualizar Datos">
+        <Button fx:id="bt_actualizar" layoutX="509.0" layoutY="432.0" mnemonicParsing="false" onAction="#onActualizar" prefHeight="35.0" prefWidth="161.0" text="Actualizar Datos">
             <font>
                 <Font name="Segoe UI" size="16.0" />
             </font>

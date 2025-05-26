@@ -83,10 +83,10 @@ public class ReporteFinancieroViewController {
                             null, fechaInicio, fechaFin);
                 }
             } else {
-                mostrarMensaje(TITULO_FECHAS_INVALIDAS, BODY_FECHAS_INVALIDAS, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_DATES_INVALIDAS, BODY_DATES_INVALIDAS, Alert.AlertType.WARNING);
             }
         } else {
-            mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
         }
     }
 

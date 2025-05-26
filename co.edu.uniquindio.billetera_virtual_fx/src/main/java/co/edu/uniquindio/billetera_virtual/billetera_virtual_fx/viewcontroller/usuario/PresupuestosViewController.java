@@ -120,20 +120,20 @@ public class PresupuestosViewController {
                     tb_presupuestos.refresh();
                     limpiarSeleccion();
                     setCBoxCategorias();
-                    mostrarMensaje(TITULO_PRESUPUESTO_AGREGADO,
-                            BODY_PRESUPUESTO_AGREGADO, Alert.AlertType.INFORMATION);
+                    mostrarMensaje(TITLE_BUDGET_AGREGADO,
+                            BODY_BUDGET_AGREGADO, Alert.AlertType.INFORMATION);
                 }
                 else {
-                    mostrarMensaje(TITULO_PRESUPUESTO_NO_AGREGADO,
-                            BODY_PRESUPUESTO_NO_AGREGADO, Alert.AlertType.ERROR);
+                    mostrarMensaje(TITLE_BUDGET_NO_AGREGADO,
+                            BODY_BUDGET_NO_AGREGADO, Alert.AlertType.ERROR);
                 }
             }
             else {
-                mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
         }
     }
 
@@ -150,50 +150,50 @@ public class PresupuestosViewController {
                             limpiarSeleccion();
                             tb_presupuestos.refresh();
                             setCBoxCategorias();
-                            mostrarMensaje(TITULO_PRESUPUESTO_ACTUALIZADO,
-                                    BODY_PRESUPUESTO_ACTUALIZADO, Alert.AlertType.INFORMATION);
+                            mostrarMensaje(TITLE_BUDGET_ACTUALIZADO,
+                                    BODY_BUDGET_ACTUALIZADO, Alert.AlertType.INFORMATION);
                         }
                         else {
-                            mostrarMensaje(TITULO_PRESUPUESTO_NO_ACTUALIZADO,
-                                    BODY_PRESUPUESTO_NO_ACTUALIZADO, Alert.AlertType.ERROR);
+                            mostrarMensaje(TITLE_BUDGET_NO_ACTUALIZADO,
+                                    BODY_BUDGET_NO_ACTUALIZADO, Alert.AlertType.ERROR);
                         }
                     }
                     else {
-                        mostrarMensaje(TITULO_PRESUPUESTO_TOPE_INVALIDO,
-                                BODY_PRESUPUESTO_TOPE_INVALIDO, Alert.AlertType.ERROR);
+                        mostrarMensaje(TITLE_BUDGET_TOPE_INVALIDO,
+                                BODY_BUDGET_TOPE_INVALIDO, Alert.AlertType.ERROR);
                     }
                 }
                 else {
-                    mostrarMensaje(TITULO_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
+                    mostrarMensaje(TITLE_INCORRECTO, BODY_INCORRECTO, Alert.AlertType.WARNING);
                 }
             }
             else {
-                mostrarMensaje(TITULO_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
+                mostrarMensaje(TITLE_INCOMPLETO, BODY_INCOMPLETO, Alert.AlertType.WARNING);
             }
         }
         else {
-            mostrarMensaje(TITULO_PRESUPUESTO_NO_SELECCIONADO,
-                    BODY_PRESUPUESTO_NO_SELECCIONADO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_BUDGET_NO_SELECCIONADO,
+                    BODY_BUDGET_NO_SELECCIONADO, Alert.AlertType.WARNING);
         }
     }
 
     private void eliminar() {
         if (presupuestoSeleccionado != null) {
-            if (mostrarMensajeConfirmacion(BODY_CONFIRMACION_ELIMINAR_PRESUPUESTO) && presupuestosController
+            if (mostrarMensajeConfirmacion(BODY_CONFIRM_ELIMINAR_PRESUPUESTO) && presupuestosController
                     .eliminarPresupuesto(presupuestoSeleccionado.idPresupuesto(), usuario.idUsuario())){
                 listaPresupuestos.remove(presupuestoSeleccionado);
                 setCBoxCategorias();
                 limpiarSeleccion();
-                mostrarMensaje(TITULO_PRESUPUESTO_ELIMINADO,
-                        BODY_PRESUPUESTO_ELIMINADO, Alert.AlertType.INFORMATION);
+                mostrarMensaje(TITLE_BUDGET_ELIMINADO,
+                        BODY_BUDGET_ELIMINADO, Alert.AlertType.INFORMATION);
             } else {
-                mostrarMensaje(TITULO_PRESUPUESTO_NO_ELIMINADO,
-                        BODY_PRESUPUESTO_NO_ELIMINADO, Alert.AlertType.ERROR);
+                mostrarMensaje(TITLE_BUDGET_NO_ELIMINADO,
+                        BODY_BUDGET_NO_ELIMINADO, Alert.AlertType.ERROR);
             }
         }
         else {
-            mostrarMensaje(TITULO_PRESUPUESTO_NO_SELECCIONADO,
-                    BODY_PRESUPUESTO_NO_SELECCIONADO, Alert.AlertType.WARNING);
+            mostrarMensaje(TITLE_BUDGET_NO_SELECCIONADO,
+                    BODY_BUDGET_NO_SELECCIONADO, Alert.AlertType.WARNING);
         }
     }
 

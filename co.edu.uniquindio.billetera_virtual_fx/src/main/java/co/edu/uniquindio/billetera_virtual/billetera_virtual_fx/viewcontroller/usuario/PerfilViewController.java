@@ -98,21 +98,21 @@ public class PerfilViewController {
                     usuario = usuarioNuevo;
                     menuUsuarioViewController.setUsuario(usuario);
                     limpiarCampos();
-                    mostrarMensaje(TITULO_USUARIO_ACTUALIZADO,
-                            BODY_USUARIO_ACTUALIZADO, Alert.AlertType.INFORMATION);
+                    mostrarMensaje(TITLE_USER_ACTUALIZADO,
+                            BODY_USER_ACTUALIZADO, Alert.AlertType.INFORMATION);
                 }
                 else{
-                    mostrarMensaje(TITULO_USUARIO_NO_ACTUALIZADO,
-                            BODY_USUARIO_NO_ACTUALIZADO, Alert.AlertType.ERROR);
+                    mostrarMensaje(TITLE_USER_NO_ACTUALIZADO,
+                            BODY_USER_NO_ACTUALIZADO, Alert.AlertType.ERROR);
                 }
             }
             else{
-                mostrarMensaje(TITULO_INCORRECTO,
+                mostrarMensaje(TITLE_INCORRECTO,
                         BODY_INCORRECTO, Alert.AlertType.WARNING);
             }
         }
         else{
-            mostrarMensaje(TITULO_INCOMPLETO,
+            mostrarMensaje(TITLE_INCOMPLETO,
                     BODY_INCOMPLETO, Alert.AlertType.WARNING);
         }
     }
