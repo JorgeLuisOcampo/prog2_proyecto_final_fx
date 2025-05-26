@@ -18,6 +18,11 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.properties.TextAlignment;
 import com.itextpdf.layout.properties.VerticalAlignment;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.layout.element.Image;
+
+
 
 import java.awt.*;
 import java.io.File;
@@ -156,6 +161,18 @@ public class GeneradorPDF {
                 case "Saldos":
                     generarListaSaldos(documentos, listaCuentas, letra, letraBold, tablaDivisoraTransacciones);
                     break;
+            }
+
+            String logoPath = "C:/Users/ASUS/Documents/GitHub/prog2_proyecto_final_fx/co.edu.uniquindio.billetera_virtual_fx/src/main/java/co/edu/uniquindio/billetera_virtual/billetera_virtual_fx/utils/wallet_logo.jpg";
+            try {
+                ImageData imageData = ImageDataFactory.create(logoPath);
+                Image logo = new Image(imageData);
+                logo.setAutoScale(true); // Scales image to fit if too big
+                logo.setHorizontalAlignment(com.itextpdf.layout.properties.HorizontalAlignment.CENTER);
+                logo.setMarginTop(30f); // Add some spacing from the last section
+                documentos.add(logo);
+            } catch (Exception ex) {
+                ex.printStackTrace(); // Log if the image fails to load
             }
 
             documentos.close();

@@ -260,6 +260,7 @@ public class PresupuestosViewController {
 
     private void obtenerPresupuestos() {
         listaPresupuestos.addAll(presupuestosController.obtenerPresupuestos(usuario.idUsuario()));
+
     }
 
     private void listenerSelection(){

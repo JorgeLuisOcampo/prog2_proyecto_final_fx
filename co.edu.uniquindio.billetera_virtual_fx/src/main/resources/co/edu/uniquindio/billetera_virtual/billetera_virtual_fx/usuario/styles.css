@@ -32,6 +32,7 @@
     -fx-padding: 5;
 }
 
+
 .table-view {
     -fx-background-color: #ffffff;
     -fx-border-color: #90caf9;
@@ -51,7 +52,7 @@
     -fx-text-fill: white;
 }
 
-.table-row-cell {
-    -fx-font-size: 14px;
-    -fx-padding: 8;
+.table-view .table-cell {
+    -fx-text-fill: #2c3e50;
 }
+

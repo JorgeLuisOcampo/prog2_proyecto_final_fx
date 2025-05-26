@@ -4,6 +4,7 @@ module co.edu.uniquindio.billetera_virtual.billetera_virtual_fx {
     requires java.desktop;
     requires layout;
     requires kernel;
+    requires io;
 
 
     opens co.edu.uniquindio.billetera_virtual.billetera_virtual_fx to javafx.fxml;
